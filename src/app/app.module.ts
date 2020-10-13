@@ -7,10 +7,12 @@ import { ResortsComponent } from './resorts/resorts.component';
 import { ResortComponent } from './resorts/resort/resort.component';
 import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
+import { AddResortComponent } from './resorts/add-resort/add-resort.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AddResortComponent,
     HeaderComponent,
     ResortsComponent,
     ResortComponent,
@@ -21,6 +23,6 @@ import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
