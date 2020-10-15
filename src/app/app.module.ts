@@ -10,6 +10,7 @@ import { ResortComponent } from './resorts/resort/resort.component';
 import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
+import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddResortComponent } from './resorts/add-resort/add-resort.component';
     ResortComponent,
     ResortDetailComponent,
     ResortEditComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule

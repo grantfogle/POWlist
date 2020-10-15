@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-12 resort-card"
+  <div class="center col-lg-3 col-md-4 col-sm-12 resort-card"
     *ngFor="let resort of resorts"
     [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}"
     >
@@ -17,6 +17,9 @@
         <p>{{resort.rating}}</p>
     </div>
   </div>
-  <app-add-resort></app-add-resort>
-  <!-- <app-resort *ngFor="let resort of resorts" [resortName]="resort.resortName"></app-resort> -->
+</div>
+<hr>
+<div class="row">
+  <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
+  <app-add-resort *ngIf="showAddResortForm"></app-add-resort>  
 </div>

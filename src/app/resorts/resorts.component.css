@@ -1,6 +1,6 @@
 .resort-card {
-    height: 300px;
-    width: 350px;
+    height: 240px;
+    width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,4 +23,8 @@
 .resort-card-footer {
     display: flex;
     justify-content: space-between;
+}
+
+.add-resort-btn {
+    width: 400px;
 }
