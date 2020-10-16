@@ -6,6 +6,6 @@
 <hr>
 <div class="row">
   <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
-  <app-add-resort *ngIf="showAddResortForm"></app-add-resort>  
+  <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)"></app-add-resort>  
 </div>
 <hr>
