@@ -1,0 +1,30 @@
+.resort-card-container {
+    height: 240px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1em;
+    padding: .5em;
+    /* color: #fff; */
+}
+
+.resort-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.resort-card-geo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resort-card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-resort-btn {
+    width: 400px;
+}

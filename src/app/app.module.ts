@@ -11,6 +11,7 @@ import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.com
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
 import {FooterComponent} from './footer/footer.component';
+import { ResortCardComponent } from './resorts/resort-card/resort-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {FooterComponent} from './footer/footer.component';
     ResortComponent,
     ResortDetailComponent,
     ResortEditComponent,
-    FooterComponent
+    FooterComponent,
+    ResortCardComponent
   ],
   imports: [
     BrowserModule

@@ -1,25 +1,11 @@
 <div class="row">
-  <div class="center col-lg-3 col-md-4 col-sm-12 resort-card"
-    *ngFor="let resort of resorts"
-    [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}"
-    >
-    <div class="resort-card-header d-flex">
-      <p>#1</p>
-      <!-- <p>getResortRank()</p> -->
-      <p>{{resort.snowInInches}}"</p>
+    <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of resorts">
+      <app-resort-card [resort]="resort"></app-resort-card>
     </div>
-    <div class="resort-card-geo">
-        <h2 class="text-center">{{resort.name}}</h2>
-        <h5 class="text-center">{{resort.country}}</h5>
-    </div>
-    <div class="resort-card-footer">
-        <p>{{resort.skiPasses}}</p>
-        <p>{{resort.rating}}</p>
-    </div>
-  </div>
 </div>
 <hr>
 <div class="row">
   <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
   <app-add-resort *ngIf="showAddResortForm"></app-add-resort>  
 </div>
+<hr>

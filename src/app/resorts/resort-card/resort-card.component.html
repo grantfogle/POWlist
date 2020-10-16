@@ -1,0 +1,15 @@
+<div class="resort-card-container"
+    [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
+    <div class="resort-card-header d-flex">
+        <p>#1</p>
+        <p>{{resort.snowInInches}}"</p>
+    </div>
+    <div class="resort-card-geo">
+        <h2 class="text-center">{{resort.name}}</h2>
+        <h5 class="text-center">{{resort.country}}</h5>
+    </div>
+    <div class="resort-card-footer">
+        <p>{{resort.skiPasses}}</p>
+        <p>{{resort.rating}}</p>
+    </div>
+</div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Resort } from './resort.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { Resort } from './shared/resort.model';
 
 @Component({
   selector: 'app-resorts',
@@ -30,8 +30,12 @@ export class ResortsComponent implements OnInit {
   }
 
   toggleAddResortForm() {
-    console.log('cats');
     this.showAddResortForm = !this.showAddResortForm;
+  }
+
+  addResort(resort: Resort) {
+    console.log('cats');
+    this.resorts.push(resort);
   }
 
 }
