@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {Resort} from '../shared/resort.model';
 
 @Component({
@@ -11,12 +11,12 @@ export class AddResortComponent implements OnInit {
   resortName = '';
   resortLocation = '';
   resortCountry = '';
-  resortRating: number;
+  resortRating = 0;
   resortImagePath = '';
   resortSkiPasses = '';
   resortSnowInInches = '';
   resortDescription = '';
-  resortLiftTicketCost: number;
+  resortLiftTicketCost = 0;
   
   constructor() { }
 

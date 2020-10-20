@@ -8,7 +8,7 @@ import { Resort } from './shared/resort.model';
 })
 export class ResortsComponent implements OnInit {
   showAddResortForm = false;
-  resorts: Resort[] = [
+  @Input() resorts: Resort[] = [
     new Resort('Alta', 'Little Cottonwood Canyon', 'Utah', 4.8, 'Ski Utah\'s top resort, averages 500 inches of snow a year', 'https://escape2ski.com/wp-content/uploads/2020/06/138-102-Alta-Ski-Area-UT.jpg', 'Ikon', '500'),
     new Resort('Snowbird', 'Little Cottonwood Canyon', 'Utah', 4.7, 'Ski one of utahs top resorts, averages 300 inches of snow per year', 'https://upload.wikimedia.org/wikipedia/commons/6/68/Snowbird_Tram_at_Hidden_Peak.jpg', 'Ikon', '480'),
     new Resort('Steamboat', 'Steamboat Springs', 'Colorado', 4.6, 'Champagne powder abounds at this tree skiing paradise.', 'https://img6.onthesnow.com/image/xl/73/73931.jpg', 'Ikon', '350'),
