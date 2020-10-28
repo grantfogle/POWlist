@@ -1,5 +1,9 @@
 
-<app-filter (filterResorts)="filterResorts($event)"></app-filter>
+<app-filter
+  (filterResorts)="filterResorts($event)"
+  (ikonFilterSelected)="filterResortsForIkon($event)"
+  (passFilterSelected)="filterResortsByPass($event)"
+></app-filter>
 <div class="container">
 <hr>
 <div class="row">
