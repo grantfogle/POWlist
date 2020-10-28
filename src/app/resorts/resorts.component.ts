@@ -19,8 +19,11 @@ export class ResortsComponent implements OnInit {
     new Resort('Big Sky', 'Big Sky', 'Montana', 4.0, 'Big badass skiing.', 'https://www.powderhounds.com/site/DefaultSite/filesystem/images/USA/BigSky/Overview/11.jpg', 'Ikon', '400'),
     new Resort('Mt Rose', 'Tahoe', 'Nevada', 4.4, 'Big badass skiing, close to cool ass town in Reno.', 'https://s.hdnux.com/photos/01/11/12/06/19177906/7/gallery_medium.jpg', 'Ikon', '400'),
   ];
+  @Input() displayResorts: Resort[] 
 
-  constructor() { }
+  constructor() {
+    this.displayResorts = this.resorts;
+  }
 
   ngOnInit() {
   }
@@ -36,6 +39,14 @@ export class ResortsComponent implements OnInit {
   addResort(resort: Resort) {
     console.log('cats');
     this.resorts.push(resort);
+    // this.displayResorts.push(resort);
   }
 
+  filterResorts(filterWord: string) {
+    console.log('itran');
+    // check if region/country/or resort name contains string
+    let filterArr = this.resorts.filter(resort => resort.name === filterWord);
+    console.log(filterArr);
+    this.displayResorts = filterArr;
+  }
 }

@@ -1,5 +1,9 @@
+
+<app-filter (filterResorts)="filterResorts($event)"></app-filter>
+<div class="container">
+<hr>
 <div class="row">
-    <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of resorts">
+    <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of displayResorts">
       <app-resort-card [resort]="resort"></app-resort-card>
     </div>
 </div>
@@ -7,5 +11,6 @@
 <div class="row">
   <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
   <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)"></app-add-resort>  
+</div>
 </div>
 <hr>

@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="filter">
-            <button class="btn btn-info filter-button">Filter</button>
+            <button class="btn btn-info filter-button" (click)="onSearchFilter()">Filter</button>
             <div class="input-group filter-search">
-                <input type="text" class="form-control" placeholder="Search Resort or Region">
+                <input type="text" class="form-control" placeholder="Search Resort or Region" #filterInput>
                 <!-- <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button">Button</button>
                 </div> -->
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle">
+                <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
                     Filter Resorts <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -18,6 +18,19 @@
                     <li><a href="#">Favorite Resort</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="filters" *ngIf="displayFilters">
+            <div class="filters-buttons">
+                <button class="btn" [ngClass]="ikonSelected ? 'btn-info' : ''" onPress="">Ikon</button>
+                <button class="btn">Epic</button>
+                <button class="btn btn-info">Mtn Collective</button>
+                <button class="btn btn-info">Family Friendly</button>
+                <button class="btn btn-info">Powder</button>
+                <button class="btn btn-info">Big Mountain</button>
+                <button class="btn btn-info">Affordable (Lift Tickets < $100)</button>
+                <button class="btn btn-info">More than 300" of snow/yr</button>
+            </div>
+            <button class="btn btn-info">Clear Filters</button>
         </div>
     </div>
 </div>
