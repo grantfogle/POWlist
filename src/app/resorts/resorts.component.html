@@ -8,10 +8,11 @@
 <hr>
 <div class="row">
     <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of displayResorts">
-      <app-resort-card [resort]="resort"></app-resort-card>
+      <app-resort-card [resort]="resort" appResortCardHighlight></app-resort-card>
     </div>
 </div>
 <hr>
+<p appResortCardHighlight [defaultColor]="'red'" [highlightColor]="'blue'">asdfasdfasdf</p>
 <div class="row">
   <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
   <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)"></app-add-resort>  

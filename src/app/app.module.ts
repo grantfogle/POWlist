@@ -13,6 +13,8 @@ import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
 import {FooterComponent} from './footer/footer.component';
 import { ResortCardComponent } from './resorts/resort-card/resort-card.component';
+import { ResortCardHighlightDirective } from './resorts/resort-card/resort-card-highlight.directive';
+import { DropdownDirective } from './resorts/shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ResortCardComponent } from './resorts/resort-card/resort-card.component
     ResortDetailComponent,
     ResortEditComponent,
     FooterComponent,
-    ResortCardComponent
+    ResortCardComponent,
+    ResortCardHighlightDirective,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
