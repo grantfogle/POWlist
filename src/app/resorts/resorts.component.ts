@@ -19,7 +19,7 @@ export class ResortsComponent implements OnInit {
     new Resort('Big Sky', 'Big Sky', 'Montana', 4.0, 'Big badass skiing.', 'https://www.powderhounds.com/site/DefaultSite/filesystem/images/USA/BigSky/Overview/11.jpg', 'Ikon', '400'),
     new Resort('Mt Rose', 'Tahoe', 'Nevada', 4.4, 'Big badass skiing, close to cool ass town in Reno.', 'https://s.hdnux.com/photos/01/11/12/06/19177906/7/gallery_medium.jpg', 'Ikon', '400'),
   ];
-  @Input() displayResorts: Resort[] 
+  @Input() displayResorts: Resort[]
 
   constructor() {
     this.displayResorts = this.resorts;
@@ -28,7 +28,7 @@ export class ResortsComponent implements OnInit {
   ngOnInit() {
   }
 
-  resortRating(resort: string):string { 
+  resortRating(resort: string): string {
     return 'cats';
   }
 
@@ -43,10 +43,14 @@ export class ResortsComponent implements OnInit {
   }
 
   filterResorts(filterWord: string) {
-    console.log('itran');
-    // check if region/country/or resort name contains string
-    let filterArr = this.resorts.filter(resort => resort.name === filterWord);
-    console.log(filterArr);
+    let filterArr = this.resorts.filter(resort => {
+      let name = resort.name.toLowerCase().indexOf(filterWord);
+      let country = resort.country.toLowerCase().indexOf(filterWord);
+      let region = resort.location.toLowerCase().indexOf(filterWord);
+      if (name !== -1 || country !== -1 || region !== -1) {
+        return resort;
+      }
+    })
     this.displayResorts = filterArr;
   }
 
