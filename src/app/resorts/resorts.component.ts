@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Resort } from './shared/resort.model';
+import { ResortModalComponent } from './resort-modal/resort-modal.component';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-resorts',
@@ -21,8 +23,16 @@ export class ResortsComponent implements OnInit {
   ];
   @Input() displayResorts: Resort[]
 
-  constructor() {
+  constructor(public modalService: ModalService) {
     this.displayResorts = this.resorts;
+  }
+
+  initLoginModal() {
+    // let inputs = {
+    //   isMobile: false
+    // }
+    // let outputs = {}
+    this.modalService.init(ResortModalComponent, {}, {})
   }
 
   ngOnInit() {

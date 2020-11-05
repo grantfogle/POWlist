@@ -8,7 +8,7 @@
 <hr>
 <div class="row">
     <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of displayResorts">
-      <app-resort-card [resort]="resort"></app-resort-card>
+      <app-resort-card (click)="initLoginModal()" [resort]="resort"></app-resort-card>
     </div>
 </div>
 <hr>
@@ -18,5 +18,3 @@
 </div>
 </div>
 <hr>
-<div id="modal-container" class="hidden"></div>
-<div id="overlay" (click)="removeModal()" class="hidden"></div>
