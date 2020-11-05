@@ -23,6 +23,18 @@ export class AddResortComponent implements OnInit {
   ngOnInit() {
   }
 
+  resetForm() {
+    this.resortName = '';
+    this.resortLocation = '';
+    this.resortCountry = '';
+    this.resortRating = 0;
+    this.resortImagePath = '';
+    this.resortSkiPasses = '';
+    this.resortSnowInInches = '';
+    this.resortDescription = '';
+    this.resortLiftTicketCost = 0;
+  }
+
   onAddResort() {
     this.resortCreated.emit({
         name: this.resortName,
@@ -37,6 +49,7 @@ export class AddResortComponent implements OnInit {
         geo: ['',''],
         reviews: ['', ''],
         liftPassCost: this.resortLiftTicketCost
-    })
+    });
+    this.resetForm();
   }
 }

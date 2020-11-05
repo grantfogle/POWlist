@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeroComponent } from './resorts/hero.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 import { FilterComponent } from './resorts/filter/filter.component';
 import { ResortsComponent } from './resorts/resorts.component';
 import { ResortComponent } from './resorts/resort/resort.component';
@@ -20,6 +21,7 @@ import { DropdownDirective } from './resorts/shared/dropdown.directive';
   declarations: [
     AppComponent,
     AddResortComponent,
+    FeedbackComponent,
     FilterComponent,
     HeaderComponent,
     HeroComponent,
