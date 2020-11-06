@@ -1,6 +1,16 @@
-.sample-container{
+.modal-container{
     display:grid;
     grid-template-columns: 1fr;
+    padding: 1em;
+    width: 100%;
+  }
+  .modal-banner {
+      min-height: 50px;
+      width: 100%;
+      background: url('https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5d1573f34c687b00085b1145%2F0x0.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+
   }
   .sample-text{
     color: black;
@@ -11,7 +21,7 @@
     text-align:center;
   }
   .sample-close button{
-    width: 200px;
-    height: 200px;
-    color: tomato;
+    width: 100px;
+    height: 40px;
+    color: #fff;
   }
