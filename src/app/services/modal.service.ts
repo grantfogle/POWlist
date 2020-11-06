@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DomService } from './dom.service';
+import { Resort } from '../resorts/shared/resort.model';
 @Injectable({providedIn: 'root'})
 export class ModalService {
-
     constructor(private domService: DomService) { }
 
     private modalElementId = 'modal-container';

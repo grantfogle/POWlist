@@ -27,12 +27,17 @@ export class ResortsComponent implements OnInit {
     this.displayResorts = this.resorts;
   }
 
-  initLoginModal() {
+  initResortModal(resortData) {
+    console.log(resortData);
     // let inputs = {
     //   isMobile: false
     // }
     // let outputs = {}
-    this.modalService.init(ResortModalComponent, {}, {})
+    let outputs = {
+      resort: resortData
+    }
+    this.modalService.init(ResortModalComponent, {}, outputs);
+    // this.modalService.init(ResortModalComponent, {}, {})
   }
 
   ngOnInit() {
