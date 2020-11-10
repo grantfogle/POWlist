@@ -10,6 +10,9 @@ export class FilterService {
     // }
     constructor(public resortsService: ResortsService) {}
     filterBySnowfall(resorts: Resort[]) {}
+    filterByGeo(term: string) {
+        
+    }
     filterByExtremeTerrain() {}
     filterByFamilyFriendly() {}
     filterByAffordability() {}
