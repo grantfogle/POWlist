@@ -23,11 +23,6 @@ export class ResortModalComponent {
         {name: 'Side Country Access', data: 'Yes'},
         {name: 'Passes', data: 'Crowded'},
     ]
-    // data array
-    // snow total by month
-    // weather service
-    // get content and images
-
     close() {
         this.modalService.destroy();
     }

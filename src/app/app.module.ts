@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// import { AgmCoreModule } from '@agm/core';
+
+// import {googleMapsApiKey} from '../assets/secret'
 
 import { AppComponent } from './app.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
@@ -31,6 +34,15 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    // AgmCoreModule.forRoot({
+    //   apiKey: googleMapsApiKey,
+    //   libraries: ['places']
+    // }),
+  ],
   declarations: [
     AppComponent,
     AddResortComponent,
@@ -49,11 +61,6 @@ const appRoutes: Routes = [
     DropdownDirective,
     ResortModalComponent,
     MapComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes)
   ],
   entryComponents:[
     ResortModalComponent

@@ -10,9 +10,7 @@ export class FilterService {
     // }
     constructor() {}
     // filterBySnowfall(resorts: Resort[]) {}
-    filterByGeo(term: string) {
-
-    }
+    filterByGeo(term: string) {}
     filterByExtremeTerrain() {}
     filterByFamilyFriendly() {}
     filterByAffordability() {}
