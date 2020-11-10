@@ -92,6 +92,6 @@ export class FilterComponent implements OnInit, OnChanges {
 
   clearFilter() {
     console.log('tasdfasdfasfd');
-    this.filterService.removeAllFilters();
+    // this.filterService.removeAllFilters();
   }
 }

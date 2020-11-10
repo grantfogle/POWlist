@@ -8,9 +8,9 @@
                   </div>
                   <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
-                <li><a href="#">View Resorts</a></li>
-                <li><a href="#">Map View</a></li>
-                <li><a href="#">Sign Up</a></li>
+                <li><a routerLink="resorts">View Resorts</a></li>
+                <li><a routerLink="map">Map View</a></li>
+                <li><a routerLink="login">Log In/Sign Up</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>

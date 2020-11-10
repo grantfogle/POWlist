@@ -8,19 +8,19 @@ export class FilterService {
     // filterByRating(resortList: Resort[]) {    
     //     return resortList.filter(resort => a > b );
     // }
-    constructor(public resortsService: ResortsService) {}
-    filterBySnowfall(resorts: Resort[]) {}
+    constructor() {}
+    // filterBySnowfall(resorts: Resort[]) {}
     filterByGeo(term: string) {
-        
+
     }
     filterByExtremeTerrain() {}
     filterByFamilyFriendly() {}
     filterByAffordability() {}
     filterByResorts() {}
 
-    removeAllFilters() {
-        console.log('cats');
-        console.log(this.resortsService.resorts)
-        this.resortsService.filteredResorts = this.resortsService.resorts;
-    }
+    // removeAllFilters() {
+    //     console.log('cats');
+    //     console.log(this.resortsService.resorts)
+    //     this.resortsService.filteredResorts = this.resortsService.resorts;
+    // }
 }
