@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
+import { ResortsService } from '../services/resorts.service'; 
 
 @Component({
   selector: 'app-resorts',
@@ -21,10 +22,13 @@ export class ResortsComponent implements OnInit {
     new Resort('Big Sky', 'Big Sky', 'Montana', 4.0, 'Big badass skiing.', 'https://www.powderhounds.com/site/DefaultSite/filesystem/images/USA/BigSky/Overview/11.jpg', 'Ikon', '400'),
     new Resort('Mt Rose', 'Tahoe', 'Nevada', 4.4, 'Big badass skiing, close to cool ass town in Reno.', 'https://s.hdnux.com/photos/01/11/12/06/19177906/7/gallery_medium.jpg', 'Ikon', '400'),
   ];
-  @Input() displayResorts: Resort[]
 
-  constructor(public modalService: ModalService) {
-    this.displayResorts = this.resorts;
+  @Input() resorts2: Resort[] = [];
+  @Input() displayResorts: Resort[] = this.resortsService.filteredResorts;
+
+  constructor(public modalService: ModalService,
+    public resortsService: ResortsService) {
+    // this.displayResorts = this.resortsService.resorts;
   }
 
   initResortModal(resortData) {

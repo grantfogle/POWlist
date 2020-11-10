@@ -8,7 +8,7 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-
+import { FilterService } from '../../services/filter.service';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -30,8 +30,8 @@ export class FilterComponent implements OnInit, OnChanges {
   affordable = false;
   filters = [];
   
-  constructor() {
-    console.log('Contructor called');
+  constructor(public filterService: FilterService) {
+    // console.log('Contructor called');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -88,5 +88,10 @@ export class FilterComponent implements OnInit, OnChanges {
   toggleFilterView(name) {
     console.log('asdfasdfasdf')
     this.displayFilters = !this.displayFilters;
+  }
+
+  clearFilter() {
+    console.log('tasdfasdfasfd');
+    this.filterService.removeAllFilters();
   }
 }

@@ -19,6 +19,8 @@ import { ResortCardHighlightDirective } from './resorts/resort-card/resort-card-
 import { DropdownDirective } from './resorts/shared/dropdown.directive';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
+import { ResortsService} from './services/resorts.service';
+import { FilterService} from './services/filter.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { DomService } from './services/dom.service';
   entryComponents:[
     ResortModalComponent
   ],
-  providers: [ModalService, DomService],
+  providers: [ModalService, DomService, FilterService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

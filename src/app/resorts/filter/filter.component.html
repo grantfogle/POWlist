@@ -8,7 +8,8 @@
                     <button class="btn btn-outline-secondary" type="button">Button</button>
                 </div> -->
             </div>
-            <div class="btn-group" appDropdown>
+            <!-- <div class="btn-group" appDropdown> -->
+            <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
                     Filter Resorts <span class="caret"></span>
                 </button>
@@ -18,7 +19,7 @@
                     <li><a href="#">Favorite Resort</a></li>
                 </ul>
             </div>
-            <button class="btn btn-warning">Remove Filters</button>
+            <button class="btn btn-warning" (click)="clearFilter()">Remove Filters</button>
         </div>
         <div class="filters" *ngIf="displayFilters">
             <div class="filters-buttons">
