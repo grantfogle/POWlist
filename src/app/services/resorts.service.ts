@@ -42,4 +42,10 @@ export class ResortsService {
         })
         this.filteredResorts = filterArr;
     }
+
+    filterBySkiPass(pass: string) {
+        let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
+        console.log('it worked', filterArr);
+        this.filteredResorts = filterArr;
+    }
 }

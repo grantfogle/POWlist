@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
-import { ResortsService } from '../services/resorts.service'; 
+import { ResortsService } from '../services/resorts.service';
 
 @Component({
   selector: 'app-resorts',
@@ -17,9 +17,9 @@ export class ResortsComponent implements OnInit {
 
   constructor(public modalService: ModalService,
     public resortsService: ResortsService) {
-    // this.resortsService.filteredResorts.subscribe(resorts => this.displayResorts = )
-    this.displayResorts = this.resortsService.getAllResorts();
+
     this.resorts = this.resortsService.getAllResorts();
+    this.displayResorts = this.resortsService.filteredResorts;
   }
 
   initResortModal(resortData) {

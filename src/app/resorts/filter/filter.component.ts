@@ -9,6 +9,8 @@ import {
   Output
 } from '@angular/core';
 import { FilterService } from '../../services/filter.service';
+import { ResortsService } from '../../services/resorts.service';
+// filterBySkiPass()
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -29,8 +31,8 @@ export class FilterComponent implements OnInit, OnChanges {
   bigMtn = false;
   affordable = false;
   filters = [];
-  
-  constructor(public filterService: FilterService) {
+
+  constructor(public filterService: FilterService, public resortsService: ResortsService) {
     // console.log('Contructor called');
   }
 
@@ -57,32 +59,33 @@ export class FilterComponent implements OnInit, OnChanges {
   }
 
   filterByPasses(pass) {
+    this.resortsService.filterBySkiPass(pass);
     console.log(pass);
-    if (pass === 'Mtn Collective') {
-      this.epic = false;
-      this.ikon = false;
-      this.mtnCollective = !this.mtnCollective;
-      if (this.mtnCollective) {
-        this.passFilterSelected.emit(pass);
-      }
-    } else if (pass === 'Ikon') {
-      this.epic = false;
-      this.ikon = !this.ikon;
-      this.mtnCollective = false;
-      if (this.ikon) {
-        this.passFilterSelected.emit(pass);
-      }
-    } else if (pass === 'Epic') {
-      this.epic = !this.epic;
-      this.ikon = false;
-      this.mtnCollective = false;
-      if (this.epic) {
-        this.passFilterSelected.emit(pass);
-      } 
-      // else {
-      //   resetPassFilter
-      // }
-    }
+    // if (pass === 'Mtn Collective') {
+    //   this.epic = false;
+    //   this.ikon = false;
+    //   this.mtnCollective = !this.mtnCollective;
+    //   if (this.mtnCollective) {
+    //     this.passFilterSelected.emit(pass);
+    //   }
+    // } else if (pass === 'Ikon') {
+    //   this.epic = false;
+    //   this.ikon = !this.ikon;
+    //   this.mtnCollective = false;
+    //   if (this.ikon) {
+    //     this.passFilterSelected.emit(pass);
+    //   }
+    // } else if (pass === 'Epic') {
+    //   this.epic = !this.epic;
+    //   this.ikon = false;
+    //   this.mtnCollective = false;
+    //   if (this.epic) {
+    //     this.passFilterSelected.emit(pass);
+    //   }
+    //   else {
+    //    resetPassFilter
+    //   }
+    // }
   }
 
   toggleFilterView(name) {
