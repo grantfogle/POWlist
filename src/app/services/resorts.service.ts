@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FilterService } from './filter.service';
 import { Resort } from '../resorts/shared/resort.model';
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class ResortsService {
 
     constructor(private filterService: FilterService) {
+        this.sortResortsByRating();
         this.filteredResorts = this.resorts;
     }
 
@@ -26,6 +27,9 @@ export class ResortsService {
         this.filteredResorts = this.resorts;
         return this.filteredResorts;
     }
+    sortResortsByRating() {
+        let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
+    }
 
     getResortsByName(filterWord: string) {
         let filterArr = this.resorts.filter(resort => {
@@ -33,9 +37,9 @@ export class ResortsService {
             let country = resort.country.toLowerCase().indexOf(filterWord);
             let region = resort.location.toLowerCase().indexOf(filterWord);
             if (name !== -1 || country !== -1 || region !== -1) {
-              return resort;
+                return resort;
             }
-          })
+        })
         this.filteredResorts = filterArr;
     }
 }

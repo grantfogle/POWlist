@@ -10,8 +10,9 @@ import { Resort } from '../shared/resort.model';
 export class ResortCardComponent implements OnInit {
   showAddResortForm = false;
   @Input() resort: Resort;
+  @Input() rank;
 
-  constructor() { 
+  constructor() {
 
     console.log(this.resort);
   }
