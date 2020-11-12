@@ -19,6 +19,7 @@ import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.com
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { ResortModalComponent } from './resorts/resort-modal/resort-modal.component';
 import { ResortModalForecastComponent } from './resorts/resort-modal/resort-modal-forecast/resort-modal-forecast.component';
+import { ResortModalInfoComponent } from './resorts/resort-modal/resort-modal-info/resort-modal-info.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResortCardComponent } from './resorts/resort-card/resort-card.component';
 import { MapComponent } from './map/map.component';
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     DropdownDirective,
     ResortModalComponent,
     ResortModalForecastComponent,
+    ResortModalInfoComponent,
     MapComponent
   ],
   entryComponents: [
