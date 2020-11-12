@@ -1,27 +1,30 @@
 <div class="modal-container">
-    <div class="modal-banner"
-        [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
+    <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
         <h1>{{resort.name}}</h1>
         <h4>{{resort.location + ", " + resort.country}}</h4>
+        <button class="btn btn-warning">Buy Tickets</button>
     </div>
     <div class="modal-navigation">
-        <p class="modal-nav-active">Resort Info</p>
-        <p class="modal-nav-inactive">Forecast</p>
+        <p class="modal-nav-active" (click)="handleModalNavigation('Resort Info')">Resort Info</p>
+        <p class="modal-nav-inactive" (click)="handleModalNavigation('Forecast')">Forecast</p>
         <p class="modal-nav-inactive">Reviews</p>
         <p class="modal-nav-inactive">Trail Maps</p>
         <p class="modal-nav-inactive">Photos</p>
         <p class="modal-nav-inactive">Travel Guide</p>
-
     </div>
     <div class="modal-data">
         <div class="modal-data-table">
+            <app-resort-modal-forecast *ngIf="selectedNav === 'Forecast'"></app-resort-modal-forecast>
             <div class="modal-data-table-row" *ngFor="let resortTableRow of resortTable">
                 <p>{{resortTableRow.name}}</p>
                 <p>{{resortTableRow.data}}</p>
             </div>
+            <hr>
         </div>
         <!-- <button (click)="close()" class="btn btn-info">Update Data</button> -->
-        <button (click)="close()" class="btn btn-info">Close Modal</button>
-        <p>Update Data</p>
+        <div class="modal-footer">
+            <button (click)="close()" class="btn btn-info" id="modal-close">Close Modal</button>
+            <p>Update Data</p>
+        </div>
     </div>
 </div>

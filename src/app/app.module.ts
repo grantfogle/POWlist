@@ -18,6 +18,7 @@ import { ResortComponent } from './resorts/resort/resort.component';
 import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { ResortModalComponent } from './resorts/resort-modal/resort-modal.component';
+import { ResortModalForecastComponent } from './resorts/resort-modal/resort-modal-forecast/resort-modal-forecast.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResortCardComponent } from './resorts/resort-card/resort-card.component';
 import { MapComponent } from './map/map.component';
@@ -25,12 +26,12 @@ import { ResortCardHighlightDirective } from './resorts/resort-card/resort-card-
 import { DropdownDirective } from './resorts/shared/dropdown.directive';
 import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
-import { ResortsService} from './services/resorts.service';
-import { FilterService} from './services/filter.service';
+import { ResortsService } from './services/resorts.service';
+import { FilterService } from './services/filter.service';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'map', component: MapComponent},
+  { path: '', component: HomeComponent },
+  { path: 'map', component: MapComponent },
 ];
 
 @NgModule({
@@ -60,12 +61,13 @@ const appRoutes: Routes = [
     ResortCardHighlightDirective,
     DropdownDirective,
     ResortModalComponent,
+    ResortModalForecastComponent,
     MapComponent
   ],
-  entryComponents:[
+  entryComponents: [
     ResortModalComponent
   ],
   providers: [ModalService, DomService, FilterService, ResortsService],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

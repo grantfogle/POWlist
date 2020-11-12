@@ -63,4 +63,8 @@ export class ResortsComponent implements OnInit {
     let filterArr = this.resorts.filter(resort => resort.skiPasses === 'Ikon');
     this.displayResorts = filterArr;
   }
+
+  filterResortsForPowder() {
+    this.displayResorts.sort()
+  }
 }
