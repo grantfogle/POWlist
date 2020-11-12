@@ -4,13 +4,13 @@
                     <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
                       <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
                     </button>
-                    <a routerLink="/" class="navbar-brand">POWlist</a>
+                    <a routerLink="/" class="navbar-brand" routerLinkActive="active">POWlist</a>
                   </div>
                   <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
-                <li><a routerLink="resorts">View Resorts</a></li>
-                <li><a routerLink="map">Map View</a></li>
-                <li><a routerLink="login">Log In/Sign Up</a></li>
+                <li><a routerLink="/" routerLinkActive="active">View Resorts</a></li>
+                <li><a routerLink="map" routerLinkActive="active">Map View</a></li>
+                <li><a routerLink="login" routerLinkActive="active">Log In/Sign Up</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>

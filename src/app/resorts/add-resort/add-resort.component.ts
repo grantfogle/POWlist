@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {Resort} from '../shared/resort.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-resort',
@@ -17,10 +18,15 @@ export class AddResortComponent implements OnInit {
   resortSnowInInches = '';
   resortDescription = '';
   resortLiftTicketCost = 0;
+  resortForFirebase = {
+    resortName: this.resortName,
+    resortGeo: this.resortLocation
+  }
   
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.fetchResorts();
   }
 
   resetForm() {
@@ -50,6 +56,31 @@ export class AddResortComponent implements OnInit {
         reviews: ['', ''],
         liftPassCost: this.resortLiftTicketCost
     });
+    // this.onCreateResort();
+    this.fetchResorts();
     this.resetForm();
   }
+
+  // onCreateResort() {
+  //   const url = 'https://powfish.firebaseio.com/resorts.json';
+  //   let resorts = {
+  //     resortName: this.resortName,
+  //     resortGeo: this.resortLocation
+
+  //   }
+  //   this.http.post(
+  //     url,
+  //     resorts
+  //     ).subscribe(responseData => {
+  //       console.log(responseData);
+  //     });
+  // }
+  // private fetchResorts() {
+  //   console.log('called');
+  //   const url = 'https://powfish.firebaseio.com/resorts.json';
+  //   this.http.get(url)
+  //     .subscribe(response => {
+  //       console.log(posts);
+  //     })
+  // }
 }

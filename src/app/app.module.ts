@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 // import { AgmCoreModule } from '@agm/core';
 
 // import {googleMapsApiKey} from '../assets/secret'
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes),
     // AgmCoreModule.forRoot({
     //   apiKey: googleMapsApiKey,
