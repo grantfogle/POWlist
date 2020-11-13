@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
 import { HeaderComponent } from './header/header.component';
-import { HeroComponent } from './resorts/hero.component';
+import { HeroComponent } from './resorts/resorts-hero/hero.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { FilterComponent } from './resorts/filter/filter.component';
 import { HomeComponent } from './home/home.component';
@@ -21,6 +21,7 @@ import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component
 import { ResortModalComponent } from './resorts/resort-modal/resort-modal.component';
 import { ResortModalForecastComponent } from './resorts/resort-modal/resort-modal-forecast/resort-modal-forecast.component';
 import { ResortModalInfoComponent } from './resorts/resort-modal/resort-modal-info/resort-modal-info.component';
+import { ResortModalReviewsComponent } from './resorts/resort-modal/resort-modal-reviews/resort-modal-reviews.component';
 import { FooterComponent } from './footer/footer.component';
 import { ResortCardComponent } from './resorts/resort-card/resort-card.component';
 import { MapComponent } from './map/map.component';
@@ -66,6 +67,7 @@ const appRoutes: Routes = [
     ResortModalComponent,
     ResortModalForecastComponent,
     ResortModalInfoComponent,
+    ResortModalReviewsComponent,
     MapComponent
   ],
   entryComponents: [

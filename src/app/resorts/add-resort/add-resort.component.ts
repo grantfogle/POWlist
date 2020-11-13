@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {Resort} from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-resort',
@@ -57,7 +58,7 @@ export class AddResortComponent implements OnInit {
         liftPassCost: this.resortLiftTicketCost
     });
     // this.onCreateResort();
-    this.fetchResorts();
+    // this.fetchResorts();
     this.resetForm();
   }
 
@@ -75,12 +76,23 @@ export class AddResortComponent implements OnInit {
   //       console.log(responseData);
   //     });
   // }
-  // private fetchResorts() {
-  //   console.log('called');
-  //   const url = 'https://powfish.firebaseio.com/resorts.json';
-  //   this.http.get(url)
-  //     .subscribe(response => {
-  //       console.log(posts);
-  //     })
-  // }
+  private fetchResorts() {
+    console.log('called');
+    // const cors = 'https://cors-anywhere.herokuapp.com/'
+    const url = 'https://powfish.firebaseio.com/resorts.json';
+    this.http.get(url)
+      .pipe(map(responseData => {
+        console.log('asdfa', responseData);
+        const resortsArray = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            resortsArray.push({...responseData[key], id: key})
+          }
+        }
+        return resortsArray;
+      }))
+      .subscribe(response => {
+        console.log(response);
+      })
+  }
 }

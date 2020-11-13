@@ -1,0 +1,13 @@
+<h1>Reviews Go Here</h1>
+<h4>Overall Rating: 4.4 ****</h4>
+<div class="review-container">
+    <div *ngFor="let review of reviews" class="review">
+        <div class="review-header">
+            <div class="review-avatar"></div>
+            <h6>{{review.user}}</h6>
+            <h6>{{review.rating}}</h6>
+        </div>
+    <!-- <h2>{{review.title}}</h2> -->
+        <p>{{review.description}}</p>
+    </div>
+</div>

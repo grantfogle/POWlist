@@ -2,23 +2,23 @@
     <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
         <h1>{{resort.name}}</h1>
         <h4>{{resort.location + ", " + resort.country}}</h4>
-        <button class="btn btn-warning">Buy Tickets</button>
+        <button class="btn btn-warning">Add a Review</button>
     </div>
     <div class="modal-navigation">
         <p (click)="handleModalNavigation('Info')" [ngClass]="selectedNav === 'Info' ? 'modal-nav-active' : 'modal-nav-inactive'">Resort
             Info
         </p>
         <p [ngClass]="selectedNav === 'Forecast' ? 'modal-nav-active' : 'modal-nav-inactive'" (click)="handleModalNavigation('Forecast')">Forecast</p>
-        <p class="modal-nav-inactive">Reviews</p>
         <p class="modal-nav-inactive">Trail Maps</p>
         <p class="modal-nav-inactive">Photos</p>
-        <p class="modal-nav-inactive">Chat</p>
+        <p [ngClass]="selectedNav === 'Reviews' ? 'modal-nav-active' : 'modal-nav-inactive'" (click)="handleModalNavigation('Reviews')">Reviews</p>
         <p class="modal-nav-inactive">Guide</p>
     </div>
     <div class="modal-data">
         <div class="modal-data-table">
             <app-resort-modal-forecast *ngIf="selectedNav === 'Forecast'"></app-resort-modal-forecast>
             <app-resort-modal-info *ngIf="selectedNav === 'Info'"></app-resort-modal-info>
+            <app-resort-modal-reviews *ngIf="selectedNav === 'Reviews'"></app-resort-modal-reviews>
             <hr>
         </div>
         <div class="modal-footer">
@@ -26,4 +26,5 @@
             <p>Update Data</p>
         </div>
     </div>
+    <!-- <app-resort-modal-review *ngIf="selectedNav === 'Review'"class="modal-review"></app-resort-modal-review> -->
 </div>
