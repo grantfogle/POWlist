@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'app-resort-modal-review-form',
@@ -9,6 +9,8 @@ import { Component, Input } from '@angular/core';
 export class ResortModalReviewFormComponent {
     constructor() {
     }
+
+    @Output() closeReviewForm = new EventEmitter<string>();
     // close() {
     //     this.modalService.destroy();
     // }

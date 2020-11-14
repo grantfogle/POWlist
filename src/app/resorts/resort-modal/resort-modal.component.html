@@ -1,8 +1,8 @@
-<div class="modal-container" *ngIf="!showReview">
+<div class="modal-container" *ngIf="!showReviewForm">
     <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
         <h1>{{resort.name}}</h1>
         <h4>{{resort.location + ", " + resort.country}}</h4>
-        <button class="btn btn-warning" (click)="showReviewForm()">Add a Review</button>
+        <button class="btn btn-warning" (click)="toggleReviewForm()">Add a Review</button>
     </div>
     <div class="modal-navigation">
         <p (click)="handleModalNavigation('Info')" [ngClass]="selectedNav === 'Info' ? 'modal-nav-active' : 'modal-nav-inactive'">Resort
@@ -27,6 +27,6 @@
         </div>
     </div>
 </div>
-<div class="modal-container" *ngIf="showReview">
-        <app-resort-modal-review-form class="modal-review"></app-resort-modal-review-form>
+<div class="modal-container" *ngIf="showReviewForm">
+        <app-resort-modal-review-form class="modal-review" (closeReview)="toggleReviewForm($event)"></app-resort-modal-review-form>
 </div>

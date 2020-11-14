@@ -12,14 +12,14 @@ export class ResortModalComponent {
     constructor(public modalService: ModalService) {
     }
     selectedNav = 'Info';
-    showReview = false;
+    showReviewForm = false;
 
     handleModalNavigation(term: string) {
         this.selectedNav = term;
     }
 
-    showReviewForm() {
-        this.showReview = true;
+    toggleReviewForm() {
+        this.showReviewForm= !this.showReviewForm;
     }
 
     close() {
