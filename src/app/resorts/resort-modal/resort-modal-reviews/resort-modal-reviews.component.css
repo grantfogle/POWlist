@@ -1,3 +1,12 @@
+.resort-ratings {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.resort-ratings p {
+    margin: 0;
+}
+
 .review-container {
     width: 95%;
     height: 200px;
@@ -15,7 +24,7 @@
 .review-header {
     width: 100%;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-content: center;
 }
 /* .user {} */
@@ -34,5 +43,5 @@ h6 {
 }
 
 p {
-    text-align: start;
+    text-align: flex-start;
 }
