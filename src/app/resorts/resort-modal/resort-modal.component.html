@@ -28,5 +28,5 @@
     </div>
 </div>
 <div class="modal-container" *ngIf="showReviewForm">
-        <app-resort-modal-review-form class="modal-review" (closeReview)="toggleReviewForm($event)"></app-resort-modal-review-form>
+    <app-resort-modal-review-form class="modal-review" [resortName]="resort.name" [id]="resort.id" (closeReviewForm)="toggleReviewForm($event)"></app-resort-modal-review-form>
 </div>

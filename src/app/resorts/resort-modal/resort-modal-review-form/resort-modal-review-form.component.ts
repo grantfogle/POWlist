@@ -9,9 +9,20 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
 export class ResortModalReviewFormComponent {
     constructor() {
     }
+    @Input() resortName: string;
+    @Input() resortId: string;
+    reviewDescription: string;
+    resortScore: number;
+    powScore: number;
+    terrainScore: number;
+    valueScore: number;
 
     @Output() closeReviewForm = new EventEmitter<string>();
     // close() {
     //     this.modalService.destroy();
     // }
+    closeReview() {
+        console.log('cats');
+        this.closeReviewForm.emit();
+    }
 }
