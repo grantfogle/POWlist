@@ -10,10 +10,16 @@ import { map } from 'rxjs/operators';
 })
 export class AddResortComponent implements OnInit {
   @Output() resortCreated = new EventEmitter<Resort>();
+
   resortName = '';
+  resortCity = '';
+  resortProvince = '';
   resortLocation = '';
   resortCountry = '';
+  resortLatitude = '';
+  resortLongitude = '';
   resortRating = 0;
+  initalImage = '';
   resortImagePath = '';
   resortSkiPasses = '';
   resortSnowInInches = '';
@@ -32,6 +38,8 @@ export class AddResortComponent implements OnInit {
 
   resetForm() {
     this.resortName = '';
+    this.resortCity = '';
+    this.resortProvince = '';
     this.resortLocation = '';
     this.resortCountry = '';
     this.resortRating = 0;
@@ -62,20 +70,21 @@ export class AddResortComponent implements OnInit {
     this.resetForm();
   }
 
-  // onCreateResort() {
-  //   const url = 'https://powfish.firebaseio.com/resorts.json';
-  //   let resorts = {
-  //     resortName: this.resortName,
-  //     resortGeo: this.resortLocation
+  onCreateResort() {
+    const url = 'https://powfish.firebaseio.com/resorts.json';
+    let resorts = {
+      resortName: this.resortName,
+      resortGeo: this.resortLocation
 
-  //   }
-  //   this.http.post(
-  //     url,
-  //     resorts
-  //     ).subscribe(responseData => {
-  //       console.log(responseData);
-  //     });
-  // }
+    }
+    this.http.post(
+      url,
+      resorts
+      ).subscribe(responseData => {
+        console.log(responseData);
+      });
+  }
+
   private fetchResorts() {
     console.log('called');
     // const cors = 'https://cors-anywhere.herokuapp.com/'
