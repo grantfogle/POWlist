@@ -1,20 +1,21 @@
 export class Resort {
     public name: string;
-    public location: string;
+    public city: string;
+    public province: string;
     public country: string;
-    public latlong: string;
+    public latitude: string;
+    public longitude: string;
     public description: string;
-    public geo: string[];
     public rating: number;
     public imagePath: string;
-    public reviews: string[];
     public snowInInches: string;
     public skiPasses: string;
     public liftPassCost: number;
 
     constructor(name: string,
-        location: string,
         country: string,
+        city: string,
+        province: string,
         rating: number,
         description: string,
         imagePath: string,
@@ -22,7 +23,8 @@ export class Resort {
         snowInInches: string) {
 
         this.name = name;
-        this.location = location;
+        this.city = city;
+        this.province = province;
         this.country = country;
         this.rating = rating;
         this.description = description;

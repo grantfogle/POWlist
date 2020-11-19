@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import {Resort} from '../shared/resort.model';
+import { Resort } from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-resort',
@@ -14,58 +13,57 @@ export class AddResortComponent implements OnInit {
   resortName = '';
   resortCity = '';
   resortProvince = '';
-  resortLocation = '';
   resortCountry = '';
-  resortLatitude = '';
-  resortLongitude = '';
   resortRating = 0;
   initalImage = '';
-  resortImagePath = '';
-  resortSkiPasses = '';
-  resortSnowInInches = '';
-  resortDescription = '';
   resortLiftTicketCost = 0;
+  resortDescription = '';
+  resortSnow = '';
+  resortSkiPasses = '';
+
+  // resortLocation = '';
+  // resortLatitude = '';
+  // resortLongitude = '';
+  // resortImagePath = '';
+
   resortForFirebase = {
     resortName: this.resortName,
-    resortGeo: this.resortLocation
   }
-  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.fetchResorts();
   }
 
   resetForm() {
     this.resortName = '';
     this.resortCity = '';
     this.resortProvince = '';
-    this.resortLocation = '';
     this.resortCountry = '';
     this.resortRating = 0;
-    this.resortImagePath = '';
-    this.resortSkiPasses = '';
-    this.resortSnowInInches = '';
-    this.resortDescription = '';
+    this.initalImage = '';
     this.resortLiftTicketCost = 0;
+    this.resortDescription = '';
+    this.resortSnow = '';
+    this.resortSkiPasses = '';
   }
 
   onAddResort() {
     this.resortCreated.emit({
-        name: this.resortName,
-        location: this.resortLocation,
-        country: this.resortCountry,
-        rating: this.resortRating,
-        description: this.resortDescription,
-        imagePath: this.resortImagePath,
-        skiPasses: this.resortSkiPasses,
-        snowInInches: this.resortSnowInInches,
-        latlong: '',
-        geo: ['',''],
-        reviews: ['', ''],
-        liftPassCost: this.resortLiftTicketCost
+      name: this.resortName,
+      city: this.resortCity,
+      province: this.resortProvince,
+      country: this.resortCountry,
+      latitude: '',
+      longitude: '',
+      rating: this.resortRating,
+      description: this.resortDescription,
+      imagePath: this.initalImage,
+      skiPasses: this.resortSkiPasses,
+      snowInInches: this.resortSnow,
+      liftPassCost: this.resortLiftTicketCost
     });
-    // this.onCreateResort();
+    this.onCreateResort();
     // this.fetchResorts();
     this.resetForm();
   }
@@ -73,37 +71,27 @@ export class AddResortComponent implements OnInit {
   onCreateResort() {
     // check for empty fields, if empty fields throw an alert
     // set a timeout to show then hide alert
+    console.log('called create resort');
     const url = 'https://powfish.firebaseio.com/resorts.json';
     let resorts = {
-      resortName: this.resortName,
-      resortGeo: this.resortLocation
-
+      name: this.resortName,
+      city: this.resortCity,
+      province: this.resortProvince,
+      country: this.resortCountry,
+      rating: this.resortRating,
+      description: this.resortDescription,
+      imagePath: this.initalImage,
+      skiPasses: this.resortSkiPasses,
+      snowInInches: this.resortSnow,
+      liftPassCost: this.resortLiftTicketCost
     }
     this.http.post(
       url,
       resorts
-      ).subscribe(responseData => {
-        console.log(responseData);
-      });
+    ).subscribe(responseData => {
+      console.log(responseData);
+    });
   }
 
-  private fetchResorts() {
-    console.log('called');
-    // const cors = 'https://cors-anywhere.herokuapp.com/'
-    const url = 'https://powfish.firebaseio.com/resorts.json';
-    this.http.get(url)
-      .pipe(map(responseData => {
-        console.log('asdfa', responseData);
-        const resortsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            resortsArray.push({...responseData[key], id: key})
-          }
-        }
-        return resortsArray;
-      }))
-      .subscribe(response => {
-        console.log(response);
-      })
-  }
+
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
@@ -16,7 +19,8 @@ export class ResortsComponent implements OnInit {
   @Input() displayResorts: Resort[];
 
   constructor(public modalService: ModalService,
-    public resortsService: ResortsService) {
+    public resortsService: ResortsService,
+    public http: HttpClient) {
 
     this.resorts = this.resortsService.getAllResorts();
     this.displayResorts = this.resortsService.filteredResorts;
@@ -30,6 +34,7 @@ export class ResortsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fetchResorts();
   }
 
   toggleAddResortForm() {
@@ -46,7 +51,7 @@ export class ResortsComponent implements OnInit {
     let filterArr = this.resorts.filter(resort => {
       let name = resort.name.toLowerCase().indexOf(filterWord);
       let country = resort.country.toLowerCase().indexOf(filterWord);
-      let region = resort.location.toLowerCase().indexOf(filterWord);
+      let region = resort.city.toLowerCase().indexOf(filterWord);
       if (name !== -1 || country !== -1 || region !== -1) {
         return resort;
       }
@@ -66,5 +71,25 @@ export class ResortsComponent implements OnInit {
 
   filterResortsForPowder() {
     this.displayResorts.sort()
+  }
+
+  private fetchResorts() {
+    console.log('called');
+    // const cors = 'https://cors-anywhere.herokuapp.com/'
+    const url = 'https://powfish.firebaseio.com/resorts.json';
+    this.http.get(url)
+      .pipe(map(responseData => {
+        console.log('asdfa', responseData);
+        const resortsArray = [];
+        for (const key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            resortsArray.push({ ...responseData[key], id: key })
+          }
+        }
+        return resortsArray;
+      }))
+      .subscribe(response => {
+        console.log(response);
+      })
   }
 }
