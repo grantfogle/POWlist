@@ -29,6 +29,7 @@ export class ResortModalReviewFormComponent {
         console.log('looks good');
     }
     submitReview() {
+        console.log(this.resortReviewDescription);
         let reviewObj = {
             review: this.resortReviewDescription,
             totalRating: this.resortScore,
