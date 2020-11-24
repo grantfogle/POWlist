@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 import { FilterService } from './filter.service';
 import { Resort } from '../resorts/shared/resort.model';
+
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
 
-    constructor(private filterService: FilterService) {
+    constructor(private filterService: FilterService,
+        public http: HttpClient) {
         this.sortResortsByRating();
         this.filteredResorts = this.resorts;
     }
@@ -56,5 +61,25 @@ export class ResortsService {
         let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
         console.log('it worked', filterArr);
         this.filteredResorts = filterArr;
+    }
+
+    retrieveResortsFromDb() {
+        // const cors = 'https://cors-anywhere.herokuapp.com/'
+        const url = 'https://powfish.firebaseio.com/resorts.json';
+        this.http.get(url)
+            .pipe(map(responseData => {
+                console.log('asdfa', responseData);
+                const resortsArray = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resortsArray.push({ ...responseData[key], id: key })
+                    }
+                }
+                return resortsArray;
+            }))
+            .subscribe(response => {
+                this.resorts.push(response[0]);
+                console.log(response);
+            })
     }
 }

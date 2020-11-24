@@ -34,7 +34,7 @@ export class ResortsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchResorts();
+    this.resortsService.retrieveResortsFromDb();
   }
 
   toggleAddResortForm() {
@@ -73,23 +73,4 @@ export class ResortsComponent implements OnInit {
     this.displayResorts.sort()
   }
 
-  private fetchResorts() {
-    console.log('called');
-    // const cors = 'https://cors-anywhere.herokuapp.com/'
-    const url = 'https://powfish.firebaseio.com/resorts.json';
-    this.http.get(url)
-      .pipe(map(responseData => {
-        console.log('asdfa', responseData);
-        const resortsArray = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            resortsArray.push({ ...responseData[key], id: key })
-          }
-        }
-        return resortsArray;
-      }))
-      .subscribe(response => {
-        console.log(response);
-      })
-  }
 }

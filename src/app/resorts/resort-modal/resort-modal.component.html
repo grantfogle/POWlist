@@ -1,7 +1,7 @@
 <div class="modal-container" *ngIf="!showReviewForm">
     <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
         <h1>{{resort.name}}</h1>
-        <h4>{{resort.location + ", " + resort.country}}</h4>
+        <h4>{{resort.city + ", " + resort.province}}</h4>
         <button class="btn btn-warning" (click)="toggleReviewForm()">Add a Review</button>
     </div>
     <div class="modal-navigation">

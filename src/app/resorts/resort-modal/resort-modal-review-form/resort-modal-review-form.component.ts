@@ -11,7 +11,7 @@ export class ResortModalReviewFormComponent {
     }
     @Input() resortName: string;
     @Input() resortId: string;
-    reviewDescription: string;
+    resortReviewDescription: string;
     resortScore: number;
     powScore: number;
     terrainScore: number;
@@ -24,5 +24,18 @@ export class ResortModalReviewFormComponent {
     closeReview() {
         console.log('cats');
         this.closeReviewForm.emit();
+    }
+    reviewQualityCheck() {
+        console.log('looks good');
+    }
+    submitReview() {
+        let reviewObj = {
+            review: this.resortReviewDescription,
+            totalRating: this.resortScore,
+            powRating: this.powScore,
+            valueRating: this.valueScore,
+            terrainRating: this.terrainScore
+        }
+        console.log(reviewObj);
     }
 }

@@ -3,7 +3,8 @@
     <div class="row">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">What did you think of {{'Steamboat'}}?</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="resortReviewDescription" rows="3" [(ngModel)]="resortReviewDescription">
+            </textarea>
         </div>
     </div>
     <div class="resort-scores">
@@ -110,7 +111,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-info" type="button">Add</button>
+            <button class="btn btn-info" type="button" (click)="submitReview()">Add</button>
             <button class="btn btn-warning" type="button" (click)="closeReview()">Cancel</button>
         </div>
     </div>
