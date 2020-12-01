@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Resort } from '../../shared/resort.model';
 
 @Component({
     selector: 'app-resort-modal-info',
@@ -7,7 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class ResortModalInfoComponent {
-
     resortTable = [
         { name: 'Rating', data: '4.4' },
         { name: 'Snow', data: '400 inches' },
@@ -21,4 +21,7 @@ export class ResortModalInfoComponent {
     ];
 
     constructor() { }
+
+    ngOnInit() {
+    }
 }

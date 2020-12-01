@@ -84,5 +84,6 @@ export class ResortsService {
                 this.sortResortsByRating();
                 console.log(response);
             })
+        console.log(this.resorts);
     }
 }

@@ -6,15 +6,15 @@ import {
     ApplicationRef
 } from '@angular/core';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class DomService {
 
-    private childComponentRef:any;
+    private childComponentRef: any;
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
         private injector: Injector
-    ) {}
+    ) { }
 
     public appendComponentTo(parentId: string, child: any, childConfig?: childConfig) {
         const childComponentRef = this.componentFactoryResolver.resolveComponentFactory(child).create(this.injector);
@@ -38,6 +38,7 @@ export class DomService {
     private attachConfig(config, componentRef) {
         let inputs = config.inputs;
         let outputs = config.outputs;
+        console.log(config);
         for (var key in inputs) {
             componentRef.intance[key] = inputs[key];
         }
@@ -47,7 +48,7 @@ export class DomService {
     }
 }
 
-interface childConfig{
-    inputs:object,
-    outputs:object
+interface childConfig {
+    inputs: object,
+    outputs: object
 }

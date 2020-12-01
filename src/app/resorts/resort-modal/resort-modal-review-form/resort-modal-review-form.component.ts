@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-resort-modal-review-form',
@@ -6,16 +6,23 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
     styleUrls: ['resort-modal-review-form.component.css']
 })
 
-export class ResortModalReviewFormComponent {
-    constructor() {
-    }
-    @Input() resortName: string;
-    @Input() resortId: string;
+export class ResortModalReviewFormComponent implements OnInit {
+
+    // @Input() name: string;
+    // @Input() resortId: string;
     resortReviewDescription: string;
     resortScore: number;
     powScore: number;
     terrainScore: number;
     valueScore: number;
+
+    constructor() {
+        // console.log(this.resortName, this.resortId);
+    }
+
+    ngOnInit() {
+        // console.log(this.resortName, this.resortId);
+    }
 
     @Output() closeReviewForm = new EventEmitter<string>();
     // close() {

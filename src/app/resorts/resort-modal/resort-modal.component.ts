@@ -11,15 +11,17 @@ import { Resort } from '../shared/resort.model';
 export class ResortModalComponent {
     constructor(public modalService: ModalService) {
     }
+
     selectedNav = 'Info';
     showReviewForm = false;
+    // resort: any;
 
     handleModalNavigation(term: string) {
         this.selectedNav = term;
     }
 
     toggleReviewForm() {
-        this.showReviewForm= !this.showReviewForm;
+        this.showReviewForm = !this.showReviewForm;
     }
 
     close() {

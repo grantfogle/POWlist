@@ -2,6 +2,8 @@
     width: 90%;
     margin: 0 auto;
     padding: 1em;
+    height: 200px;
+    overflow: scroll;
 }
 .resort-scores {
     width: 100%;

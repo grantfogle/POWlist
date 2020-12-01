@@ -13,8 +13,6 @@ export class ResortCardComponent implements OnInit {
   @Input() rank;
 
   constructor() {
-
-    console.log(this.resort);
   }
 
   ngOnInit() {
