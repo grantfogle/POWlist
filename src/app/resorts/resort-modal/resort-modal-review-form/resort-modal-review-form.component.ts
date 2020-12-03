@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { ReviewsService } from '../../../services/reviews.service';
 
 @Component({
     selector: 'app-resort-modal-review-form',
@@ -7,43 +8,40 @@ import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angu
 })
 
 export class ResortModalReviewFormComponent implements OnInit {
+    @Input() name: string;
+    @Input() id: string;
 
-    // @Input() name: string;
-    // @Input() resortId: string;
-    resortReviewDescription: string;
+    resortReview: string;
     resortScore: number;
     powScore: number;
     terrainScore: number;
     valueScore: number;
 
-    constructor() {
-        // console.log(this.resortName, this.resortId);
-    }
+    constructor(private reviewsService: ReviewsService) { }
 
-    ngOnInit() {
-        // console.log(this.resortName, this.resortId);
-    }
+    ngOnInit() { }
 
     @Output() closeReviewForm = new EventEmitter<string>();
-    // close() {
-    //     this.modalService.destroy();
-    // }
+
     closeReview() {
-        console.log('cats');
         this.closeReviewForm.emit();
     }
     reviewQualityCheck() {
         console.log('looks good');
+        // return true or false, throw err
     }
     submitReview() {
-        console.log(this.resortReviewDescription);
+        this.reviewQualityCheck();
+        console.log(this.resortReview);
         let reviewObj = {
-            review: this.resortReviewDescription,
-            totalRating: this.resortScore,
-            powRating: this.powScore,
+            resortId: this.id,
+            review: this.resortReview,
+            overallRating: this.resortScore,
+            powderRating: this.powScore,
             valueRating: this.valueScore,
             terrainRating: this.terrainScore
         }
         console.log(reviewObj);
+        this.reviewsService.submitReview(reviewObj);
     }
 }

@@ -1,33 +1,33 @@
 <form class="review-form">
     <div class="row">
         <div class="form-group">
-            <label for="resortReviewDescription">What did you think of?</label>
-            <textarea class="form-control" id="resortReviewDescription" rows="3" [(ngModel)]="resortReviewDescription"></textarea>
+            <!-- <label for="resortReviewDescription">What did you think of?</label> -->
+            <textarea class="form-control" id="resortReviewDescription" rows="3" name="resortReview" [(ngModel)]="resortReview" placeholder="Share details about your experience here"></textarea>
         </div>
     </div>
     <div class="resort-scores">
         <div class="row">
-            <h4>What's your overall score for</h4>
+            <h4>How would you rate the resort overall?</h4>
             <div class="radio-row">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" id="resortScore1" [value]="1" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore1">1 (Shit)</label>
+                    <input class="form-check-input" type="radio" name="resortScore" [value]="1" [(ngModel)]="resortScore">
+                    <label class="form-check-label" for="resortScore">1 (Shit)</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" id="resortScore2" [value]="2" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore2">2</label>
+                    <input class="form-check-input" type="radio" name="resortScore" [value]="2" [(ngModel)]="resortScore">
+                    <label class="form-check-label" for="resortScore">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" id="resortScore3" [value]="3" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore3">3</label>
+                    <input class="form-check-input" type="radio" name="resortScore" [value]="3" [(ngModel)]="resortScore">
+                    <label class="form-check-label" for="resortScore">3</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" id="resortScore4" [value]="4" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore4">4</label>
+                    <input class="form-check-input" type="radio" name="resortScore" [value]="4" [(ngModel)]="resortScore">
+                    <label class="form-check-label" for="resortScore">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" id="resortScore5" [value]="5" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore5">5 (Awesome)</label>
+                    <input class="form-check-input" type="radio" name="resortScore" [value]="5" [(ngModel)]="resortScore">
+                    <label class="form-check-label" for="resortScore">5 (Awesome)</label>
                 </div>
             </div>
         </div>
@@ -35,24 +35,24 @@
             <h4>How would you rate the terrain?</h4>
             <div class="radio-row">
                 <div class="form-check form-check-inline">
-                    <input class="custom-control-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="custom-control-label" for="inlineRadio1">1 (Lame)</label>
+                    <input class="custom-control-input" type="radio" name="terrainRadio" [value]="1" [(ngModel)]="terrainScore">
+                    <label class="custom-control-label" for="terrainRadio">1 (Lame)</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
+                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="2" [(ngModel)]="terrainScore">
+                    <label class="form-check-label" for="terrainRadio">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">3</label>
+                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="3" [(ngModel)]="terrainScore">
+                    <label class="form-check-label" for="terrainRadio">3</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">4</label>
+                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="4" [(ngModel)]="terrainScore">
+                    <label class="form-check-label" for="terrainRadio">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">5 (Sick)</label>
+                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="5" [(ngModel)]="terrainScore">
+                    <label class="form-check-label" for="terrainRadio">5 (Sick)</label>
                 </div>
             </div>
         </div>
@@ -60,24 +60,24 @@
             <h4>How are the resort prices?</h4>
             <div class="radio-row">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">1 (Expensive)</label>
+                    <input class="form-check-input" type="radio" name="priceRadio" [value]="1" [(ngModel)]="valueScore">
+                    <label class="form-check-label" for="priceRadio">1 (Expensive)</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
+                    <input class="form-check-input" type="radio" name="priceRadio" [value]="2" [(ngModel)]="valueScore">
+                    <label class="form-check-label" for="priceRadio">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">3</label>
+                    <input class="form-check-input" type="radio" name="priceRadio" [value]="3" [(ngModel)]="valueScore">
+                    <label class="form-check-label" for="priceRadio">3</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">4</label>
+                    <input class="form-check-input" type="radio" name="priceRadio" [value]="4" [(ngModel)]="valueScore">
+                    <label class="form-check-label" for="priceRadio">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">5 (Cheap)</label>
+                    <input class="form-check-input" type="radio" name="priceRadio" [value]="5" [(ngModel)]="valueScore">
+                    <label class="form-check-label" for="priceRadio">5 (Cheap)</label>
                 </div>
             </div>
         </div>
@@ -85,24 +85,24 @@
             <h4>How would you rate the snow?</h4>
             <div class="radio-row">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">1 (Rock Garden)</label>
+                    <input class="form-check-input" type="radio" name="snowRadio" [value]="1" [(ngModel)]="powScore">
+                    <label class="form-check-label" for="snowRadio">1 (Rock Garden)</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
+                    <input class="form-check-input" type="radio" name="snowRadio" [value]="2" [(ngModel)]="powScore">
+                    <label class="form-check-label" for="snowRadio">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">3</label>
+                    <input class="form-check-input" type="radio" name="snowRadio" [value]="3" [(ngModel)]="powScore">
+                    <label class="form-check-label" for="snowRadio">3</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">4</label>
+                    <input class="form-check-input" type="radio" name="snowRadio" [value]="4" [(ngModel)]="powScore">
+                    <label class="form-check-label" for="snowRadio">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                    <label class="form-check-label" for="inlineRadio3">5 (Powder Paradise)</label>
+                    <input class="form-check-input" type="radio" name="snowRadio" [value]="5" [(ngModel)]="powScore">
+                    <label class="form-check-label" for="snowRadio">5 (Powder Paradise)</label>
                 </div>
             </div>
         </div>

@@ -12,7 +12,15 @@ export class ReviewsService {
 
     private reviews: ResortReview[] = [];
 
-    addReview(review: ResortReview) {
+    submitReview(review: ResortReview) {
+        const url = 'https://powfish.firebaseio.com/reviews.json';
+        this.http.post(
+            url,
+            review
+        ).subscribe(responseData => {
+            console.log(responseData);
+        });
+
     }
 
     filterBySkiPass(pass: string) {

@@ -42,9 +42,7 @@ export class ResortsComponent implements OnInit {
   }
 
   addResort(resort: Resort) {
-    console.log('cats');
     this.resorts.push(resort);
-    // this.displayResorts.push(resort);
   }
 
   filterResorts(filterWord: string) {

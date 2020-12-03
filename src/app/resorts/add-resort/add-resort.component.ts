@@ -71,7 +71,6 @@ export class AddResortComponent implements OnInit {
   onCreateResort() {
     // check for empty fields, if empty fields throw an alert
     // set a timeout to show then hide alert
-    console.log('called create resort');
     const url = 'https://powfish.firebaseio.com/resorts.json';
     let resorts = {
       name: this.resortName,

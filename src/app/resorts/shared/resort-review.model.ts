@@ -1,9 +1,10 @@
 export interface ResortReview {
     resortId: string;
-    description: string;
+    review: string;
     // user: string;
     overallRating: number;
     powderRating: number;
-    terrain: number;
-    crowds: number;
+    valueRating: number;
+    terrainRating: number;
+    // crowds: number;
 }

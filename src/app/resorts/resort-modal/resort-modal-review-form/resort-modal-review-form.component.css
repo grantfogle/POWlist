@@ -5,6 +5,11 @@
     height: 200px;
     overflow: scroll;
 }
+
+textarea {
+    margin: 0 auto;
+    max-width: 600px;
+}
 .resort-scores {
     width: 100%;
     display: flex;
