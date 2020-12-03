@@ -16,12 +16,14 @@ export class ModalService {
         }
         this.domService.appendComponentTo(this.modalElementId, component, componentConfig);
         this.selectedResort = outputs;
+        console.log('selected resort', this.selectedResort)
         document.getElementById(this.modalElementId).className = 'show';
         document.getElementById(this.overlayElementId).className = 'show';
     }
 
     destroy() {
         this.domService.removeComponent();
+        this.selectedResort = '';
         document.getElementById(this.modalElementId).className = 'hidden';
         document.getElementById(this.overlayElementId).className = 'hidden';
     }

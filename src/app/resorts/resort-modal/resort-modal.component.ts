@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { Resort } from '../shared/resort.model';
 
@@ -8,12 +8,17 @@ import { Resort } from '../shared/resort.model';
     styleUrls: ['resort-modal.component.css']
 })
 
-export class ResortModalComponent {
+export class ResortModalComponent implements OnInit {
     constructor(public modalService: ModalService) {
+    }
+
+    ngOnInit() {
+        this.selectedResort = this.modalService.selectedResort.resort;
     }
 
     selectedNav = 'Info';
     showReviewForm = false;
+    selectedResort: any;
     // resort: any;
 
     handleModalNavigation(term: string) {
