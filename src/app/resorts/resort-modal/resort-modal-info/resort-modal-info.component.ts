@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Resort } from '../../shared/resort.model';
 
 @Component({
@@ -7,7 +7,7 @@ import { Resort } from '../../shared/resort.model';
     styleUrls: ['resort-modal-info.component.css']
 })
 
-export class ResortModalInfoComponent {
+export class ResortModalInfoComponent implements OnInit {
     resortTable = [
         { name: 'Rating', data: '4.4' },
         { name: 'Snow', data: '400 inches' },
@@ -23,5 +23,11 @@ export class ResortModalInfoComponent {
     constructor() { }
 
     ngOnInit() {
+        // this.fetchResortData();
     }
+
+    // get resort data
+    // fetchResortData() {
+    // this.http.asdfasf
+    // }
 }
