@@ -1,6 +1,40 @@
 <div class="modal-data-info-container">
-    <div class="modal-data-table-row" *ngFor="let resortTableRow of resortTable">
+    <!-- <div class="modal-data-table-row" *ngFor="let resortTableRow of resortTable"> -->
+    <div class="modal-data-table-row">
+        <p>Snow</p>
+        <p>{{newResortTable.snow + ' Inches/Yr'}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Number of Lifts</p>
+        <p>{{newResortTable.lifts}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Trails</p>
+        <p>{{newResortTable.trails}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Vertical</p>
+        <p>{{newResortTable.vertical + ' feet'}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Passes</p>
+        <p>{{newResortTable.passes}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Terrain Parks</p>
+        <p>{{newResortTable.terrainParks}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Adult Lift Ticket (1-Day)</p>
+        <p>{{'$' + newResortTable.ticketPrices}}</p>
+    </div>
+    <div class="modal-data-table-row">
+        <p>Terrain Breakdown</p>
+        <p>{{newResortTable.terrainBreakdown.green + ' green ' + newResortTable.terrainBreakdown.blue + ' blue ' + newResortTable.terrainBreakdown.black
+            + ' black ' + newResortTable.terrainBreakdown.extreme + ' extreme'}}</p>
+    </div>
+    <!-- <div class="modal-data-table-row">
         <p>{{resortTableRow.name}}</p>
         <p>{{resortTableRow.data}}</p>
-    </div>
+    </div> -->
 </div>

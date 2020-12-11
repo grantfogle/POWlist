@@ -18,7 +18,7 @@
     <div class="modal-data">
         <div class="modal-data-table">
             <app-resort-modal-forecast *ngIf="selectedNav === 'Forecast'"></app-resort-modal-forecast>
-            <app-resort-modal-info *ngIf="selectedNav === 'Info'"></app-resort-modal-info>
+            <app-resort-modal-info *ngIf="selectedNav === 'Info'" [id]="selectedResort.id"></app-resort-modal-info>
             <app-resort-modal-reviews *ngIf="selectedNav === 'Reviews'" [id]="selectedResort.id"></app-resort-modal-reviews>
             <app-resort-modal-review-form *ngIf="selectedNav === 'Review Form'" [name]="selectedResort.name" [id]="selectedResort.id"
                 class="modal-review" (closeReviewForm)="toggleReviewForm($event)">
