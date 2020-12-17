@@ -68,7 +68,7 @@ export class ResortsService {
         const url = 'https://powfish.firebaseio.com/resorts.json';
         this.http.get(url)
             .pipe(map(responseData => {
-                console.log('asdfa', responseData);
+                console.log('Get all resorts', responseData);
                 const resortsArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
