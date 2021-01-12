@@ -9,8 +9,11 @@
   </div>
   <hr>
   <div class="row">
-    <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
-    <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)"></app-add-resort>
+    <div class="add-resort-row">
+      <h4>See something missing? Help us add resorts to the project.</h4>
+      <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
+      <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
+    </div>
   </div>
 </div>
 <hr>

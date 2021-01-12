@@ -8,7 +8,7 @@ export class Resort {
     public description: string;
     public rating: number;
     public imagePath: string;
-    public snowInInches: string;
+    public snowInInches: number;
     public skiPasses: string;
     public liftPassCost: number;
 

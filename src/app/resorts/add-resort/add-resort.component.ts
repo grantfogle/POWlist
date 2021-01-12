@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AddResortComponent implements OnInit {
   @Output() resortCreated = new EventEmitter<Resort>();
+  @Output() closeModal = new EventEmitter();
 
   resortName = '';
   resortCity = '';
@@ -18,13 +19,9 @@ export class AddResortComponent implements OnInit {
   initalImage = '';
   resortLiftTicketCost = 0;
   resortDescription = '';
-  resortSnow = '';
+  resortSnow = 0;
   resortSkiPasses = '';
-
-  // resortLocation = '';
-  // resortLatitude = '';
-  // resortLongitude = '';
-  // resortImagePath = '';
+  displayFormFail = false;
 
   resortForFirebase = {
     resortName: this.resortName,
@@ -44,52 +41,76 @@ export class AddResortComponent implements OnInit {
     this.initalImage = '';
     this.resortLiftTicketCost = 0;
     this.resortDescription = '';
-    this.resortSnow = '';
+    this.resortSnow = 0;
     this.resortSkiPasses = '';
+    this.displayFormFail = false;
+
+    this.closeModal.emit();
   }
 
   onAddResort() {
-    this.resortCreated.emit({
-      name: this.resortName,
-      city: this.resortCity,
-      province: this.resortProvince,
-      country: this.resortCountry,
-      latitude: '',
-      longitude: '',
-      rating: this.resortRating,
-      description: this.resortDescription,
-      imagePath: this.initalImage,
-      skiPasses: this.resortSkiPasses,
-      snowInInches: this.resortSnow,
-      liftPassCost: this.resortLiftTicketCost
-    });
-    this.onCreateResort();
-    // this.fetchResorts();
-    this.resetForm();
+    const fieldsFilled = this.checkForEmptyFields();
+    if (fieldsFilled) {
+      this.resortCreated.emit({
+        name: this.resortName,
+        city: this.resortCity,
+        province: this.resortProvince,
+        country: this.resortCountry,
+        latitude: '',
+        longitude: '',
+        rating: this.resortRating,
+        description: this.resortDescription,
+        imagePath: this.initalImage,
+        skiPasses: this.resortSkiPasses,
+        snowInInches: this.resortSnow,
+        liftPassCost: this.resortLiftTicketCost
+      });
+      this.onCreateResort();
+      this.resetForm();
+    } else {
+      this.displayFormFail = true;
+      setTimeout(() => {
+        this.displayFormFail = false;
+      }, 4500);
+    }
+  }
+
+  // check resort
+  checkForEmptyFields(): boolean {
+    if (this.resortName !== '' && this.resortCity !== '' && this.resortProvince !== '' &&
+      this.resortCountry !== '') {
+      return true;
+    }
+    return false;
   }
 
   onCreateResort() {
     // check for empty fields, if empty fields throw an alert
-    // set a timeout to show then hide alert
-    const url = 'https://powfish.firebaseio.com/resorts.json';
-    let resorts = {
-      name: this.resortName,
-      city: this.resortCity,
-      province: this.resortProvince,
-      country: this.resortCountry,
-      rating: this.resortRating,
-      description: this.resortDescription,
-      imagePath: this.initalImage,
-      skiPasses: this.resortSkiPasses,
-      snowInInches: this.resortSnow,
-      liftPassCost: this.resortLiftTicketCost
+    const fieldsFilled = this.checkForEmptyFields();
+    if (fieldsFilled) {
+      // set a timeout to show then hide alert
+      const url = 'https://powfish.firebaseio.com/resorts.json';
+      let resorts = {
+        name: this.resortName,
+        city: this.resortCity,
+        province: this.resortProvince,
+        country: this.resortCountry,
+        rating: this.resortRating,
+        description: this.resortDescription,
+        imagePath: this.initalImage,
+        skiPasses: this.resortSkiPasses,
+        snowInInches: this.resortSnow,
+        liftPassCost: this.resortLiftTicketCost
+      }
+      this.http.post(
+        url,
+        resorts
+      ).subscribe(responseData => {
+        console.log(responseData);
+      });
+    } else {
+      console.log('Please fill all required fields');
     }
-    this.http.post(
-      url,
-      resorts
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
   }
 
 

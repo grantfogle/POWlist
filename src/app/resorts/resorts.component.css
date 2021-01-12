@@ -25,6 +25,17 @@
     justify-content: space-between;
 }
 
+.add-resort-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-resort-row h4 {
+    text-align: center;
+}
+
 .add-resort-btn {
     width: 400px;
 }
