@@ -86,4 +86,10 @@ export class ResortsService {
             })
         console.log(this.resorts);
     }
+
+    filterResortsBySnowfall() {
+        console.log(this.resorts);
+        let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches)
+        console.log(resortsOrderBySnow);
+    }
 }

@@ -68,7 +68,8 @@ export class ResortsComponent implements OnInit {
   }
 
   filterResortsForPowder() {
-    this.displayResorts.sort()
+    console.log('powwwwww');
+    this.resortsService.filterResortsBySnowfall();
   }
 
 }
