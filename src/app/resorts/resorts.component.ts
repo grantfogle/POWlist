@@ -58,14 +58,21 @@ export class ResortsComponent implements OnInit {
   }
 
   filterResortsByPass(pass: string) {
-    let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
-    this.displayResorts = filterArr;
+    this.resortsService.filterBySkiPass(pass);
+    this.displayResorts = this.resortsService.filteredResorts;
   }
 
-  filterResortsForIkon() {
-    let filterArr = this.resorts.filter(resort => resort.skiPasses === 'Ikon');
-    this.displayResorts = filterArr;
+  resetFilter(status: boolean) {
+    console.log(status, 'broo why no run');
+    this.resortsService.getAllResorts();
+    // this.resortsService.resetResorts();
+    this.displayResorts = this.resortsService.filteredResorts;
   }
+
+  // filterResortsForIkon() {
+  //   let filterArr = this.resorts.filter(resort => resort.skiPasses === 'Ikon');
+  //   this.displayResorts = filterArr;
+  // }
 
   filterResortsForPowder() {
     console.log('powwwwww');

@@ -24,15 +24,21 @@
         </div>
         <div class="filters" *ngIf="displayFilters">
             <div class="filters-buttons">
-                <button class="btn" [ngClass]="ikon ? 'btn-info' : ''" (click)="selectIkon()">Ikon</button>
-                <button class="btn" [ngClass]="epic ? 'btn-info' : ''" (click)="filterByPasses('Epic')">Epic</button>
-                <button class="btn" [ngClass]="mtnCollective ? 'btn-info' : ''" (click)="filterByPasses('Mtn Collective')">
+                <button class="btn" [ngClass]="passSelected === 'Ikon' ? 'btn-info' : ''" (click)="selectPassFilter('Ikon')">Ikon</button>
+                <button class="btn" [ngClass]="passSelected === 'Epic' ? 'btn-info' : ''" (click)="selectPassFilter('Epic')">Epic</button>
+                <button class="btn" [ngClass]="passSelected === 'Mtn Collective' ? 'btn-info' : ''" (click)="selectPassFilter('Mtn Collective')">
                     Mtn Collective
                 </button>
                 <!-- <button class="btn btn-info">Family Friendly</button> -->
-                <button class="btn btn-info" (click)="filterBySnowfall()">Powder</button>
-                <button class="btn btn-info">Big Mountain</button>
-                <button class="btn btn-info">Affordable</button>
+                <button class="btn" [ngClass]="otherFilterSelected === 'Snowfall' ? 'btn-info' : ''" (click)="filterByOther('Snowfall')">
+                    Powder
+                </button>
+                <button class="btn" [ngClass]="otherFilterSelected === 'Terrain' ? 'btn-info' : ''" (click)="filterByOther('Terrain')">
+                    Big Mtn
+                </button>
+                <button class="btn" [ngClass]="otherFilterSelected === 'Affordability' ? 'btn-info' : ''" (click)="filterByOther('Affordability')">
+                    Affordable
+                </button>
                 <!-- <button class="btn btn-info">More than 300" of snow/yr</button> -->
             </div>
         </div>

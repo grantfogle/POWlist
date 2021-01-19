@@ -26,15 +26,6 @@ export class ResortsService {
         // new Resort('Mt Rose', 'Tahoe', 'Nevada', 'USA', 4.4, 'Big badass skiing, close to cool ass town in Reno.', 'https://s.hdnux.com/photos/01/11/12/06/19177906/7/gallery_medium.jpg', 'Ikon', '400'),
         // new Resort('Copper Mountain', 'Summit County', 'Colorado', 'USA', 4.2, 'Family friendly skiing, great terrain park', 'https://www.coloradormr.com/custimages/Website%20Pages/Winter%20Activities/CopperMountainWinter.png', 'Ikon', '400'),
     ];
-    //     this.name = name;
-    //     this.city = city;
-    //     this.province = province;
-    //     this.country = country;
-    //     this.rating = rating;
-    //     this.description = description;
-    //     this.imagePath = imagePath;
-    //     this.skiPasses = skiPasses;
-    //     this.snowInInches = snowInInches;
     public filteredResorts: Resort[];
 
     getAllResorts() {
@@ -63,8 +54,11 @@ export class ResortsService {
         this.filteredResorts = filterArr;
     }
 
+    resetResorts() {
+        this.filteredResorts = this.resorts;
+    }
+
     retrieveResortsFromDb() {
-        // const cors = 'https://cors-anywhere.herokuapp.com/'
         const url = 'https://powfish.firebaseio.com/resorts.json';
         this.http.get(url)
             .pipe(map(responseData => {
@@ -92,4 +86,7 @@ export class ResortsService {
         let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches)
         console.log(resortsOrderBySnow);
     }
+
+    // filterResortsByTerrain() {}
+    // filterResortsByAffordability() {}
 }

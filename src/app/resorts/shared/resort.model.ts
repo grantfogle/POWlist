@@ -20,7 +20,7 @@ export class Resort {
         description: string,
         imagePath: string,
         skiPasses: string,
-        snowInInches: string) {
+        snowInInches: number) {
 
         this.name = name;
         this.city = city;

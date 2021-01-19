@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FilterService } from '../../services/filter.service';
 import { ResortsService } from '../../services/resorts.service';
-// filterBySkiPass()
+
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -20,17 +20,19 @@ import { ResortsService } from '../../services/resorts.service';
 export class FilterComponent implements OnInit, OnChanges {
   @ViewChild('filterInput') filterInput: ElementRef;
   @Output() filterResorts = new EventEmitter<string>();
+  @Output() filterResortsByPass = new EventEmitter<string>();
   @Output() ikonFilterSelected = new EventEmitter<boolean>();
-  @Output() passFilterSelected = new EventEmitter<string>();
+  @Output() resetResortFilter = new EventEmitter();
   @Output() filterBySnowTotals = new EventEmitter();
+  @Output() filterResortsByOther = new EventEmitter<string>();
+
   displayFilters = false;
-  ikon = false;
-  epic = false;
-  mtnCollective = false;
+  passSelected = '';
   familyFriendly = false;
-  powder = false;
-  bigMtn = false;
-  affordable = false;
+  otherFilterSelected = '';
+  // powder = false;
+  // bigMtn = false;
+  // affordable = false;
   filters = [];
 
   constructor(public filterService: FilterService, public resortsService: ResortsService) {
@@ -47,12 +49,23 @@ export class FilterComponent implements OnInit, OnChanges {
     this.filterResorts.emit(this.filterInput.nativeElement.value);
   }
 
-  selectIkon() {
-    this.ikon = !this.ikon;
-    this.epic = false;
-    this.mtnCollective = false;
-    if (this.ikon) {
-      this.ikonFilterSelected.emit(true);
+  selectPassFilter(pass: string) {
+    if (this.passSelected !== pass) {
+      this.passSelected = pass;
+      this.filterResortsByPass.emit(pass);
+    } else {
+      this.resetResortFilter.emit();
+      this.passSelected = '';
+    }
+  }
+
+  filterByOther(other: string) {
+    if (this.otherFilterSelected !== other) {
+      this.otherFilterSelected = other;
+      this.filterResortsByOther.emit(other);
+    } else {
+      // this.resetResortFilter.emit(true);
+      this.otherFilterSelected = '';
     }
   }
 
@@ -75,6 +88,7 @@ export class FilterComponent implements OnInit, OnChanges {
   }
 
   clearFilter() {
+
     console.log('tasdfasdfasfd');
     // show all resorts
     // this.filterService.removeAllFilters();
