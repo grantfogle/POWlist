@@ -22,22 +22,16 @@ export class FilterComponent implements OnInit, OnChanges {
   @Output() filterResorts = new EventEmitter<string>();
   @Output() filterResortsByPass = new EventEmitter<string>();
   @Output() ikonFilterSelected = new EventEmitter<boolean>();
-  @Output() resetResortFilter = new EventEmitter();
+  @Output() resetResortFilter = new EventEmitter<any>();
   @Output() filterBySnowTotals = new EventEmitter();
   @Output() filterResortsByOther = new EventEmitter<string>();
+  @Output() resetFilters = new EventEmitter<any>();
 
   displayFilters = false;
   passSelected = '';
-  familyFriendly = false;
   otherFilterSelected = '';
-  // powder = false;
-  // bigMtn = false;
-  // affordable = false;
-  filters = [];
 
-  constructor(public filterService: FilterService, public resortsService: ResortsService) {
-    // console.log('Contructor called');
-  }
+  constructor(public filterService: FilterService, public resortsService: ResortsService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('something was changed');
@@ -54,8 +48,9 @@ export class FilterComponent implements OnInit, OnChanges {
       this.passSelected = pass;
       this.filterResortsByPass.emit(pass);
     } else {
-      this.resetResortFilter.emit();
+      console.log('1: else statement ran');
       this.passSelected = '';
+      this.resetResortFilter.emit(pass);
     }
   }
 
@@ -78,18 +73,13 @@ export class FilterComponent implements OnInit, OnChanges {
     console.log('show resorts with most snowfall');
   }
 
-  filterByPasses(pass) {
-    this.resortsService.filterBySkiPass(pass);
-    console.log(pass);
-  }
-
   toggleFilterView(name) {
     this.displayFilters = !this.displayFilters;
   }
 
-  clearFilter() {
-
-    console.log('tasdfasdfasfd');
+  clearFilters(event) {
+    console.log('tasdfasdfasfd', event);
+    this.resetFilters.emit(event);
     // show all resorts
     // this.filterService.removeAllFilters();
   }

@@ -19,7 +19,7 @@
                     <li><a href="#">Favorite Resort</a></li>
                 </ul>
             </div>
-            <button class="btn btn-warning">Remove Filters</button>
+            <button class="btn btn-warning" (click)="clearFilters($event)">Remove Filters</button>
             <!-- <button class="btn btn-warning" (click)="clearFilter()">Remove Filters</button> -->
         </div>
         <div class="filters" *ngIf="displayFilters">

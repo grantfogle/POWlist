@@ -54,9 +54,15 @@ export class ResortsService {
         this.filteredResorts = filterArr;
     }
 
-    resetResorts() {
+    resetResorts(event) {
+        console.log(event);
         this.filteredResorts = this.resorts;
     }
+    // applyOtherFilters(filterStr: string) {
+    //     let filterArr = this.filteredResorts.filter(resort => {
+    //         if ()
+    //     })
+    // }
 
     retrieveResortsFromDb() {
         const url = 'https://powfish.firebaseio.com/resorts.json';
