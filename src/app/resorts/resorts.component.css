@@ -43,6 +43,17 @@
     text-align: center;
 }
 
-.add-resort-btn {
+/* .add-resort-btn {
     width: 400px;
+} */
+
+.resort-help-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.resort-help-buttons button {
+    width: 200px;
+    margin: .5em;
 }

@@ -13,8 +13,12 @@
   <div class="row">
     <div class="add-resort-row">
       <h4>See something missing? Help us add resorts to the project.</h4>
-      <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
+      <div class="resort-help-buttons">
+        <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
+        <button class="btn btn-info add-resort-btn" (click)="toggleFeedbackForm()">Send Feedback</button>
+      </div>
       <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
+      <!-- <feedback-form *ngIf="showFeedbackForm"></feedback-form> -->
     </div>
   </div>
 </div>
