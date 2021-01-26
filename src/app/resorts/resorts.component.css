@@ -1,3 +1,10 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 .resort-card {
     height: 240px;
     width: 320px;
