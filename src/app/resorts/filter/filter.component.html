@@ -29,17 +29,15 @@
                 <button class="btn" [ngClass]="passSelected === 'Mtn Collective' ? 'btn-info' : ''" (click)="selectPassFilter('Mtn Collective')">
                     Mtn Collective
                 </button>
-                <!-- <button class="btn btn-info">Family Friendly</button> -->
                 <button class="btn" [ngClass]="otherFilterSelected === 'Snowfall' ? 'btn-info' : ''" (click)="filterByOther('Snowfall')">
                     Powder
                 </button>
-                <button class="btn" [ngClass]="otherFilterSelected === 'Terrain' ? 'btn-info' : ''" (click)="filterByOther('Terrain')">
+                <!-- <button class="btn" [ngClass]="otherFilterSelected === 'Terrain' ? 'btn-info' : ''" (click)="filterByOther('Terrain')">
                     Big Mtn
-                </button>
+                </button> -->
                 <button class="btn" [ngClass]="otherFilterSelected === 'Affordability' ? 'btn-info' : ''" (click)="filterByOther('Affordability')">
                     Affordable
                 </button>
-                <!-- <button class="btn btn-info">More than 300" of snow/yr</button> -->
             </div>
         </div>
     </div>

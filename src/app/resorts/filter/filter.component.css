@@ -8,6 +8,10 @@
     justify-content: center;
 }
 
+.col-xs-12 {
+    padding-right: 0;
+}
+
 .filter-button {
     height: 30px;
     margin-right: 1em;

@@ -33,9 +33,7 @@ export class FilterComponent implements OnInit, OnChanges {
 
   constructor(public filterService: FilterService, public resortsService: ResortsService) { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('something was changed');
-  }
+  ngOnChanges(changes: SimpleChanges) { }
 
   ngOnInit() { }
 
@@ -48,7 +46,6 @@ export class FilterComponent implements OnInit, OnChanges {
       this.passSelected = pass;
       this.filterResortsByPass.emit(pass);
     } else {
-      console.log('1: else statement ran');
       this.passSelected = '';
       this.resetResortFilter.emit(pass);
     }
@@ -64,23 +61,11 @@ export class FilterComponent implements OnInit, OnChanges {
     }
   }
 
-  filterBySnowfall() {
-    console.log('show resorts with most snowfall');
-    this.filterBySnowTotals.emit();
-  }
-
-  filterByAffordability() {
-    console.log('show resorts with most snowfall');
-  }
-
   toggleFilterView(name) {
     this.displayFilters = !this.displayFilters;
   }
 
   clearFilters(event) {
-    console.log('tasdfasdfasfd', event);
     this.resetFilters.emit(event);
-    // show all resorts
-    // this.filterService.removeAllFilters();
   }
 }
