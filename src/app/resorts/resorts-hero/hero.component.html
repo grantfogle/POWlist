@@ -4,9 +4,11 @@
             <div class="jumbobox">
                 <h1>POWlist</h1>
                 <h5>Explore - Shred - Review</h5>
-                <!-- <button class="btn btn-info">Explore</button> -->
+                <div class="email-capture">
+                    <input type="email" placeholder="Subscribe for updates" [(ngModel)]="email" />
+                    <button class="btn btn-info" (click)="emailSubscribe(email)">Submit</button>
+                </div>
             </div>
-            <!-- <app-hero-email-capture></app-hero-email-capture> -->
         </div>
     </div>
 </div>

@@ -30,3 +30,19 @@
   .jumbobox h5 {
     margin: 0;
   }
+
+  .email-capture {
+    margin-top: 1em;
+    display: flex;
+    align-content: center;
+    width: 200px;
+  }
+  .email-capture input {
+    height: 34px;
+    color: #2c3e50;
+    padding-left: .5em;
+  }
+
+  /* .email-capture button {
+    background-color: #f1c40f;
+  } */

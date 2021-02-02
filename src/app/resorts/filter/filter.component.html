@@ -11,7 +11,7 @@
             <!-- <div class="btn-group" appDropdown> -->
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
-                    Filter Resorts <span class="caret"></span>
+                    View Filters<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="#">Review Resort</a></li>
@@ -20,7 +20,6 @@
                 </ul>
             </div>
             <button class="btn btn-warning" (click)="clearFilters($event)">Remove Filters</button>
-            <!-- <button class="btn btn-warning" (click)="clearFilter()">Remove Filters</button> -->
         </div>
         <div class="filters" *ngIf="displayFilters">
             <div class="filters-buttons">
@@ -32,11 +31,8 @@
                 <button class="btn" [ngClass]="otherFilterSelected === 'Snowfall' ? 'btn-info' : ''" (click)="filterByOther('Snowfall')">
                     Powder
                 </button>
-                <!-- <button class="btn" [ngClass]="otherFilterSelected === 'Terrain' ? 'btn-info' : ''" (click)="filterByOther('Terrain')">
-                    Big Mtn
-                </button> -->
                 <button class="btn" [ngClass]="otherFilterSelected === 'Affordability' ? 'btn-info' : ''" (click)="filterByOther('Affordability')">
-                    Affordable
+                    Affordability
                 </button>
             </div>
         </div>

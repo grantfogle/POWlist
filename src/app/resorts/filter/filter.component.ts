@@ -47,7 +47,8 @@ export class FilterComponent implements OnInit, OnChanges {
       this.filterResortsByPass.emit(pass);
     } else {
       this.passSelected = '';
-      this.resetResortFilter.emit(pass);
+      this.clearFilters();
+      // this.resetResortFilter.emit();
     }
   }
 
@@ -65,7 +66,7 @@ export class FilterComponent implements OnInit, OnChanges {
     this.displayFilters = !this.displayFilters;
   }
 
-  clearFilters(event) {
-    this.resetFilters.emit(event);
+  clearFilters() {
+    this.resetFilters.emit();
   }
 }
