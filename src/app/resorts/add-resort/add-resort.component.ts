@@ -16,7 +16,7 @@ export class AddResortComponent implements OnInit {
   resortProvince = '';
   resortCountry = '';
   resortRating = 0;
-  initalImage = '';
+  initialImage = '';
   resortLiftTicketCost = 0;
   resortDescription = '';
   resortSnow = 0;
@@ -38,7 +38,7 @@ export class AddResortComponent implements OnInit {
     this.resortProvince = '';
     this.resortCountry = '';
     this.resortRating = 0;
-    this.initalImage = '';
+    this.initialImage = '';
     this.resortLiftTicketCost = 0;
     this.resortDescription = '';
     this.resortSnow = 0;
@@ -60,7 +60,7 @@ export class AddResortComponent implements OnInit {
         longitude: '',
         rating: this.resortRating,
         description: this.resortDescription,
-        imagePath: this.initalImage,
+        imagePath: this.initialImage,
         skiPasses: this.resortSkiPasses,
         snowInInches: this.resortSnow,
         liftPassCost: this.resortLiftTicketCost
@@ -97,7 +97,7 @@ export class AddResortComponent implements OnInit {
         country: this.resortCountry,
         rating: this.resortRating,
         description: this.resortDescription,
-        imagePath: this.initalImage,
+        imagePath: this.initialImage,
         skiPasses: this.resortSkiPasses,
         snowInInches: this.resortSnow,
         liftPassCost: this.resortLiftTicketCost
