@@ -46,6 +46,7 @@ export class ResortsComponent implements OnInit {
   }
 
   filterResorts(filterWord: string) {
+    console.log(filterWord);
     let filterArr = this.resorts.filter(resort => {
       let name = resort.name.toLowerCase().indexOf(filterWord);
       let country = resort.country.toLowerCase().indexOf(filterWord);
@@ -62,16 +63,16 @@ export class ResortsComponent implements OnInit {
     this.displayResorts = this.resortsService.filteredResorts;
   }
 
-  resetSkiPassFilter(event) {
-    // this.resortsService.getAllResorts();
-    this.resortsService.resetResorts(event);
+  // resetSkiPassFilter(event) {
+  //   // this.resortsService.getAllResorts();
+  //   this.resortsService.resetResorts(event);
+  //   this.displayResorts = this.resortsService.filteredResorts;
+  // }
+
+  resetResortFilters() {
+    this.resortsService.resetResorts();
     this.displayResorts = this.resortsService.filteredResorts;
   }
-
-  // filterResortsForIkon() {
-  //   let filterArr = this.resorts.filter(resort => resort.skiPasses === 'Ikon');
-  //   this.displayResorts = filterArr;
-  // }
 
   filterResortsForPowder() {
     console.log('powwwwww');

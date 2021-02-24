@@ -19,7 +19,7 @@ import { ResortsService } from '../../services/resorts.service';
 
 export class FilterComponent implements OnInit, OnChanges {
   @ViewChild('filterInput') filterInput: ElementRef;
-  @Output() filterResorts = new EventEmitter<string>();
+  @Output() filterResortsByText = new EventEmitter<string>();
   @Output() filterResortsByPass = new EventEmitter<string>();
   @Output() ikonFilterSelected = new EventEmitter<boolean>();
   @Output() resetResortFilter = new EventEmitter<any>();
@@ -38,7 +38,8 @@ export class FilterComponent implements OnInit, OnChanges {
   ngOnInit() { }
 
   onSearchFilter() {
-    this.filterResorts.emit(this.filterInput.nativeElement.value);
+    console.log(this.filterInput.nativeElement.value);
+    this.filterResortsByText.emit(this.filterInput.nativeElement.value);
   }
 
   selectPassFilter(pass: string) {
@@ -48,7 +49,6 @@ export class FilterComponent implements OnInit, OnChanges {
     } else {
       this.passSelected = '';
       this.clearFilters();
-      // this.resetResortFilter.emit();
     }
   }
 
@@ -67,6 +67,7 @@ export class FilterComponent implements OnInit, OnChanges {
   }
 
   clearFilters() {
+    console.log('clear filter fired');
     this.resetFilters.emit();
   }
 }

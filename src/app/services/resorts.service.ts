@@ -54,8 +54,7 @@ export class ResortsService {
         this.filteredResorts = filterArr;
     }
 
-    resetResorts(event) {
-        console.log(event);
+    resetResorts() {
         this.filteredResorts = this.resorts;
     }
     // applyOtherFilters(filterStr: string) {

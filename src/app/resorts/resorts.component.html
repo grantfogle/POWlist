@@ -1,4 +1,5 @@
-<app-filter (filterResorts)="filterResorts()" (filterBySnowTotals)="filterResortsForPowder($event)" (filterResortsByPass)="filterResortsByPass($event)">
+<app-filter (filterResortsByText)="filterResorts($event)" (filterBySnowTotals)="filterResortsForPowder()" (filterResortsByPass)="filterResortsByPass($event)"
+  (resetFilters)="resetResortFilters()">
   <!-- (resetSkiPassFilter)="resetFilters($event)"> -->
   <!-- (resetSkiPassFilter)="resetResortFilter($event)" -->
 </app-filter>
