@@ -62,7 +62,7 @@ export class FilterComponent implements OnInit, OnChanges {
     }
   }
 
-  toggleFilterView(name) {
+  toggleFilterView() {
     this.displayFilters = !this.displayFilters;
   }
 

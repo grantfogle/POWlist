@@ -4,11 +4,7 @@
             <button class="btn btn-info filter-button" (click)="onSearchFilter()">Filter</button>
             <div class="input-group filter-search">
                 <input type="text" class="form-control" placeholder="Search Resort or Region" #filterInput>
-                <!-- <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Button</button>
-                </div> -->
             </div>
-            <!-- <div class="btn-group" appDropdown> -->
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
                     View Filters<span class="caret"></span>
@@ -19,7 +15,7 @@
                     <li><a href="#">Favorite Resort</a></li>
                 </ul>
             </div>
-            <button class="btn btn-warning" (click)="clearFilters($event)">Remove Filters</button>
+            <button class="btn btn-warning" (click)="clearFilters()">Remove Filters</button>
         </div>
         <div class="filters" *ngIf="displayFilters">
             <div class="filters-buttons">
