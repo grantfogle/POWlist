@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-hero',
@@ -8,13 +9,19 @@ import { Component, OnInit } from '@angular/core';
 
 export class HeroComponent implements OnInit {
   email: string;
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
   }
 
   emailSubscribe(email: string) {
-    console.log(email);
+    const url = 'https://powfish.firebaseio.com/emails.json';
+    this.http.post(
+      url,
+      review
+    ).subscribe(responseData => {
+      console.log(responseData);
+    });
   }
 
 }

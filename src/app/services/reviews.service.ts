@@ -20,7 +20,6 @@ export class ReviewsService {
         ).subscribe(responseData => {
             console.log(responseData);
         });
-
     }
 
     filterBySkiPass(pass: string) {

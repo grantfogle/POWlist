@@ -50,7 +50,6 @@ export class ResortsService {
 
     filterBySkiPass(pass: string) {
         let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
-        console.log('it worked', filterArr);
         this.filteredResorts = filterArr;
     }
 
@@ -75,16 +74,12 @@ export class ResortsService {
                     this.resorts.push(resort);
                 })
                 this.sortResortsByRating();
-                console.log(response);
             })
-        console.log(this.resorts);
     }
 
     filterResortsBySnowfall() {
-        console.log(this.resorts);
         let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches);
         this.filteredResorts = resortsOrderBySnow;
-        console.log(resortsOrderBySnow);
     }
 
     filterByResortAffordability() {

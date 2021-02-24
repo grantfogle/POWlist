@@ -1,7 +1,5 @@
 <app-filter (filterResortsByText)="filterResorts($event)" (filterByPowder)="filterResortsForPowder()" (filterResortsByPass)="filterResortsByPass($event)"
   (resetFilters)="resetResortFilters()" (filterByAffordability)="filterByPrice()">
-  <!-- (resetSkiPassFilter)="resetFilters($event)"> -->
-  <!-- (resetSkiPassFilter)="resetResortFilter($event)" -->
 </app-filter>
 <div class="container">
   <hr>
@@ -19,7 +17,6 @@
         <button class="btn btn-info add-resort-btn" (click)="toggleFeedbackForm()">Send Feedback</button>
       </div>
       <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
-      <!-- <feedback-form *ngIf="showFeedbackForm"></feedback-form> -->
     </div>
   </div>
 </div>
