@@ -57,17 +57,11 @@ export class ResortsService {
     resetResorts() {
         this.filteredResorts = this.resorts;
     }
-    // applyOtherFilters(filterStr: string) {
-    //     let filterArr = this.filteredResorts.filter(resort => {
-    //         if ()
-    //     })
-    // }
 
     retrieveResortsFromDb() {
         const url = 'https://powfish.firebaseio.com/resorts.json';
         this.http.get(url)
             .pipe(map(responseData => {
-                console.log('asdfa', responseData);
                 const resortsArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
@@ -88,10 +82,13 @@ export class ResortsService {
 
     filterResortsBySnowfall() {
         console.log(this.resorts);
-        let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches)
+        let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches);
+        this.filteredResorts = resortsOrderBySnow;
         console.log(resortsOrderBySnow);
     }
 
-    // filterResortsByTerrain() {}
-    // filterResortsByAffordability() {}
+    filterByResortAffordability() {
+        let resortsOrderByPrice = this.resorts.sort((a, b) => a.liftPassCost - b.liftPassCost);
+        this.filteredResorts = resortsOrderByPrice;
+    }
 }

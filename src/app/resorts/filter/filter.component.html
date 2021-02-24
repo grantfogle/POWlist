@@ -24,10 +24,10 @@
                 <button class="btn" [ngClass]="passSelected === 'Mtn Collective' ? 'btn-info' : ''" (click)="selectPassFilter('Mtn Collective')">
                     Mtn Collective
                 </button>
-                <button class="btn" [ngClass]="otherFilterSelected === 'Snowfall' ? 'btn-info' : ''" (click)="filterByOther('Snowfall')">
+                <button class="btn" [ngClass]="otherFilterSelected === 'Snowfall' ? 'btn-info' : ''" (click)="filterBySnow()">
                     Powder
                 </button>
-                <button class="btn" [ngClass]="otherFilterSelected === 'Affordability' ? 'btn-info' : ''" (click)="filterByOther('Affordability')">
+                <button class="btn" [ngClass]="otherFilterSelected === 'Affordability' ? 'btn-info' : ''" (click)="filterByValue()">
                     Affordability
                 </button>
             </div>

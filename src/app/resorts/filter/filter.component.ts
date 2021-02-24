@@ -23,7 +23,8 @@ export class FilterComponent implements OnInit, OnChanges {
   @Output() filterResortsByPass = new EventEmitter<string>();
   @Output() ikonFilterSelected = new EventEmitter<boolean>();
   @Output() resetResortFilter = new EventEmitter<any>();
-  @Output() filterBySnowTotals = new EventEmitter();
+  @Output() filterByPowder = new EventEmitter();
+  @Output() filterByAffordability = new EventEmitter();
   @Output() filterResortsByOther = new EventEmitter<string>();
   @Output() resetFilters = new EventEmitter<any>();
 
@@ -52,13 +53,23 @@ export class FilterComponent implements OnInit, OnChanges {
     }
   }
 
-  filterByOther(other: string) {
-    if (this.otherFilterSelected !== other) {
-      this.otherFilterSelected = other;
-      this.filterResortsByOther.emit(other);
+  filterByValue() {
+    if (this.otherFilterSelected !== 'Affordability') {
+      this.otherFilterSelected = 'Affordability';
+      this.filterByAffordability.emit();
     } else {
-      // this.resetResortFilter.emit(true);
       this.otherFilterSelected = '';
+      this.resetFilters.emit();
+    }
+  }
+
+  filterBySnow() {
+    if (this.otherFilterSelected !== 'Snowfall') {
+      this.otherFilterSelected = 'Snowfall';
+      this.filterByPowder.emit();
+    } else {
+      this.otherFilterSelected = '';
+      this.resetFilters.emit();
     }
   }
 
@@ -67,7 +78,8 @@ export class FilterComponent implements OnInit, OnChanges {
   }
 
   clearFilters() {
-    console.log('clear filter fired');
+    this.passSelected = '';
+    this.otherFilterSelected = '';
     this.resetFilters.emit();
   }
 }
