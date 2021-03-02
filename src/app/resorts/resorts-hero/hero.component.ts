@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-hero',
@@ -9,20 +10,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class HeroComponent implements OnInit {
   email: string;
+  displayThankyou = false;
 
-  constructor(public http: HttpClient) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
 
-  emailSubscribe(email: string) {
-    const url = 'https://powfish.firebaseio.com/emails.json';
-    this.http.post(
-      url,
-      email
-    ).subscribe(responseData => {
-      console.log(responseData);
-    });
+  async emailSubscribe() {
+    await this.userService.emailSubscribe(this.email);
+    // if (this.userService.subscribed) {
+    //   // fire alert
+
+    // }
+    this.email = '';
+    this.displayThankyou = true;
   }
 
 }

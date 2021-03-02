@@ -32,6 +32,7 @@ import { ModalService } from './services/modal.service';
 import { DomService } from './services/dom.service';
 import { ResortsService } from './services/resorts.service';
 import { FilterService } from './services/filter.service';
+import { UserService } from './services/user.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -75,7 +76,7 @@ const appRoutes: Routes = [
   entryComponents: [
     ResortModalComponent
   ],
-  providers: [ModalService, DomService, FilterService, ResortsService],
+  providers: [ModalService, DomService, FilterService, ResortsService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
