@@ -1,4 +1,9 @@
-# POWfish
+# POWlist
+
+Powlist is a ski resort explorer that allows users to find resorts to ski by the information they care about, things like snow, terrain, affordability, and apres fun. 
+
+[Powlist Homescreen](./src/assets/powlistReadmeImg.png)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
