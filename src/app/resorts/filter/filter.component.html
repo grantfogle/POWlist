@@ -1,20 +1,13 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="filter">
-            <button class="btn btn-info filter-button" (click)="onSearchFilter()">Filter</button>
+            <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
+                View Filters <span class="caret"></span>
+            </button>
             <div class="input-group filter-search">
                 <input type="text" class="form-control" placeholder="Search Resort or Region" #filterInput>
             </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-info dropdown-toggle" (click)="toggleFilterView()">
-                    View Filters<span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Review Resort</a></li>
-                    <li><a href="#">Edit Resort</a></li>
-                    <li><a href="#">Favorite Resort</a></li>
-                </ul>
-            </div>
+            <button class="btn btn-info filter-button" (click)="onSearchFilter()">Search</button>
             <button class="btn btn-warning" (click)="clearFilters()">Remove Filters</button>
         </div>
         <div class="filters" *ngIf="displayFilters">

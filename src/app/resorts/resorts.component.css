@@ -1,3 +1,7 @@
+.container {
+    min-height: 600px;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -42,10 +46,6 @@
 .add-resort-row h4 {
     text-align: center;
 }
-
-/* .add-resort-btn {
-    width: 400px;
-} */
 
 .resort-help-buttons {
     width: 100%;

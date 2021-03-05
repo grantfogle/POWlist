@@ -19,10 +19,6 @@ export class HeroComponent implements OnInit {
 
   async emailSubscribe() {
     await this.userService.emailSubscribe(this.email);
-    // if (this.userService.subscribed) {
-    //   // fire alert
-
-    // }
     this.email = '';
     this.displayThankyou = true;
   }
