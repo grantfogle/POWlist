@@ -14,7 +14,6 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { FilterComponent } from './resorts/filter/filter.component';
 import { HomeComponent } from './home/home.component';
 import { ResortsComponent } from './resorts/resorts.component';
-import { ResortComponent } from './resorts/resort/resort.component';
 import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { ResortModalComponent } from './resorts/resort-modal/resort-modal.component';
@@ -58,7 +57,6 @@ const appRoutes: Routes = [
     HeroComponent,
     HomeComponent,
     ResortsComponent,
-    ResortComponent,
     ResortDetailComponent,
     ResortEditComponent,
     FooterComponent,
