@@ -63,12 +63,6 @@ export class ResortsComponent implements OnInit {
     this.displayResorts = this.resortsService.filteredResorts;
   }
 
-  // resetSkiPassFilter(event) {
-  //   // this.resortsService.getAllResorts();
-  //   this.resortsService.resetResorts(event);
-  //   this.displayResorts = this.resortsService.filteredResorts;
-  // }
-
   resetResortFilters() {
     this.resortsService.resetResorts();
     this.displayResorts = this.resortsService.filteredResorts;

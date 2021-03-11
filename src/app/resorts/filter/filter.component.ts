@@ -39,7 +39,6 @@ export class FilterComponent implements OnInit, OnChanges {
   ngOnInit() { }
 
   onSearchFilter() {
-    console.log(this.filterInput.nativeElement.value);
     this.filterResortsByText.emit(this.filterInput.nativeElement.value);
   }
 
