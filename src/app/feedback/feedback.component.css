@@ -6,16 +6,25 @@
     color: #fff;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* float: right; */
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
+    z-index: 99;
 }
 
 .feedback h5 {
     width: 100%;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
+    text-align: center;
+}
+
+.feedback-form input {
+    width: 100%;
+    color: #34495e;
+}
+.feedback-form textarea {
+    width: 100%;
+    color: #34495e;
+}
+.feedback-form button {
+    margin-bottom: .5em;
 }
