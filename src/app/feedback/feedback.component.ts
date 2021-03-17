@@ -29,6 +29,7 @@ export class FeedbackComponent implements OnInit {
     }
 
     submitFeedback() {
+        this.feedbackThanks();
         console.log(this.feedbackEmail);
         console.log(this.feedbackMessage);
     }
