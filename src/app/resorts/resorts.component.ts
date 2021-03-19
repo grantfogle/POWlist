@@ -17,6 +17,7 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
 })
 export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
+  showFeedbackForm = false;
   resorts: Resort[];
   @Input() displayResorts: Resort[];
 

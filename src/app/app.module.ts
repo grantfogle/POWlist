@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
 import { HeaderComponent } from './header/header.component';
 import { HeroComponent } from './resorts/resorts-hero/hero.component';
-import { FeedbackComponent } from './feedback/feedback.component';
+import { FeedbackFormComponent } from './resorts/feedback-form/feedback-form.component';
 import { FilterComponent } from './resorts/filter/filter.component';
 import { HomeComponent } from './home/home.component';
 import { ResortsComponent } from './resorts/resorts.component';
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AddResortComponent,
-    FeedbackComponent,
+    FeedbackFormComponent,
     FilterComponent,
     HeaderComponent,
     HeroComponent,

@@ -1,9 +1,0 @@
-<div class="feedback">
-    <h5 (click)="toggleFeedbackForm()">Share Feedback <span class="caret"></span></h5>
-    <div class="feedback-form" *ngIf="showFeedbackForm">
-        <p>If you have any feedback, I would love for you to send it my way!</p>
-        <input placeholder="Your email" [(ngModel)]="feedbackEmail">
-        <textarea rows="4" placeholder="Your message" [(ngModel)]="feedbackMessage"></textarea>
-        <button (click)="submitFeedback()" class="btn btn-warning">Submit</button>
-    </div>
-</div>
