@@ -76,4 +76,5 @@ export class ResortsService {
         let resortsOrderByPrice = this.resorts.sort((a, b) => a.liftPassCost - b.liftPassCost);
         this.filteredResorts = resortsOrderByPrice;
     }
+
 }

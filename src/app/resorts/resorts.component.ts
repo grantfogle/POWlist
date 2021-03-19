@@ -1,11 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
+import { interval, Subscription, Observable } from 'rxjs';
 
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
 import { ResortsService } from '../services/resorts.service';
+import { compileBaseDefFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-resorts',
@@ -13,10 +15,12 @@ import { ResortsService } from '../services/resorts.service';
   styleUrls: ['./resorts.component.css'],
   providers: [ResortsService]
 })
-export class ResortsComponent implements OnInit {
+export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   resorts: Resort[];
   @Input() displayResorts: Resort[];
+
+  private observableSub: Subscription;
 
   constructor(public modalService: ModalService,
     public resortsService: ResortsService,
@@ -35,6 +39,40 @@ export class ResortsComponent implements OnInit {
 
   ngOnInit() {
     this.resortsService.retrieveResortsFromDb();
+
+    // this.observableSub = interval(4000).subscribe(count => {
+    //   console.log(count);
+    // })
+    const customIntervalObservable = Observable.create(observer => {
+      let count = 0;
+      setInterval(() => {
+        observer.next(count);
+        if (count === 2) {
+          observer.complete();
+        }
+        if (count > 3) {
+          observer.error(new Error('Count is greater than 3!'));
+        }
+        count++;
+      }, 1000);
+    });
+
+    this.observableSub = customIntervalObservable.pipe(filter(data => {
+      return data > 0;
+    }), map((data: number) => {
+      return 'Round: ' + (data + 1);
+    })).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+      alert(error.message);
+    }, () => {
+      console.log('completed');
+    });
+  }
+
+  ngOnDestroy() {
+    this.observableSub.unsubscribe();
   }
 
   toggleAddResortForm() {
