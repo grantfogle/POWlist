@@ -1,1 +1,29 @@
-<h1>feedback-form</h1>
+<div class="add-resort-form">
+    <div class="row">
+        <div class="col-xs-12">
+            <form>
+                <div class="row">
+                    <h4>Please provide some basic info about the resort (required)</h4>
+                    <div class="col-xs-12 form-group">
+                        <label for="name">Email</label>
+                        <input type="text" name="name" placeholder="dude@gmail.com" class="form-control" [(ngModel)]="email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 form-group">
+                        <label for="rating">What feedback do you have for me?</label>
+                        <textarea class="form-control" [(ngModel)]="feedback" placeholder="This app is seriously the bomb..." rows="3"></textarea>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <h3 class="bg-danger" *ngIf="displayFormFail">Please make sure all required fields are filled out</h3>
+                    <div class="col-xs-12">
+                        <button class="btn btn-info" type="button" (click)="submitFeedback()">Add Resort</button>
+                        <button class="btn btn-warning" type="button" (click)="resetForm()">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

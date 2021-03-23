@@ -78,6 +78,11 @@ export class ResortsComponent implements OnInit, OnDestroy {
 
   toggleAddResortForm() {
     this.showAddResortForm = !this.showAddResortForm;
+    this.showFeedbackForm = false;
+  }
+  toggleFeedbackForm() {
+    this.showFeedbackForm = !this.showFeedbackForm;
+    this.showAddResortForm = false;
   }
 
   addResort(resort: Resort) {
