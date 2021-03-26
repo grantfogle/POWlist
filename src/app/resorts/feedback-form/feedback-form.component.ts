@@ -1,8 +1,5 @@
-import {
-    Component,
-    Output
-} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-feedback-form',
@@ -25,7 +22,6 @@ export class FeedbackFormComponent {
 
     checkForEmptyFields(): boolean {
         if (!this.email || !this.feedback) {
-            this.displayFormFail = true;
             return false;
         }
         return true;
@@ -48,6 +44,10 @@ export class FeedbackFormComponent {
                 console.log(responseData);
             });
         } else {
+            this.displayFormFail = true;
+            setTimeout(() => {
+                this.displayFormFail = false;
+            }, 4500);
             console.log('Please fill all required fields');
         }
     }

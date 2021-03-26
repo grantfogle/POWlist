@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Resort } from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './add-resort.component.html',
   styleUrls: ['./add-resort.component.css']
 })
-export class AddResortComponent implements OnInit {
+export class AddResortComponent {
   @Output() resortCreated = new EventEmitter<Resort>();
   @Output() closeModal = new EventEmitter();
 
@@ -28,9 +28,6 @@ export class AddResortComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-  }
 
   resetForm() {
     this.resortName = '';
@@ -75,7 +72,6 @@ export class AddResortComponent implements OnInit {
     }
   }
 
-  // check resort
   checkForEmptyFields(): boolean {
     if (this.resortName !== '' && this.resortCity !== '' && this.resortProvince !== '' &&
       this.resortCountry !== '') {
@@ -85,10 +81,8 @@ export class AddResortComponent implements OnInit {
   }
 
   onCreateResort() {
-    // check for empty fields, if empty fields throw an alert
     const fieldsFilled = this.checkForEmptyFields();
     if (fieldsFilled) {
-      // set a timeout to show then hide alert
       const url = 'https://powfish.firebaseio.com/resorts.json';
       let resorts = {
         name: this.resortName,
@@ -112,6 +106,5 @@ export class AddResortComponent implements OnInit {
       console.log('Please fill all required fields');
     }
   }
-
 
 }

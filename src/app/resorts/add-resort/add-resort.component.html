@@ -9,15 +9,15 @@
                         <input type="text" name="name" class="form-control" [(ngModel)]="resortName" required>
                     </div>
                     <div class="col-md-3 col-sm-6 form-group">
-                        <label for="rating">City</label>
+                        <label for="city">City</label>
                         <input type="text" name="city" class="form-control" [(ngModel)]="resortCity" required>
                     </div>
                     <div class="col-md-3 col-sm-6 form-group">
-                        <label for="rating">State/Province</label>
+                        <label for="province">State/Province</label>
                         <input type="text" name="province" class="form-control" [(ngModel)]="resortProvince" required>
                     </div>
                     <div class="col-md-3 col-sm-6 form-group">
-                        <label for="rating">Country</label>
+                        <label for="country">Country</label>
                         <input type="text" name="country" class="form-control" [(ngModel)]="resortCountry" required>
                     </div>
                 </div>
@@ -30,25 +30,25 @@
                         <input type="number" name="rating" class="form-control" [(ngModel)]="resortRating">
                     </div>
                     <div class="col-sm-6 col-md-4 form-group">
-                        <label for="name">Cost of a full day adult lift ticket</label>
+                        <label for="ticket">Cost of a full day adult lift ticket</label>
                         <input type="text" name="ticket" class="form-control" [(ngModel)]="resortLiftTicketCost">
                     </div>
                     <div class="col-sm-6 col-md-4 form-group">
-                        <label for="name">Average snowfall per year (inches)</label>
+                        <label for="snow">Average snowfall per year (inches)</label>
                         <input type="text" name="snow" class="form-control" [(ngModel)]="resortSnow">
                     </div>
                     <div class="col-sm-6 col-md-4 form-group">
-                        <label for="name">Is this resort on any ski passes? (i.e. Ikon/Epic)</label>
+                        <label for="passes">Is this resort on any ski passes? (i.e. Ikon/Epic)</label>
                         <input type="text" name="passes" class="form-control" [(ngModel)]="resortSkiPasses">
                     </div>
                     <!-- Eventually allow for upload of image -->
                     <div class="col-sm-6 col-md-4 form-group">
-                        <label for="name">Image Url</label>
+                        <label for="imageUrl">Image Url</label>
                         <input type="text" name="imageUrl" class="form-control" [(ngModel)]="initialImage">
                     </div>
                     <div class="col-xs-12 form-group">
-                        <label for="rating">Provide a brief description of the resort</label>
-                        <textarea class="form-control" [(ngModel)]="resortDescription" rows="3"></textarea>
+                        <label for="resortDescription">Provide a brief description of the resort</label>
+                        <textarea class="form-control" name="resortDescription" [(ngModel)]="resortDescription" rows="3"></textarea>
                     </div>
                 </div>
                 <hr>
