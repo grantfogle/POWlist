@@ -1,7 +1,5 @@
 import {
     Component,
-    OnInit,
-    EventEmitter,
     Output
 } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,41 +10,42 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     styleUrls: ['./feedback-form.component.css']
 })
 
-export class FeedbackFormComponent implements OnInit {
+export class FeedbackFormComponent {
     email: string = '';
     feedback: string = '';
-    @Output() closeModal = new EventEmitter();
+    displayFormFail = false;
+    formSuccess = false;
 
     constructor(public http: HttpClient) { }
 
-    ngOnInit() { }
 
-    submitForm() { }
     resetForm() {
         this.email = '';
         this.feedback = '';
-
-        this.closeModal.emit();
     }
+
     checkForEmptyFields(): boolean {
-        if (this.email !== '' && this.feedback) {
-            return true;
+        if (!this.email || !this.feedback) {
+            this.displayFormFail = true;
+            return false;
         }
-        return false;
+        return true;
     }
 
-    onCreateResort() {
+    submitFeedback() {
         const fieldsFilled = this.checkForEmptyFields();
         if (fieldsFilled) {
             const url = 'https://powfish.firebaseio.com/feedback.json';
-            let resorts = {
+            let feedbackObj = {
                 email: this.email,
                 feedback: this.feedback
             }
             this.http.post(
                 url,
-                resorts
+                feedbackObj
             ).subscribe(responseData => {
+                this.displayFormFail = false;
+                this.formSuccess = true;
                 console.log(responseData);
             });
         } else {
