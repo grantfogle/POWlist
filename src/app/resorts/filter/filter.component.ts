@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   OnChanges,
   ViewChild,
   ElementRef,
@@ -17,7 +16,7 @@ import { ResortsService } from '../../services/resorts.service';
   styleUrls: ['./filter.component.css']
 })
 
-export class FilterComponent implements OnInit, OnChanges {
+export class FilterComponent implements OnChanges {
   @ViewChild('filterInput') filterInput: ElementRef;
   @Output() filterResortsByText = new EventEmitter<string>();
   @Output() filterResortsByPass = new EventEmitter<string>();
@@ -35,8 +34,6 @@ export class FilterComponent implements OnInit, OnChanges {
   constructor(public filterService: FilterService, public resortsService: ResortsService) { }
 
   ngOnChanges(changes: SimpleChanges) { }
-
-  ngOnInit() { }
 
   onSearchFilter() {
     this.filterResortsByText.emit(this.filterInput.nativeElement.value);
