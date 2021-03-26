@@ -14,7 +14,6 @@ import { FeedbackFormComponent } from './resorts/feedback-form/feedback-form.com
 import { FilterComponent } from './resorts/filter/filter.component';
 import { HomeComponent } from './home/home.component';
 import { ResortsComponent } from './resorts/resorts.component';
-import { ResortDetailComponent } from './resorts/resort-detail/resort-detail.component';
 import { ResortEditComponent } from './resorts/resort-edit/resort-edit.component';
 import { ResortModalComponent } from './resorts/resort-modal/resort-modal.component';
 import { ResortModalForecastComponent } from './resorts/resort-modal/resort-modal-forecast/resort-modal-forecast.component';
@@ -43,10 +42,6 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    // AgmCoreModule.forRoot({
-    //   apiKey: googleMapsApiKey,
-    //   libraries: ['places']
-    // }),
   ],
   declarations: [
     AppComponent,
@@ -57,7 +52,6 @@ const appRoutes: Routes = [
     HeroComponent,
     HomeComponent,
     ResortsComponent,
-    ResortDetailComponent,
     ResortEditComponent,
     FooterComponent,
     ResortCardComponent,

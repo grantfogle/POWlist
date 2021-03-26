@@ -18,7 +18,6 @@ export class FeedbackFormComponent {
 
     constructor(public http: HttpClient) { }
 
-
     resetForm() {
         this.email = '';
         this.feedback = '';
