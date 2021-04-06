@@ -1,8 +1,18 @@
 <form class="review-form">
     <div class="row">
         <div class="form-group">
-            <input id="user-info" class="form-control" name="userName" [(ngModel)]="userName" placeholder="Please enter your name/email">
-            <textarea class="form-control" id="resortReviewDescription" rows="3" name="resortReview" [(ngModel)]="resortReview" placeholder="Share details about your experience here"></textarea>
+            <input
+                id="user-info"
+                class="form-control" 
+                name="userName" 
+                [(ngModel)]="userName"
+                placeholder="Please enter your name/email">
+            <textarea 
+                class="form-control"
+                id="resortReviewDescription"
+                rows="3" name="resortReview"
+                [(ngModel)]="resortReview"
+                placeholder="Share details about your experience here"></textarea>
         </div>
     </div>
     <div class="resort-scores">
@@ -10,11 +20,21 @@
             <h4>How would you rate the resort overall?</h4>
             <div class="radio-row">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" [value]="1" [(ngModel)]="resortScore">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="resortScore"
+                        [value]="1"
+                        [(ngModel)]="resortScore">
                     <label class="form-check-label" for="resortScore">1 (Shit)</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" [value]="2" [(ngModel)]="resortScore">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="resortScore"
+                        [value]="2"
+                        [(ngModel)]="resortScore">
                     <label class="form-check-label" for="resortScore">2</label>
                 </div>
                 <div class="form-check form-check-inline">

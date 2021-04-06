@@ -43,6 +43,10 @@
     padding-left: .5em;
   }
 
+  .email-capture input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
   /* .email-capture button {
     background-color: #f1c40f;
   } */

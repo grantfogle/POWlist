@@ -3,8 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-// import { AgmCoreModule } from '@agm/core';
-// import {googleMapsApiKey} from '../assets/secret'
 
 import { AppComponent } from './app.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';

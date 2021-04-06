@@ -4,10 +4,28 @@
             <div class="jumbobox">
                 <h1>POWlist</h1>
                 <h4>Explore - Shred - Review</h4>
-                <div class="email-capture" *ngIf="!displayThankyou">
+                <form (ngSubmit)="onFormSubmit(emailCapture)" #emailCapture="ngForm">
+                    <div class="email-capture" *ngIf="!displayThankyou">
+                        <input
+                        type="email"
+                        placeholder="Subscribe for updates"
+                        ngModel
+                        name="email"
+                        required
+                        email
+                        #email="ngModel"
+                        />
+                        <button 
+                            class="btn btn-info" 
+                            type="submit"
+                            [disabled]="!emailCapture.valid">Submit</button>
+                    </div>
+                    <h6 *ngIf="!emailCapture.valid && emailCapture.touched">Please enter a valid email address</h6>
+                </form>
+                <!-- <div class="email-capture" *ngIf="!displayThankyou">
                     <input type="email" placeholder="Subscribe for updates" [(ngModel)]="email" />
                     <button class="btn btn-info" (click)="emailSubscribe()">Submit</button>
-                </div>
+                </div> -->
                 <div *ngIf="displayThankyou">
                     <h4>Thanks for Subscribing!</h4>
                 </div>
