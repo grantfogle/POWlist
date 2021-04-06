@@ -11,6 +11,7 @@ export class ResortModalReviewFormComponent implements OnInit {
     @Input() name: string;
     @Input() id: string;
 
+    userName: string;
     resortReview: string;
     resortScore: number;
     powScore: number;
@@ -35,6 +36,7 @@ export class ResortModalReviewFormComponent implements OnInit {
         console.log(this.resortReview);
         let reviewObj = {
             resortId: this.id,
+            userName: this.userName,
             review: this.resortReview,
             overallRating: this.resortScore,
             powderRating: this.powScore,

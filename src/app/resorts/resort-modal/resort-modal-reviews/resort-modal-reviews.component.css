@@ -34,7 +34,7 @@
     background-color: #27ae60;
 }
 
-h6 {
+h4 {
     margin: 0 1em;
     display: flex;
     align-items: center;
@@ -44,5 +44,14 @@ h6 {
 .review-body {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+}
+.review-body p {
+    text-align: left;
+}
+
+.review-body li {
+    list-style-type: none;
+    display: flex;
 }

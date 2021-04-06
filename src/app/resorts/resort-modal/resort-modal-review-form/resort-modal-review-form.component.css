@@ -10,6 +10,12 @@ textarea {
     margin: 0 auto;
     max-width: 600px;
 }
+#user-info {
+    margin: 0 auto;
+    max-width: 600px;
+    margin-bottom: 1em;
+}
+
 .resort-scores {
     width: 100%;
     display: flex;

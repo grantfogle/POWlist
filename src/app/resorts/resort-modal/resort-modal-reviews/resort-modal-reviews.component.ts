@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class ResortModalReviewsComponent implements OnInit {
     @Input() id: string;
+    @Input() name: string;
     reviews = []
 
     constructor(public http: HttpClient) { }
@@ -26,11 +27,14 @@ export class ResortModalReviewsComponent implements OnInit {
         ).subscribe(responseData => {
             for (const review in responseData) {
                 if (responseData[review].resortId === this.id) {
+                    const reviewData = responseData[review];
                     let res = {
-                        user: 'G money maker',
-                        description: responseData[review].review,
-                        ratingDate: 'January 14, 2020',
-                        rating: responseData[review].overallRating
+                        user: reviewData.userName,
+                        description: reviewData.review,
+                        rating: reviewData.overallRating,
+                        terrainScore: reviewData.terrainRating,
+                        affordabilityScore: reviewData.valueRating,
+                        snowScore: reviewData.powderRating,
                     }
                     this.reviews.unshift(res);
                 }
