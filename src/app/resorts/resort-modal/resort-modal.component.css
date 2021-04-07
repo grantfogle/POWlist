@@ -1,15 +1,25 @@
 .modal-container{
-    display:grid;
+    display: grid;
+    min-height: 600px;
     grid-template-columns: 1fr;
     width: 100%;
 }
 
 .modal-banner {
-    height: 250px;
+    height: 200px;
     width: 100%;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
     background-size: cover;
     color: #fff;
+}
+
+.modal-banner button {
+    width: 200px;
+    margin: 0 auto;
 }
 
 .modal-navigation {
@@ -22,6 +32,7 @@
     color: #fff;
     padding: 0 1em;
 }
+
 .modal-navigation p {
     height:100%;
     display: flex;
@@ -37,9 +48,13 @@
     color: #fff;
 }
 
+.modal-nav-disabled {
+    color: #bdc3c7;
+}
+
 .modal-data {
     width: 100%;
-    min-height: 100px;
+    min-height: 300px;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -48,13 +63,16 @@
 
 .modal-data-table {
     width: 100%;
+    height: 300px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    overflow-y:scroll;
 }
 
 .modal-footer {
     width: 100%;
+    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

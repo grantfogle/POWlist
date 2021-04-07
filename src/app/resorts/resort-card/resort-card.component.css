@@ -4,10 +4,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 1em;
     padding: .5em;
-    background-color: #2980b9;
-    /* color: #fff; */
+    border-radius: 5px;
+    background-color: dodgerblue;
+    opacity: .8;
+}
+
+.resort-card-container:hover {
+    opacity: 1;
 }
 
 .resort-card-header {
@@ -15,10 +19,25 @@
     justify-content: space-between;
 }
 
+.resort-card-header  p {
+    text-shadow: 1px 1px #2c3e50;
+}
+
+.resort-card-footer p {
+    text-shadow: 1px 1px #2c3e50;
+}
+
 .resort-card-geo {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+.resort-card-geo h2 {
+    text-shadow: 1px 1px #2c3e50;
+}
+
+.resort-card-geo h5 {
+    text-shadow: 1px 1px #2c3e50;
 }
 
 .resort-card-footer {
@@ -33,6 +52,7 @@
 .resort-card-container-border-Ikon {
     border: 4px solid rgb(249, 196, 63);
 }
+
 .resort-card-container-border-Epic {
     border: 4px solid rgb(244, 97, 35);
 }

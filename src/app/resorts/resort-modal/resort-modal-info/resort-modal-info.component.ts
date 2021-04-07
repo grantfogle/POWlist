@@ -11,6 +11,17 @@ import { Resort } from '../../shared/resort.model';
 
 export class ResortModalInfoComponent implements OnInit {
     @Input() id: string;
+    resortReviews: [{
+        // resortId: '123'},
+        overallRating: 4.4}]
+        // snowRating: 4.2,
+        // valueRating: 3.7,
+        // nightLife: 2.2,
+        // crowds: 4.2,
+        // bcAccess: 3.2,
+        // begTerrain: 3.2,
+        // intTerrain: 1.1,
+        // advTerrain: 3.3];
 
     resortTable = [];
 
