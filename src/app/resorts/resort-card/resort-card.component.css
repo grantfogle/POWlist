@@ -29,3 +29,14 @@
 .add-resort-btn {
     width: 400px;
 }
+
+.resort-card-container-border-Ikon {
+    border: 4px solid rgb(249, 196, 63);
+}
+.resort-card-container-border-Epic {
+    border: 4px solid rgb(244, 97, 35);
+}
+
+.resort-card-container-border-MtnCollective {
+    border: 4px solid rgb(35, 190, 168);
+}
