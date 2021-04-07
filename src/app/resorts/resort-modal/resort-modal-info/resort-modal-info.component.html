@@ -1,5 +1,17 @@
 <div class="modal-data-info-container">
-    <div class="resort-modal-reviews">cats</div>
+    <div class="resort-modal-reviews row">
+        <div class="resort-modal-review col-sm-6 col-xs-12" *ngFor="let category of newResortReviews.reviewCategories">
+            <p class="">{{category.name}}</p>
+            <div class="review-rating-container">
+                <div
+                    class="review-rating-bar"
+                    [ngStyle]="{'background-color': category.score > 3 ? '#27ae60' : '#c0392b', 'width': getScoreBarWidth(category.score)}">{{category.score}}</div>
+            </div>
+            <!-- <div class="w3-border">
+                    <div class="w3-grey" style="height:24px;width:20%"></div>
+                  </div> -->
+        </div>
+    </div>
     <!-- <div class="resort-modal-reviews">
         <div class="resort-modal-review">
             <p>Overall Score</p> -->
@@ -10,36 +22,11 @@
     </div> -->
     <!-- <div class="modal-data-table-row" *ngFor="let resortTableRow of resortTable"> -->
     <!-- This is all going to be a form toggle -->
-    <div class="modal-data-table-row">
-        <p>Snow</p>
-        <p>{{newResortTable.snow + ' Inches/Yr'}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Number of Lifts</p>
-        <p>{{newResortTable.lifts}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Trails</p>
-        <p>{{newResortTable.trails}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Vertical</p>
-        <p>{{newResortTable.vertical + ' feet'}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Passes</p>
-        <p>{{newResortTable.passes}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Terrain Parks</p>
-        <p>{{newResortTable.terrainParks}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Adult Lift Ticket (1-Day)</p>
-        <p>{{'$' + newResortTable.ticketPrices}}</p>
-    </div>
-    <div class="modal-data-table-row">
-        <p>Terrain Breakdown</p>
-        <p>{{terrainBreakdown()}}</p>
+    <div class="modal-resort-info-table">
+        <div class="row">
+            <div class="col-xs-6 col-sm-4" *ngFor="let item of newResortTable | keyvalue">
+                <h5>{{item.key}}: {{item.value}}</h5>
+            </div>
+        </div>
     </div>
 </div>

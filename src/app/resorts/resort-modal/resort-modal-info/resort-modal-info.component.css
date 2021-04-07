@@ -3,17 +3,39 @@
     min-height: 300px;
     display: flex;
     flex-direction: column;
+    align-content: center;
     /* justify-content: space-between; */
     /* flex-wrap: wrap; */
 }
 
 .modal-data {
-    min-height: 300px;
+    min-height: 400px;
+}
+
+.modal-resort-info-table {
+    border-top: 1px solid #dfdfdf;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 
 .resort-modal-reviews {
-    height: 100px;
+    height: 200px;
     width: 100%;
+}
+
+.review-rating-container {
+    width: 300px;
+    background-color: #ecf0f1;
+}
+ 
+.resort-modal-review {
+    /* width: 400px; */
+    display: flex;
 }
 
 .modal-data-table-row {
