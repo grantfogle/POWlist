@@ -1,4 +1,6 @@
-<div class="resort-card-container resort-card-container-border-{{resort.skiPasses}}" 
+<div
+    class="resort-card-container" 
+    [ngClass]="resort.skiPasses ? 'resort-card-container-border-' + resort.skiPasses : ''"
     [ngStyle]="{'background-image': 'url(' + resort.imagePath + ')'}">
     <div class="resort-card-header d-flex">
         <p>{{'#' + (rank + 1)}}</p>

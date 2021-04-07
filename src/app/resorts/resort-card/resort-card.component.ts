@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Resort } from '../shared/resort.model';
 
 @Component({
@@ -7,15 +7,11 @@ import { Resort } from '../shared/resort.model';
   styleUrls: ['./resort-card.component.css']
 })
 
-export class ResortCardComponent implements OnInit {
+export class ResortCardComponent {
   showAddResortForm = false;
   @Input() resort: Resort;
   @Input() rank;
 
   constructor() {
-  }
-
-  ngOnInit() {
-  }
-
+  } 
 }
