@@ -33,16 +33,16 @@ export class ResortModalInfoComponent implements OnInit {
     newResortReviews = {
         resortId: '123',
         reviewCategories: [
-            {name: 'Overall Rating', score: 4.2},
-            {name: 'Snow', score: 4.2},
-            {name: 'Value', score: 2.2},
-            {name: 'Nightlife', score: 2.4},
-            {name: 'Crowds', score: 3.3},
-            {name: 'BC Access', score: 2.5},
-            {name: 'Beginner Terrain', score: 2.9},
-            {name: 'Intermediate Terrain', score: 3.7},
-            {name: 'Advanced Terrain', score: 4.7},
-            {name: 'Terrain Parks', score: 3.7}
+            { name: 'Overall Rating', score: 4.2 },
+            { name: 'Snow', score: 4.2 },
+            { name: 'Value', score: 2.2 },
+            { name: 'Nightlife', score: 1.9 },
+            { name: 'Crowds', score: 3.3 },
+            { name: 'BC Access', score: 2.5 },
+            { name: 'Beginner Terrain', score: 2.9 },
+            { name: 'Intermediate Terrain', score: 3.7 },
+            { name: 'Advanced Terrain', score: 4.7 },
+            { name: 'Terrain Parks', score: 3.7 }
         ]
     };
 
@@ -93,6 +93,10 @@ export class ResortModalInfoComponent implements OnInit {
                 }
             }
         });
+    }
+
+    getStyleForBar(score) {
+        return score >= 4 ? '#27ae60' : score < 2 ? '#e74c3c' : '#f1c40f';
     }
 
     getScoreBarWidth(score) {

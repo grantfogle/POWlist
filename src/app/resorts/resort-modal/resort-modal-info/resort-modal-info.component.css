@@ -23,19 +23,24 @@
     flex-wrap: wrap;
 }
 
-.resort-modal-reviews {
-    height: 200px;
+.resort-modal-ratings {
+    min-height: 200px;
     width: 100%;
 }
 
 .review-rating-container {
-    width: 300px;
+    width: 200px;
+    height: 24px;
     background-color: #ecf0f1;
 }
+
+.review-rating-bar {
+    height: 100%;
+}
  
-.resort-modal-review {
-    /* width: 400px; */
+.resort-modal-rating {
     display: flex;
+    justify-content: space-between;
 }
 
 .modal-data-table-row {
