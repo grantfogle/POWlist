@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
 
@@ -9,24 +8,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./hero.component.css']
 })
 
-export class HeroComponent implements OnInit {
+export class HeroComponent {
   email: string;
   displayThankyou = false;
-  @ViewChild('emailCapture') emailCaptureForm: NgForm; 
+  @ViewChild('emailCapture') emailCaptureForm: NgForm;
 
   constructor(public userService: UserService) { }
 
-  ngOnInit() {
-  }
-
-  onFormSubmit() {
-    console.log(this.emailCaptureForm);
-  }
-  // onFormSubmit(form: NgForm) {
-  //   console.log(form);
-  // }
-
-  async emailSubscribe() {
+  async onFormSubmit() {
     await this.userService.emailSubscribe(this.email);
     this.email = '';
     this.displayThankyou = true;
