@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ReviewsService } from '../../../services/reviews.service';
+import { ResortReview } from '../../shared/resort-review.model'
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-resort-modal-review-form',
@@ -7,22 +9,40 @@ import { ReviewsService } from '../../../services/reviews.service';
     styleUrls: ['resort-modal-review-form.component.css']
 })
 
-export class ResortModalReviewFormComponent implements OnInit {
+export class ResortModalReviewFormComponent {
     @Input() name: string;
     @Input() id: string;
+    @ViewChild('reviewCaptureForm') reviewForm: NgForm;
+    @Output() closeReviewForm = new EventEmitter<string>();
+    today = new Date().toString();
 
+    finalReview: ResortReview = {
+        resortId: this.id,
+        icon: '',
+        date:  this.today,
+        userName: '',
+        review: '',
+        overall: null,
+        snow: null,
+        value: null,
+        begTerrain: null,
+        intTerrain: null,
+        bcAccess: null,
+        nightlife: null,
+        terrainParks: null,
+        crowds: null
+    };
+    
     userName: string;
     resortReview: string;
-    resortScore: number;
+    overallScore = 3;
     powScore: number;
+
+    resortScore: number;
     terrainScore: number;
     valueScore: number;
 
     constructor(private reviewsService: ReviewsService) { }
-
-    ngOnInit() { }
-
-    @Output() closeReviewForm = new EventEmitter<string>();
 
     closeReview() {
         this.closeReviewForm.emit();
@@ -31,19 +51,19 @@ export class ResortModalReviewFormComponent implements OnInit {
         console.log('looks good');
         // return true or false, throw err
     }
-    submitReview() {
+    onReviewSubmit() {
         this.reviewQualityCheck();
-        console.log(this.resortReview);
+        console.log('cats', this.reviewForm);
         let reviewObj = {
             resortId: this.id,
             userName: this.userName,
             review: this.resortReview,
-            overallRating: this.resortScore,
+            overall: this.overallScore,
             powderRating: this.powScore,
             valueRating: this.valueScore,
             terrainRating: this.terrainScore
         }
         console.log(reviewObj);
-        this.reviewsService.submitReview(reviewObj);
+        // this.reviewsService.submitReview(reviewObj);
     }
 }

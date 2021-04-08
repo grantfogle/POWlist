@@ -20,6 +20,6 @@ export interface ResortReview {
     intTerrain: number;
     bcAccess: number;
     nightlife: number;
-    terrainParks: number
+    terrainParks: number;
     crowds: number;
 }

@@ -1,135 +1,43 @@
-<form class="review-form">
+<form class="review-form" (ngSubmit)="onReviewSubmit(reviewCaptureForm)" #reviewCaptureForm="ngForm">
     <div class="row">
-        <div class="form-group">
+        <div class="form-group col-xs-12">
             <input
                 id="user-info"
-                class="form-control" 
+                class="form-control"
+                placeholder="Please enter a name"
                 name="userName" 
                 [(ngModel)]="userName"
-                placeholder="Please enter your name/email">
+                required>
             <textarea 
-                class="form-control"
                 id="resortReviewDescription"
-                rows="3" name="resortReview"
+                class="form-control"
+                rows="3"
+                name="resortReview"
                 [(ngModel)]="resortReview"
-                placeholder="Share details about your experience here"></textarea>
+                placeholder="Share details about your experience here"
+                required></textarea>
         </div>
     </div>
-    <div class="resort-scores">
-        <div class="row">
-            <h4>How would you rate the resort overall?</h4>
-            <div class="radio-row">
-                <div class="form-check form-check-inline">
-                    <input
-                        class="form-check-input"
-                        type="radio"
-                        name="resortScore"
-                        [value]="1"
-                        [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore">1 (Shit)</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input
-                        class="form-check-input"
-                        type="radio"
-                        name="resortScore"
-                        [value]="2"
-                        [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" [value]="3" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore">3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" [value]="4" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore">4</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="resortScore" [value]="5" [(ngModel)]="resortScore">
-                    <label class="form-check-label" for="resortScore">5 (Awesome)</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <h4>How would you rate the terrain?</h4>
-            <div class="radio-row">
-                <div class="form-check form-check-inline">
-                    <input class="custom-control-input" type="radio" name="terrainRadio" [value]="1" [(ngModel)]="terrainScore">
-                    <label class="custom-control-label" for="terrainRadio">1 (Lame)</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="2" [(ngModel)]="terrainScore">
-                    <label class="form-check-label" for="terrainRadio">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="3" [(ngModel)]="terrainScore">
-                    <label class="form-check-label" for="terrainRadio">3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="4" [(ngModel)]="terrainScore">
-                    <label class="form-check-label" for="terrainRadio">4</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="terrainRadio" [value]="5" [(ngModel)]="terrainScore">
-                    <label class="form-check-label" for="terrainRadio">5 (Sick)</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <h4>How are the resort prices?</h4>
-            <div class="radio-row">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="priceRadio" [value]="1" [(ngModel)]="valueScore">
-                    <label class="form-check-label" for="priceRadio">1 (Expensive)</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="priceRadio" [value]="2" [(ngModel)]="valueScore">
-                    <label class="form-check-label" for="priceRadio">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="priceRadio" [value]="3" [(ngModel)]="valueScore">
-                    <label class="form-check-label" for="priceRadio">3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="priceRadio" [value]="4" [(ngModel)]="valueScore">
-                    <label class="form-check-label" for="priceRadio">4</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="priceRadio" [value]="5" [(ngModel)]="valueScore">
-                    <label class="form-check-label" for="priceRadio">5 (Cheap)</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <h4>How would you rate the snow?</h4>
-            <div class="radio-row">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="snowRadio" [value]="1" [(ngModel)]="powScore">
-                    <label class="form-check-label" for="snowRadio">1 (Rock Garden)</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="snowRadio" [value]="2" [(ngModel)]="powScore">
-                    <label class="form-check-label" for="snowRadio">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="snowRadio" [value]="3" [(ngModel)]="powScore">
-                    <label class="form-check-label" for="snowRadio">3</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="snowRadio" [value]="4" [(ngModel)]="powScore">
-                    <label class="form-check-label" for="snowRadio">4</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="snowRadio" [value]="5" [(ngModel)]="powScore">
-                    <label class="form-check-label" for="snowRadio">5 (Powder Paradise)</label>
-                </div>
-            </div>
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6" >
+            <label for="overallRating">Overall Rating</label>
+            <select 
+                id="overallRating"
+                class="form-control"
+                [(ngModel)]="overallScore"
+                name="overallRating"
+                required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+            </select>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-info" type="button" (click)="submitReview()">Add</button>
+            <button class="btn btn-info" type="submit">Add</button>
             <button class="btn btn-warning" type="button" (click)="closeReview()">Cancel</button>
         </div>
     </div>
