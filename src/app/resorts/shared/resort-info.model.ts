@@ -18,6 +18,7 @@ export interface ResortData {
     city: string;
     state: string;
     country: string;
+    website: string;
     liftTicketCost: ResortDataMeasurement;
     snow: ResortDataMeasurement;
     skiableAcres: ResortDataMeasurement;

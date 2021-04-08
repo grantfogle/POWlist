@@ -3,6 +3,18 @@
 </app-filter>
 <div class="container">
   <hr>
+  <div class="row">
+      <div class="add-resort-row">
+        <h4>See something missing? Help us add resorts to the project.</h4>
+        <div class="resort-help-buttons">
+          <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
+          <button class="btn btn-info add-resort-btn" (click)="toggleFeedbackForm()">Send Feedback</button>
+        </div>
+        <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
+        <app-feedback-form (closeModal)="showFeedbackForm" *ngIf="showFeedbackForm"></app-feedback-form>
+      </div>
+    </div>
+    <hr>
   <div class="row" *ngIf="displayResorts.length === 0">
     <h3>There doesn't appear to be anything here</h3>
   </div>
@@ -12,18 +24,6 @@
         (click)="initResortModal(resort)"
         [resort]="resort"
         [rank]="indexOfElement"></app-resort-card>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="add-resort-row">
-      <h4>See something missing? Help us add resorts to the project.</h4>
-      <div class="resort-help-buttons">
-        <button class="btn btn-info add-resort-btn" (click)="toggleAddResortForm()">Add Resort</button>
-        <button class="btn btn-info add-resort-btn" (click)="toggleFeedbackForm()">Send Feedback</button>
-      </div>
-      <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
-      <app-feedback-form (closeModal)="showFeedbackForm" *ngIf="showFeedbackForm"></app-feedback-form>
     </div>
   </div>
 </div>

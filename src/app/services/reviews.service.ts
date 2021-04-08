@@ -12,7 +12,8 @@ export class ReviewsService {
 
     private reviews: ResortReview[] = [];
 
-    submitReview(review: ResortReview) {
+    // submitReview(review: ResortReview) {
+    submitReview(review) {
         const url = 'https://powfish.firebaseio.com/reviews.json';
         this.http.post(
             url,

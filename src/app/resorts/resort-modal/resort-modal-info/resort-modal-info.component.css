@@ -31,7 +31,7 @@
 .review-rating-container {
     width: 200px;
     height: 24px;
-    background-color: #ecf0f1;
+    background-color: hsl(192, 15%, 94%);
 }
 
 .review-rating-bar {
