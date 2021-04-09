@@ -15,6 +15,7 @@ export class ResortModalReviewFormComponent {
     @ViewChild('reviewCaptureForm') reviewForm: NgForm;
     @Output() closeReviewForm = new EventEmitter<string>();
     today = new Date().toString();
+    // review: {id: string, category: string, score: number, count: 4}
 
     finalReview: ResortReview = {
         resortId: this.id,
@@ -32,7 +33,7 @@ export class ResortModalReviewFormComponent {
         terrainParks: null,
         crowds: null
     };
-    
+
     userName: string;
     resortReview: string;
     overallScore = 3;

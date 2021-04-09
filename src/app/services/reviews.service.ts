@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { ResortReview } from '../resorts/shared/resort-review.model';
+import { ResortCategories } from '../resorts/shared/resort-category-review.model'
 
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
