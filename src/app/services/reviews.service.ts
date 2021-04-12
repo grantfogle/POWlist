@@ -13,8 +13,7 @@ export class ReviewsService {
 
     private reviews: ResortReview[] = [];
 
-    // submitReview(review: ResortReview) {
-    submitReview(review) {
+    submitReview(review: ResortReview): boolean {
         const url = 'https://powfish.firebaseio.com/reviews.json';
         this.http.post(
             url,
@@ -22,12 +21,18 @@ export class ReviewsService {
         ).subscribe(responseData => {
             console.log(responseData);
         });
+        return true;
     }
 
-    filterBySkiPass(pass: string) {
-        // let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
-        // console.log('it worked', filterArr);
-        // this.filteredResorts = filterArr;
+    submitReviewCategories(resortCategories: ResortCategories): boolean {
+        const url = 'https://powfish.firebase.com/categories.json';
+        this.http.post(
+            url,
+            resortCategories
+        ).subscribe(responseData => {
+            console.log(responseData);
+        });
+        return true;
     }
 
     retrieveResortReviews(id: string) {

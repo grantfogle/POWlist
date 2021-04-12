@@ -1,30 +1,11 @@
 <form class="review-form" (ngSubmit)="onReviewSubmit(reviewCaptureForm)" #reviewCaptureForm="ngForm">
     <div class="row">
-        <div class="form-group col-xs-12">
-            <input
-                id="user-info"
-                class="form-control"
-                placeholder="Please enter a name"
-                name="userName" 
-                [(ngModel)]="userName"
-                required>
-            <textarea 
-                id="resortReviewDescription"
-                class="form-control"
-                rows="3"
-                name="resortReview"
-                [(ngModel)]="resortReview"
-                placeholder="Share details about your experience here"
-                required></textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-xs-12 col-sm-6" >
+        <div class="form-group col-xs-12 col-sm-8">
             <label for="overallRating">Overall Rating</label>
             <select 
                 id="overallRating"
                 class="form-control"
-                [(ngModel)]="overallScore"
+                [(ngModel)]="userReview.overallRating"
                 name="overallRating"
                 required>
                     <option value="1">1</option>
@@ -34,40 +15,51 @@
                     <option value="5">5</option>
             </select>
         </div>
-        <div class="form-group col-xs-12 col-sm-6" >
-            <label for="snowRating">Snow Rating</label>
-            <select 
-                id="snowRating"
+        <div class="form-group col-xs-12 col-sm-8">
+            <input
+                id="user-info"
                 class="form-control"
-                [(ngModel)]="snow"
-                name="snowRating"
+                placeholder="Please enter a name"
+                name="userName" 
+                [(ngModel)]="userReview.userName"
                 required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-            </select>
         </div>
-        <div class="form-group col-xs-12 col-sm-6" >
-            <label for="valueRating">Value</label>
-            <select 
-                id="valueRating"
+        <div class="form-group col-xs-12 col-sm-8">
+            <textarea 
+                id="resortReviewDescription"
                 class="form-control"
-                [(ngModel)]="value"
-                name="valueRating"
+                rows="3"
+                name="resortReview"
+                [(ngModel)]="userReview.review"
+                placeholder="Share details about your experience here"
+                required></textarea>
+            </div>
+    </div>
+    <hr>
+    <h4>Please help us collect data by reviewing these categories:</h4>
+    <div class="row">
+        <div class="form-group col-xs-6 col-sm-4" *ngFor="let category of resortCategories.reviewCategories | keyvalue">
+            <label for="category.key">{{category.value.label}}</label>
+            <select 
+                id="category.key"
+                class="form-control"
+                [(ngModel)]="category.value.score"
+                name="category.key"
                 required>
-                    <option value="1">1</option>
+                    <option value="1">1 - Bad</option>
                     <option value="2">2</option>
-                    <option value="3">3</option>
+                    <option value="3">3 - Perfectly Average</option>
                     <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="5">5 - Good</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-info" type="submit">Add</button>
+            <button
+                class="btn btn-info"
+                type="submit"
+                [disabled]="!reviewCaptureForm.valid">Submit</button>
             <button class="btn btn-warning" type="button" (click)="closeReview()">Cancel</button>
         </div>
     </div>

@@ -2,8 +2,19 @@
     width: 90%;
     margin: 0 auto;
     padding: 1em;
-    height: 200px;
     overflow: scroll;
+}
+
+.review-form select.ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
+}
+
+.review-form input.ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
+}
+
+.review-form textarea.ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
 }
 
 textarea {

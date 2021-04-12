@@ -7,13 +7,13 @@
                 <form (ngSubmit)="onFormSubmit(emailCapture)" #emailCapture="ngForm">
                     <div class="email-capture" *ngIf="!displayThankyou">
                         <input
-                        type="email"
-                        placeholder="Subscribe for updates"
-                        ngModel
-                        name="email"
-                        required
-                        email
-                        #email="ngModel"
+                            type="email"
+                            placeholder="Subscribe for updates"
+                            ngModel
+                            name="email"
+                            required
+                            email
+                            #email="ngModel"
                         />
                         <button 
                             class="btn btn-info" 

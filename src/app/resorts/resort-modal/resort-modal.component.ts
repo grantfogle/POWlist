@@ -9,11 +9,14 @@ import { Resort } from '../shared/resort.model';
 })
 
 export class ResortModalComponent implements OnInit {
+    id: string;
     constructor(public modalService: ModalService) {
     }
 
     ngOnInit() {
         this.selectedResort = this.modalService.selectedResort.resort;
+        this.id = this.selectedResort.id;
+        console.log(this.id);
     }
 
     selectedNav = 'Info';

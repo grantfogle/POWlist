@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 import { ReviewsService } from '../../../services/reviews.service';
 import { ResortReview } from '../../shared/resort-review.model'
+import { ResortCategories } from '../../shared/resort-category-review.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,62 +10,51 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['resort-modal-review-form.component.css']
 })
 
-export class ResortModalReviewFormComponent {
+export class ResortModalReviewFormComponent implements OnInit {
     @Input() name: string;
     @Input() id: string;
+
     @ViewChild('reviewCaptureForm') reviewForm: NgForm;
     @Output() closeReviewForm = new EventEmitter<string>();
     today = new Date().toString();
-    // review: {id: string, category: string, score: number, count: 4}
 
-    finalReview: ResortReview = {
+    resortCategories: ResortCategories = {
         resortId: this.id,
-        icon: '',
-        date:  this.today,
-        userName: '',
-        review: '',
-        overall: null,
-        snow: null,
-        value: null,
-        begTerrain: null,
-        intTerrain: null,
-        bcAccess: null,
-        nightlife: null,
-        terrainParks: null,
-        crowds: null
+        reviewCategories: {
+            snow: {label: 'Snow Quality', score: null},
+            value: {label: 'Resort Value', score: null},
+            nightLife: {label: 'Night Life', score: null},
+            crowds: {label: 'Crowds', score: null},
+            bcAccess: {label: 'BC/Sidecountry Access', score: null},
+            begTerrain: {label: 'Beginner Terrain', score: null},
+            intTerrain: {label: 'Intermediate Terrain', score: null},
+            advTerrain: {label: 'Advanced Terrain', score: null},
+            terrainParks: {label: 'Terrain Parks', score: null}
+        }
     };
 
-    userName: string;
-    resortReview: string;
-    overallScore = 3;
-    powScore: number;
+    userReview: ResortReview = {
+        resortId: this.id,
+        icon: '',
+        date: this.today,
+        userName: '',
+        review: '',
+        overallRating: null
+    };
 
-    resortScore: number;
-    terrainScore: number;
-    valueScore: number;
+    ngOnInit(){
+        console.log(this.id);
+    }
 
-    constructor(private reviewsService: ReviewsService) { }
+    constructor(private reviewsService: ReviewsService) {
+    }
 
     closeReview() {
         this.closeReviewForm.emit();
     }
-    reviewQualityCheck() {
-        console.log('looks good');
-        // return true or false, throw err
-    }
+
     onReviewSubmit() {
-        this.reviewQualityCheck();
-        console.log('cats', this.reviewForm);
-        let reviewObj = {
-            resortId: this.id,
-            userName: this.userName,
-            review: this.resortReview,
-            overall: this.overallScore,
-            powderRating: this.powScore,
-            valueRating: this.valueScore,
-            terrainRating: this.terrainScore
-        }
-        console.log(reviewObj);
-        // this.reviewsService.submitReview(reviewObj);
+        this.reviewsService.submitReview(this.userReview);
+        this.reviewsService.submitReviewCategories(this.resortCategories);
     }
 }

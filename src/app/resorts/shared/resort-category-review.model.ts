@@ -4,20 +4,17 @@ export interface ResortCategories {
 };
 
 export interface ResortCategory {
-    overallRating: ResortCategoryScore;
-    snow: ResortCategoryScore;
-    value: ResortCategoryScore;
-    nightLife: ResortCategoryScore;
-    crowds: ResortCategoryScore;
-    bcAccess: ResortCategoryScore;
-    begTerrain: ResortCategoryScore;
-    intTerrain: ResortCategoryScore;
-    advTerrain: ResortCategoryScore;
-    terrainParks: ResortCategoryScore;
+    snow: {label: string, score: number};
+    value: {label: string, score: number};
+    nightLife: {label: string, score: number};
+    crowds: {label: string, score: number};
+    bcAccess: {label: string, score: number};
+    begTerrain: {label: string, score: number};
+    intTerrain: {label: string, score: number};
+    advTerrain: {label: string, score: number};
+    terrainParks: {label: string, score: number};
 }
 
 export interface ResortCategoryScore {
-    name: string;
     score: number;
-    count: number;
 }
