@@ -15,12 +15,14 @@ export class AddResortComponent {
     name: { label: 'Name', value: '' },
     city: { label: 'City', value: '' },
     province: { label: 'Province', value: '' },
-    country: { label: 'Country', value: '' }
+    country: { label: 'Country', value: '' },
+    description: { label: 'Description', value: '' },
   }
 
   resortStats = {
     adultFullDayTicketInUSD: { label: 'Adult One Day Lift Ticket', value: null },
-    // description: { label: 'Description', value: '' },
+    latitude: { label: 'Latitude', value: '' },
+    longitude: { label: 'Longitude', value: '' },
     lifts: { label: 'Number of Lifts', value: null },
     nearestAirportInMiles: { label: 'How far is the nearest airport?', value: null },
     skiableAcres: { label: 'Skiable Acres', value: null },
@@ -32,16 +34,41 @@ export class AddResortComponent {
   }
 
   resortStatMultiSelect = {
-    bestTimeToVisit: { label: 'Best Time of Year to Vist', value: '' },
-    bikePark: { label: 'Bike park?', value: false },
-    sideCountryAccess: { label: 'Bc/sidecountry access?', value: false },
-    skiPasses: { label: 'Is this resort on any Ski Passes? ', value: '' }
+    bestTimeToVisit: {
+      label: 'Best Time of Year to Vist',
+      value: '',
+      options: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    },
+    bikePark: {
+      label: 'Bike park?',
+      value: false,
+      options: ['Yes', 'No']
+    },
+    sideCountryAccess: {
+      label: 'Bc/sidecountry access?',
+      value: false,
+      options: ['Yes', 'No']
+    },
+    skiPasses: {
+      label: 'Is this resort on any Ski Passes? ',
+      value: '',
+      options: ['Epic', 'Ikon', 'Mountain Collective']
+    }
   }
 
   terrainBreakdown = {
-    beginnerTerrainPercentage: { label: 'Beg Terrain %', value: null },
-    intermediateTerrainPercentage: { label: 'Int Terrain %', value: null },
-    advancedTerrainPercentage: { label: 'Adv Terrain %', value: null }
+    beginnerTerrainPercentage: {
+      label: 'Beg Terrain %',
+      value: null
+    },
+    intermediateTerrainPercentage: {
+      label: 'Int Terrain %',
+      value: null
+    },
+    advancedTerrainPercentage: {
+      label: 'Adv Terrain %',
+      value: null
+    }
   }
 
   resortImages = {
