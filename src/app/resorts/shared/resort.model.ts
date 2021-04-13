@@ -33,3 +33,33 @@ export class Resort {
         this.snowInInches = snowInInches;
     }
 }
+
+export class Resort2 {
+    name: string;
+    city: string;
+    province: string;
+    country: string;
+    latitude: string;
+    longitude: string;
+    overallRating: number;
+    coverImage: string;
+    logo: string;
+    cardImage: string;
+    stats: ResortStats;
+}
+
+export class ResortStats {
+    description: string;
+    snowPerYear: string;
+    skiPasses: string[];
+    liftPassCost: string;
+    lifts: number;
+    skiableAcres: number;
+    terrainParks: number;
+    vertical: number;
+    greenTerrain: number;
+    intermediateTerrain: number;
+    advancedTerrain: number;
+    trails: number;
+    adultFullDayTicket: number;
+}

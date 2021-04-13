@@ -35,27 +35,27 @@ export class ReviewsService {
         return true;
     }
 
-    retrieveResortReviews(id: string) {
-        // const cors = 'https://cors-anywhere.herokuapp.com/'
-        // const url = 'https://powfish.firebaseio.com/resorts.json';
-        // this.http.get(url)
-        //     .pipe(map(responseData => {
-        //         console.log('asdfa', responseData);
-        //         const resortsArray = [];
-        //         for (const key in responseData) {
-        //             if (responseData.hasOwnProperty(key)) {
-        //                 resortsArray.push({ ...responseData[key], id: key })
-        //             }
-        //         }
-        //         return resortsArray;
-        //     }))
-        //     .subscribe(response => {
-        //         response.forEach(resort => {
-        //             this.resorts.push(resort);
-        //         })
-        //         this.sortResortsByRating();
-        //         console.log(response);
-        //     })
-        // console.log(this.resorts);
-    }
+    // retrieveResortReviews(id: string) {
+    // const cors = 'https://cors-anywhere.herokuapp.com/'
+    // const url = 'https://powfish.firebaseio.com/resorts.json';
+    // this.http.get(url)
+    //     .pipe(map(responseData => {
+    //         console.log('asdfa', responseData);
+    //         const resortsArray = [];
+    //         for (const key in responseData) {
+    //             if (responseData.hasOwnProperty(key)) {
+    //                 resortsArray.push({ ...responseData[key], id: key })
+    //             }
+    //         }
+    //         return resortsArray;
+    //     }))
+    //     .subscribe(response => {
+    //         response.forEach(resort => {
+    //             this.resorts.push(resort);
+    //         })
+    //         this.sortResortsByRating();
+    //         console.log(response);
+    //     })
+    // console.log(this.resorts);
+    // }
 }

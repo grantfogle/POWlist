@@ -77,4 +77,9 @@ export class ResortsService {
         this.filteredResorts = resortsOrderByPrice;
     }
 
+    addResort(resort) {
+        console.log('create resort');
+
+    }
+
 }
