@@ -49,17 +49,21 @@ export class Resort2 {
 }
 
 export class ResortStats {
+    adultFullDayTicketInUSD: number;
+    bestTimeToVisit: string;
+    bikePark: boolean;
     description: string;
-    snowPerYear: string;
-    skiPasses: string[];
-    liftPassCost: string;
     lifts: number;
+    nearestAirportInMiles: number;
     skiableAcres: number;
+    skiPasses: string[];
+    sideCountryAccess: boolean;
+    snowPerYearInInches: string;
     terrainParks: number;
-    vertical: number;
-    greenTerrain: number;
-    intermediateTerrain: number;
-    advancedTerrain: number;
     trails: number;
-    adultFullDayTicket: number;
+    vertical: number;
+    website: string;
+    advancedTerrainPercentage: number;
+    beginnerTerrainPercentage: number
+    intermediateTerrainPercentage: number;
 }
