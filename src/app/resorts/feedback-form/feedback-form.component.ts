@@ -41,7 +41,7 @@ export class FeedbackFormComponent implements OnInit {
     onCloseFeedbackForm() {
         this.closeFeedbackForm.emit();
     }
-    
+
     async submitFeedback() {
         if (this.feedbackForm.valid) {
             await this.reviewsService.submitUserFeedback(this.feedbackForm.value);
