@@ -44,6 +44,12 @@ export class AddResortComponent {
     advancedTerrainPercentage: { label: 'Adv Terrain %', value: null }
   }
 
+  resortImages = {
+    coverPhoto: {},
+    icon: {},
+    cardImage: {},
+  }
+
   resortName = '';
   resortCity = '';
   resortProvince = '';
