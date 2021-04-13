@@ -11,7 +11,7 @@
           <button class="btn btn-info add-resort-btn" (click)="toggleFeedbackForm()">Send Feedback</button>
         </div>
         <app-add-resort *ngIf="showAddResortForm" (resortCreated)="addResort($event)" (closeModal)="toggleAddResortForm()"></app-add-resort>
-        <app-feedback-form (closeModal)="showFeedbackForm" *ngIf="showFeedbackForm"></app-feedback-form>
+        <app-feedback-form *ngIf="showFeedbackForm" (closeFeedbackForm)="toggleFeedbackForm()"></app-feedback-form>
       </div>
     </div>
     <hr>

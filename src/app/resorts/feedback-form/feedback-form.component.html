@@ -1,26 +1,53 @@
 <div class="add-resort-form">
     <div class="row">
         <div class="col-xs-12">
-            <form>
+            <form class="feedback-form" [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()">
                 <div class="row">
-                    <h3 class="bg-success" *ngIf="formSuccess">Thanks for your feedback!</h3>
-                    <h3 class="bg-danger" *ngIf="displayFormFail">Please make sure both fields are filled out</h3>
                     <div class="col-xs-12 form-group">
-                        <label for="name">Email</label>
-                        <input type="text" name="email" placeholder="dude@gmail.com" class="form-control" [(ngModel)]="email" required>
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="skier@gmail.com"
+                            formControlName="email"
+                            class="form-control">
+                        <span
+                            *ngIf="!feedbackForm.get('email').valid && feedbackForm.get('email').touched"
+                            class="help-block">Please enter a valid email</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 form-group">
-                        <label for="rating">What feedback do you have for me?</label>
-                        <textarea class="form-control" name="feedback" [(ngModel)]="feedback" placeholder="This app is seriously the bomb..." rows="3"></textarea>
+                        <label for="feedback">What feedback do you have for Powlist?</label>
+                        <textarea
+                            class="form-control"
+                            name="feedback"
+                            placeholder="This app is seriously the bomb..."
+                            formControlName="feedback"
+                            rows="3"></textarea>
+                        <span
+                            *ngIf="!feedbackForm.get('feedback').valid && feedbackForm.get('feedback').touched"
+                            class="help-block">Please enter any feedback you have for Powlist</span>
                     </div>
                 </div>
+                <h3 *ngIf="formSuccess">Thanks for your feedback!</h3>
                 <hr>
+                <!-- <div formArrayName="hobbies">
+                    <h4>Your hobbies</h4>
+                    <button class="btn btn-success" type="button" (click)="onAddHobby()">Add Hobby</button>
+                    <div *ngFor="let hobbyControl of feedbackForm.get('hobbies').controls; let i = index">
+                        <input type="text" class="form-control" [formControlName]="i">
+                    </div>
+                </div> -->
                 <div class="row">
                     <div class="col-xs-12">
-                        <button class="btn btn-info" type="button" (click)="submitFeedback()">Send</button>
-                        <button class="btn btn-warning" type="button" (click)="resetForm()">Cancel</button>
+                        <button
+                            class="btn btn-info"
+                            type="submit">Send</button>
+                        <button
+                            class="btn btn-warning"
+                            type="button"
+                            (click)="onCloseFeedbackForm()">Cancel</button>
                     </div>
                 </div>
             </form>

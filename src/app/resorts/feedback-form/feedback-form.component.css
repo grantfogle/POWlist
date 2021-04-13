@@ -7,3 +7,11 @@ button {
     width: 200px;
     margin-right: 1em;
 }
+
+.feedback-form input.ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
+}
+
+.feedback textarea.ng-invalid.ng-touched {
+    border: 1px solid #e74c3c;
+}

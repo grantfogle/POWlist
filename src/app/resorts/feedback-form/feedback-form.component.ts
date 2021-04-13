@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { ReviewsService } from '../../services/reviews.service';
 
 @Component({
     selector: 'app-feedback-form',
@@ -7,48 +9,44 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./feedback-form.component.css']
 })
 
-export class FeedbackFormComponent {
-    email: string = '';
-    feedback: string = '';
+export class FeedbackFormComponent implements OnInit {
     displayFormFail = false;
     formSuccess = false;
+    feedbackForm: FormGroup;
+    forbiddenEmails = ['gmoney@gmail.com', 'cats@gmail.com'];
+    @Output() closeFeedbackForm = new EventEmitter();
 
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient, public reviewsService: ReviewsService) { }
 
-    resetForm() {
-        this.email = '';
-        this.feedback = '';
+    ngOnInit() {
+        this.feedbackForm = new FormGroup({
+            'email': new FormControl(null, [Validators.required, Validators.email]),
+            'feedback': new FormControl(null, Validators.required)
+            // 'hobbies': new FormArray([])
+        });
     }
 
-    checkForEmptyFields(): boolean {
-        if (!this.email || !this.feedback) {
-            return false;
-        }
-        return true;
-    }
+    // onAddHobby() {
+    //     const control = new FormControl(null);
+    //     (<FormArray>this.feedbackForm.get('hobbies')).push(control);
+    // }
 
-    submitFeedback() {
-        const fieldsFilled = this.checkForEmptyFields();
-        if (fieldsFilled) {
-            const url = 'https://powfish.firebaseio.com/feedback.json';
-            let feedbackObj = {
-                email: this.email,
-                feedback: this.feedback
-            }
-            this.http.post(
-                url,
-                feedbackObj
-            ).subscribe(responseData => {
-                this.displayFormFail = false;
-                this.formSuccess = true;
-                console.log(responseData);
-            });
-        } else {
-            this.displayFormFail = true;
-            setTimeout(() => {
-                this.displayFormFail = false;
-            }, 4500);
-            console.log('Please fill all required fields');
+    // getforbiddenEmails(control: FormControl): {[s: string]: boolean} {
+    //     if (this.forbiddenEmails.indexOf(control.value) !== -1) {
+    //         return {'nameIsForbidden': true};
+    //     }
+    //     return null;
+    // }
+
+    onCloseFeedbackForm() {
+        this.closeFeedbackForm.emit();
+    }
+    
+    async submitFeedback() {
+        if (this.feedbackForm.valid) {
+            await this.reviewsService.submitUserFeedback(this.feedbackForm.value);
+            this.displayFormFail = false;
+            this.formSuccess = true;
         }
     }
 }

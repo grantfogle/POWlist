@@ -35,6 +35,16 @@ export class ReviewsService {
         return true;
     }
 
+    async submitUserFeedback(feedback) {
+            const url = 'https://powfish.firebaseio.com/feedback.json';
+            await this.http.post(
+                url,
+                feedback
+            ).subscribe(responseData => {
+                console.log(responseData);
+            });
+    }
+
     // retrieveResortReviews(id: string) {
     // const cors = 'https://cors-anywhere.herokuapp.com/'
     // const url = 'https://powfish.firebaseio.com/resorts.json';
