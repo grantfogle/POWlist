@@ -11,6 +11,39 @@ export class AddResortComponent {
   @Output() resortCreated = new EventEmitter<Resort>();
   @Output() closeModal = new EventEmitter();
 
+  resortBasicInfo = {
+    name: { label: 'Name', value: '' },
+    city: { label: 'City', value: '' },
+    province: { label: 'Province', value: '' },
+    country: { label: 'Country', value: '' }
+  }
+
+  resortStats = {
+    adultFullDayTicketInUSD: { label: 'Adult One Day Lift Ticket', value: null },
+    // description: { label: 'Description', value: '' },
+    lifts: { label: 'Number of Lifts', value: null },
+    nearestAirportInMiles: { label: 'How far is the nearest airport?', value: null },
+    skiableAcres: { label: 'Skiable Acres', value: null },
+    snowPerYearInInches: { label: 'Average yearly snowfall (inches)?', value: null },
+    terrainParks: { label: 'Number of Terrain Parks', value: null },
+    trails: { label: 'Number of Trails', value: null },
+    vertical: { label: 'Vertical feet', value: null },
+    website: { label: 'Resort URL', value: '' }
+  }
+
+  resortStatMultiSelect = {
+    bestTimeToVisit: { label: 'Best Time of Year to Vist', value: '' },
+    bikePark: { label: 'Bike park?', value: false },
+    sideCountryAccess: { label: 'Bc/sidecountry access?', value: false },
+    skiPasses: { label: 'Is this resort on any Ski Passes? ', value: '' }
+  }
+
+  terrainBreakdown = {
+    beginnerTerrainPercentage: { label: 'Beg Terrain %', value: null },
+    intermediateTerrainPercentage: { label: 'Int Terrain %', value: null },
+    advancedTerrainPercentage: { label: 'Adv Terrain %', value: null }
+  }
+
   resortName = '';
   resortCity = '';
   resortProvince = '';
