@@ -78,6 +78,7 @@ export class ResortsService {
     }
 
     addResort(resort) {
+        // format resort
         console.log('create resort');
 
     }

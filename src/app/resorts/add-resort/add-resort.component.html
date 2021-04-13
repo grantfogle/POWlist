@@ -37,7 +37,9 @@
                         [(ngModel)]="stat.value.score"
                         name="stat.key"
                         required>
-                        <option value="option" *ngFor="let option of stat.value.options">{{option}}</option>
+                        <option
+                            value="option"
+                            *ngFor="let option of stat.value.options">{{option}}</option>
                     </select>
                 </div>
             </div>

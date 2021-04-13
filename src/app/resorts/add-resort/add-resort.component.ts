@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core
 import { Resort } from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ngForm } from '@angular/forms';
+import { ResortsService } from '../../services/resorts.service';
 
 @Component({
   selector: 'app-add-resort',
@@ -20,7 +21,7 @@ export class AddResortComponent {
     province: { label: 'Province', value: '' },
     country: { label: 'Country', value: '' },
   };
-
+  
   resortStats = {
     adultFullDayTicketInUSD: { label: 'Adult One Day Lift Ticket', value: null },
     latitude: { label: 'Latitude', value: '' },
@@ -83,7 +84,7 @@ export class AddResortComponent {
     resortName: this.resortName,
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public resortsService: ResortsService) { }
 
   submitNewResort() {
     console.log(this.resortForm);
