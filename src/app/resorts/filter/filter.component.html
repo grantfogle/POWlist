@@ -8,7 +8,7 @@
                 <input type="text" class="form-control" placeholder="Search Resort or Region" #filterInput>
             </div>
             <button class="btn btn-info filter-button" (click)="onSearchFilter()">Search</button>
-            <button class="btn btn-warning" (click)="clearFilters()">Remove Filters</button>
+            <button class="btn btn-warning" id="removeFilterBtn" (click)="clearFilters()">Remove Filters</button>
         </div>
         <div class="filters" *ngIf="displayFilters">
             <div class="filters-buttons">
