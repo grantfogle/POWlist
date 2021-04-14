@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
-import { Resort } from '../shared/resort.model';
+import { Resort, Resort2 } from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ngForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { ResortsService } from '../../services/resorts.service';
 
 @Component({
@@ -10,18 +10,63 @@ import { ResortsService } from '../../services/resorts.service';
   styleUrls: ['./add-resort.component.css']
 })
 export class AddResortComponent {
-  @Output() resortCreated = new EventEmitter<Resort>();
   @Output() closeModal = new EventEmitter();
-  @ViewChild('addResortForm') resortForm: ngForm;
+  @ViewChild('addResortForm') resortForm: NgForm;
   displayFormFail = false;
-
-  resortBasicInfo = {
-    name: { label: 'Name', value: '' },
-    city: { label: 'City', value: '' },
-    province: { label: 'Province', value: '' },
-    country: { label: 'Country', value: '' },
+  newResort: Resort2 = {
+    name: '',
+    city: '',
+    country: '',
+    province: '',
+    description: '',
+    latitude: '',
+    longitude: '',
+    overallRating: null,
+    website: '',
+    coverImage: '',
+    logo: '',
+    cardImage: '',
+    resortStats: this.newResortStats
   };
+  newResortStats: ResortStats = {
+    adultFullDayTicketInUSD: null,
+    bestTimeToVisit: '',
+    bikePark: '',
+    lifts: null,
+    nearestAirportInMiles: null,
+    skiableAcres: null,
+    skiPasses: [],
+    sideCountryAccess: '',
+    snowPerYearInInches: null,
+    terrainParks: null,
+    trails: null,
+    verticalFeet: null,
+    advancedTerrainPercentage: null,
+    beginnerTerrainPercentage: null,
+    intermediateTerrainPercentage: null,
+  }
+
+  resortFormBasicInfoArr = [
+    { name: 'name', label: 'Resort Name', placeholder: 'Beaver Creek', value: this.newResort.name },
+    { name: 'city', label: 'City', placeholder: 'Avon', value: this.newResort.city },
+    { name: 'province', label: 'Province', placeholder: 'Colorado', value: this.newResort.province },
+    { name: 'country', label: 'Country', placeholder: 'United States of America', value: this.newResort.province },
+    { name: 'latitude', label: 'Latitude', placeholder: '39.6042', value: this.newResort.latitude },
+    { name: 'longitude', label: 'Longitude', placeholder: '-106.5165', value: this.newResort.longitude },
+    { name: 'website', label: 'Website', placeholder: 'beavercreek.com', value: this.newResort.website },
+  ];
   
+  additionalResortFormStats = [
+    { name: 'adultFullDayTicketInUSD', label: 'Adult Full Day Ticket Cost ($)', placeholder: '148', value: this.newResortStats.adultFullDayTicketInUSD },
+    { name: 'lifts', label: 'Number of lifts', placeholder: '14', value: this.newResortStats.lifts },
+    { name: 'nearestAirportInMiles', label: 'Nearest airport in miles', placeholder: '140', value: this.newResortStats.nearestAirportInMiles },
+    { name: 'skiableAcres', label: 'Skiable Acres', placeholder: '2200', value: this.newResortStats.skiableAcres },
+    { name: 'snowPerYearInInches', label: 'Average Snowfall (inches)', placeholder: '250', value: this.newResortStats.snowPerYearInInches },
+    { name: 'terrainParks', label: 'Number of Terrain Parks', placeholder: '2', value: this.newResortStats.terrainParks },
+    { name: 'trails', label: 'Number of Trails', placeholder: '84', value: this.newResortStats.trails },
+    { name: 'verticalFeet', label: 'Vertical Feet', placeholder: '300', value: this.newResortStats.verticalFeet },
+  ]
+
   resortStats = {
     adultFullDayTicketInUSD: { label: 'Adult One Day Lift Ticket', value: null },
     latitude: { label: 'Latitude', value: '' },
@@ -80,92 +125,19 @@ export class AddResortComponent {
     cardImage: {},
   }
 
-  resortForFirebase = {
-    resortName: this.resortName,
-  }
-
   constructor(private http: HttpClient, public resortsService: ResortsService) { }
 
   submitNewResort() {
+    this.resortsService.addResort(this.newResort);
     console.log(this.resortForm);
   }
 
   resetForm() {
-    this.resortName = '';
-    this.resortCity = '';
-    this.resortProvince = '';
-    this.resortCountry = '';
-    this.resortRating = 0;
-    this.initialImage = '';
-    this.resortLiftTicketCost = 0;
-    this.resortDescription = '';
-    this.resortSnow = 0;
-    this.resortSkiPasses = '';
-    this.displayFormFail = false;
-
     this.closeModal.emit();
   }
 
-  onAddResort() {
-    const fieldsFilled = this.checkForEmptyFields();
-    if (fieldsFilled) {
-      this.resortCreated.emit({
-        name: this.resortName,
-        city: this.resortCity,
-        province: this.resortProvince,
-        country: this.resortCountry,
-        latitude: '',
-        longitude: '',
-        rating: this.resortRating,
-        description: this.resortDescription,
-        imagePath: this.initialImage,
-        skiPasses: this.resortSkiPasses,
-        snowInInches: this.resortSnow,
-        liftPassCost: this.resortLiftTicketCost
-      });
-      this.onCreateResort();
-      this.resetForm();
-    } else {
-      this.displayFormFail = true;
-      setTimeout(() => {
-        this.displayFormFail = false;
-      }, 4500);
-    }
-  }
-
-  checkForEmptyFields(): boolean {
-    if (this.resortName !== '' && this.resortCity !== '' && this.resortProvince !== '' &&
-      this.resortCountry !== '') {
-      return true;
-    }
-    return false;
-  }
-
-  onCreateResort() {
-    const fieldsFilled = this.checkForEmptyFields();
-    if (fieldsFilled) {
-      const url = 'https://powfish.firebaseio.com/resorts.json';
-      let resorts = {
-        name: this.resortName,
-        city: this.resortCity,
-        province: this.resortProvince,
-        country: this.resortCountry,
-        rating: this.resortRating,
-        description: this.resortDescription,
-        imagePath: this.initialImage,
-        skiPasses: this.resortSkiPasses,
-        snowInInches: this.resortSnow,
-        liftPassCost: this.resortLiftTicketCost
-      }
-      this.http.post(
-        url,
-        resorts
-      ).subscribe(responseData => {
-        console.log(responseData);
-      });
-    } else {
-      console.log('Please fill all required fields');
-    }
-  }
+      // setTimeout(() => {
+      //   this.displayFormFail = false;
+      // }, 4500);
 
 }

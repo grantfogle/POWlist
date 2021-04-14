@@ -79,7 +79,14 @@ export class ResortsService {
 
     addResort(resort) {
         // format resort
-        console.log('create resort');
+        // const url = 'https://powfish.firebaseio.com/resorts.json';
+        //     this.http.post(
+  //       url,
+            // resort
+  //     ).subscribe(responseData => {
+  //       console.log(responseData);
+  //     });
+        console.log('resort created', resort);
 
     }
 

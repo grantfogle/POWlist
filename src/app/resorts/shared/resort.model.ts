@@ -41,6 +41,7 @@ export class Resort2 {
     country: string;
     latitude: string;
     longitude: string;
+    website: string;
     overallRating: number;
     coverImage: string;
     logo: string;
@@ -51,18 +52,17 @@ export class Resort2 {
 export class ResortStats {
     adultFullDayTicketInUSD: number;
     bestTimeToVisit: string;
-    bikePark: boolean;
+    bikePark: string;
     description: string;
     lifts: number;
     nearestAirportInMiles: number;
     skiableAcres: number;
     skiPasses: string[];
-    sideCountryAccess: boolean;
+    sideCountryAccess: string;
     snowPerYearInInches: string;
     terrainParks: number;
     trails: number;
     vertical: number;
-    website: string;
     advancedTerrainPercentage: number;
     beginnerTerrainPercentage: number
     intermediateTerrainPercentage: number;
