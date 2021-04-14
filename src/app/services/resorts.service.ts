@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { FilterService } from './filter.service';
-import { Resort } from '../resorts/shared/resort.model';
+import { Resort, Resort2 } from '../resorts/shared/resort.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -77,17 +77,14 @@ export class ResortsService {
         this.filteredResorts = resortsOrderByPrice;
     }
 
-    addResort(resort) {
-        // format resort
-        // const url = 'https://powfish.firebaseio.com/resorts.json';
-        //     this.http.post(
-  //       url,
-            // resort
-  //     ).subscribe(responseData => {
-  //       console.log(responseData);
-  //     });
-        console.log('resort created', resort);
-
+    addResort(resort: Resort2) {
+        const url = 'https://powfish.firebaseio.com/new-resort.json';
+            this.http.post(
+            url,
+            resort
+      ).subscribe(responseData => {
+        console.log(responseData);
+      });
     }
 
 }

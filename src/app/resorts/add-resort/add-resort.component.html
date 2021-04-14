@@ -1,8 +1,10 @@
 <div class="add-resort-form">
     <div class="row">
-        <form (ngSubmit)="submitNewResort()" #addResortForm="ngForm">
+        <h2 *ngIf="displayThankyou">Thanks for helping us add new resorts to Powlist!</h2>
+        <form (ngSubmit)="submitNewResort()" #addResortForm="ngForm" *ngIf="!displayThankyou">
             <div class="row">
                 <h3>Basic Details</h3>
+                <h4 *ngIf="!addResortForm.isValid && addResortForm.touched">Please fill out all basic resort details</h4>
                 <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of resortFormBasicInfoArr">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <input
@@ -22,35 +24,51 @@
                         [(ngModel)]="newResort.description"
                         rows="3"></textarea>
                 </div>
+                <hr>
             </div>
-            <hr>
             <div class="row">
-                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of additionalResortFormStats">
+                <h3>Resort Stats</h3>
+                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of additionalResortFormStatsArr">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <input 
                         type="text"
                         name="{{obj.name}}"
+                        value="{{obj.value}}"
+                        placeholder="{{obj.placeholder}}"
                         class="form-control"
-                        [(ngModel)]="newResortObj[obj.name]">
+                        [(ngModel)]="newResort.stats[obj.name]">
                 </div>
             </div>
-            <hr>
+
             <div class="row">
-                <div class="form-group col-xs-6 col-sm-4" *ngFor="let stat of resortStatMultiSelect | keyvalue">
-                    <label for="category.key">{{stat.value.label}}</label>
+                <div class="form-group col-xs-6 col-sm-3" *ngFor="let obj of resortStatsDropdownArr">
+                    <label for="{{obj.name}}">{{obj.label}}</label>
                     <select 
-                        id="stat.key"
+                        id="{{obj.name}}"
                         class="form-control"
-                        [(ngModel)]="stat.value.score"
-                        name="stat.key"
-                        required>
+                        [(ngModel)]="newResort.stats[obj.name]"
+                        name="{{obj.name}}">
                         <option
-                            value="option"
-                            *ngFor="let option of stat.value.options">{{option}}</option>
+                            value="{{option}}"
+                            *ngFor="let option of obj.options">{{option}}</option>
                     </select>
                 </div>
             </div>
-            <hr>
+
+            <div class="row">
+                <h3>Terrain Breakdown</h3>
+                <div class="col-xs-6 col-sm-3 form-group" *ngFor="let obj of terrainBreakdownArr">
+                    <label for="{{obj.name}}">{{obj.label}}</label>
+                    <input 
+                        type="text"
+                        name="{{obj.name}}"
+                        value="{{obj.value}}"
+                        placeholder="{{obj.placeholder}}"
+                        class="form-control"
+                        [(ngModel)]="newResort.stats[obj.name]">
+                </div>
+            </div>
+
             <div class="row">
                 <h3 class="bg-danger" *ngIf="displayFormFail">Please make sure all required fields are filled out</h3>
                 <div class="col-xs-12">

@@ -13,6 +13,8 @@ export class AddResortComponent {
   @Output() closeModal = new EventEmitter();
   @ViewChild('addResortForm') resortForm: NgForm;
   displayFormFail = false;
+  displayThankyou = false;
+  
   newResort: Resort2 = {
     name: '',
     city: '',
@@ -26,25 +28,25 @@ export class AddResortComponent {
     coverImage: '',
     logo: '',
     cardImage: '',
-    resortStats: this.newResortStats
+    stats: {
+      adultFullDayTicketInUSD: null,
+      bestTimeToVisit: '',
+      bikePark: '',
+      lifts: null,
+      nearestAirportInMiles: null,
+      skiableAcres: null,
+      skiPasses: [],
+      sideCountryAccess: '',
+      snowPerYearInInches: null,
+      terrainParks: null,
+      trails: null,
+      verticalFeet: null,
+      advancedTerrainPercentage: null,
+      expertTerrainPercentage: null,
+      beginnerTerrainPercentage: null,
+      intermediateTerrainPercentage: null,
+    }
   };
-  newResortStats: ResortStats = {
-    adultFullDayTicketInUSD: null,
-    bestTimeToVisit: '',
-    bikePark: '',
-    lifts: null,
-    nearestAirportInMiles: null,
-    skiableAcres: null,
-    skiPasses: [],
-    sideCountryAccess: '',
-    snowPerYearInInches: null,
-    terrainParks: null,
-    trails: null,
-    verticalFeet: null,
-    advancedTerrainPercentage: null,
-    beginnerTerrainPercentage: null,
-    intermediateTerrainPercentage: null,
-  }
 
   resortFormBasicInfoArr = [
     { name: 'name', label: 'Resort Name', placeholder: 'Beaver Creek', value: this.newResort.name },
@@ -56,88 +58,72 @@ export class AddResortComponent {
     { name: 'website', label: 'Website', placeholder: 'beavercreek.com', value: this.newResort.website },
   ];
   
-  additionalResortFormStats = [
-    { name: 'adultFullDayTicketInUSD', label: 'Adult Full Day Ticket Cost ($)', placeholder: '148', value: this.newResortStats.adultFullDayTicketInUSD },
-    { name: 'lifts', label: 'Number of lifts', placeholder: '14', value: this.newResortStats.lifts },
-    { name: 'nearestAirportInMiles', label: 'Nearest airport in miles', placeholder: '140', value: this.newResortStats.nearestAirportInMiles },
-    { name: 'skiableAcres', label: 'Skiable Acres', placeholder: '2200', value: this.newResortStats.skiableAcres },
-    { name: 'snowPerYearInInches', label: 'Average Snowfall (inches)', placeholder: '250', value: this.newResortStats.snowPerYearInInches },
-    { name: 'terrainParks', label: 'Number of Terrain Parks', placeholder: '2', value: this.newResortStats.terrainParks },
-    { name: 'trails', label: 'Number of Trails', placeholder: '84', value: this.newResortStats.trails },
-    { name: 'verticalFeet', label: 'Vertical Feet', placeholder: '300', value: this.newResortStats.verticalFeet },
-  ]
+  additionalResortFormStatsArr = [
+    { name: 'adultFullDayTicketInUSD', label: 'Adult Full Day Ticket Cost ($)', placeholder: '148', value: this.newResort.stats.adultFullDayTicketInUSD },
+    { name: 'lifts', label: 'Number of lifts', placeholder: '14', value: this.newResort.stats.lifts },
+    { name: 'nearestAirportInMiles', label: 'Nearest airport in miles', placeholder: '140', value: this.newResort.stats.nearestAirportInMiles },
+    { name: 'skiableAcres', label: 'Skiable Acres', placeholder: '2200', value: this.newResort.stats.skiableAcres },
+    { name: 'snowPerYearInInches', label: 'Average Snowfall (inches)', placeholder: '250', value: this.newResort.stats.snowPerYearInInches },
+    { name: 'terrainParks', label: 'Number of Terrain Parks', placeholder: '2', value: this.newResort.stats.terrainParks },
+    { name: 'trails', label: 'Number of Trails', placeholder: '84', value: this.newResort.stats.trails },
+    { name: 'verticalFeet', label: 'Vertical Feet', placeholder: '300', value: this.newResort.stats.verticalFeet },
+  ];
 
-  resortStats = {
-    adultFullDayTicketInUSD: { label: 'Adult One Day Lift Ticket', value: null },
-    latitude: { label: 'Latitude', value: '' },
-    longitude: { label: 'Longitude', value: '' },
-    lifts: { label: 'Number of lifts', value: null },
-    nearestAirportInMiles: { label: 'How far is the nearest airport?', value: null },
-    skiableAcres: { label: 'Skiable acres', value: null },
-    snowPerYearInInches: { label: 'Average snowfall (inches)?', value: null },
-    terrainParks: { label: 'Number of terrain parks', value: null },
-    trails: { label: 'Number of trails', value: null },
-    vertical: { label: 'Vertical feet', value: null },
-    website: { label: 'Resort url', value: '' }
-  }
+  terrainBreakdownArr = [
+    { name: 'beginnerTerrainPercentage', label: 'Beginner Terrain (%)', placeholder: '33'},
+    { name: 'intermediateTerrainPercentage', label: 'Intermediate Terrain (%)', placeholder: '27'},
+    { name: 'advancedTerrainPercentage', label: 'Advanced Terrain (%)', placeholder: '30'},
+    { name: 'expertTerrainPercentage', label: 'Expert Terrain (%)', placeholder: '10'},
+  ];
 
-  resortStatMultiSelect = {
-    bestTimeToVisit: {
-      label: 'Best Time of year to vist',
-      value: null,
-      options: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  resortStatsDropdownArr = [
+    { 
+      name: 'bestTimeToVisit',
+      label: 'Best Time to Visit', 
+      options: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      value: this.newResort.stats.bestTimeToVisit
     },
-    bikePark: {
-      label: 'Bike park?',
-      value: null,
-      options: ['No', 'Yes']
+    {
+      name: 'bikePark',
+      label: 'Bike Park?',
+      options: ['No', 'Yes'],
+      value: this.newResort.stats.bikePark
     },
-    sideCountryAccess: {
-      label: 'Bc/sidecountry access?',
-      value: null,
-      options: ['No', 'Yes']
+    {
+      name: 'sideCountryAccess',
+      label: 'BC/SideCountry Access?',
+      options: ['No', 'Yes'],
+      value: this.newResort.stats.sideCountryAccess
     },
-    skiPasses: {
-      label: 'Is this resort on any passes? ',
-      value: null,
-      options: ['Epic', 'Ikon', 'Mountain Collective']
+    {
+      name: 'skiPasses',
+      label: 'Is this resort on any passes?',
+      options: ['Epic', 'Ikon', 'Mountain Collective'],
+      value: this.newResort.stats.sideCountryAccess
     }
-  }
+  ];
 
-  terrainBreakdown = {
-    beginnerTerrainPercentage: {
-      label: 'Beg Terrain %',
-      value: null
-    },
-    intermediateTerrainPercentage: {
-      label: 'Int Terrain %',
-      value: null
-    },
-    advancedTerrainPercentage: {
-      label: 'Adv Terrain %',
-      value: null
-    }
-  }
-
-  resortImages = {
-    coverPhoto: {},
-    icon: {},
-    cardImage: {},
-  }
+  // resortImages = {
+  //   coverPhoto: {},
+  //   icon: {},
+  //   cardImage: {},
+  // }
 
   constructor(private http: HttpClient, public resortsService: ResortsService) { }
 
   submitNewResort() {
-    this.resortsService.addResort(this.newResort);
-    console.log(this.resortForm);
+    if (this.resortForm.valid) {
+      this.resortsService.addResort(this.newResort);
+      this.displayThankyou = true;
+      setTimeout(() => {
+          this.displayThankyou = false;
+          this.resetForm();
+      }, 4500);
+    }
   }
 
   resetForm() {
     this.closeModal.emit();
   }
-
-      // setTimeout(() => {
-      //   this.displayFormFail = false;
-      // }, 4500);
 
 }
