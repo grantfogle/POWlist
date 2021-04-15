@@ -1,19 +1,22 @@
 <div class="modal-data-info-container">
-    <div class="resort-modal-ratings row">
-        <div class="resort-modal-rating col-sm-6 col-xs-12" *ngFor="let category of newResortReviews.reviewCategories">
-            <h5>{{category.name}}</h5>
-            <div class="review-rating-container">
-                <div class="review-rating-bar" [ngStyle]="{'background-color': getStyleForBar(category.score), 'width': getScoreBarWidth(category.score)}">
-                    {{category.score}}
+    <div class="resort-modal-ratings row" *ngIf="ratingsLoaded">
+        <div
+            class="resort-modal-rating col-sm-6 col-xs-12"
+            *ngFor="let category of ratings.reviewCategories | keyvalue">
+            <h5>{{category.key}}</h5>
+            <h4>cats</h4>
+            <!-- <div class="review-rating-container">
+                <div class="review-rating-bar" [ngStyle]="{'background-color': getStyleForBar(category.key.score), 'width': getScoreBarWidth(category.score)}">
+                    {{category.key.score}}
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
-    <div class="modal-resort-info-table">
+    <!-- <div class="modal-resort-info-table">
         <div class="row">
             <div class="col-xs-6 col-sm-4" *ngFor="let item of newResortTable | keyvalue">
                 <h5>{{item.key}}: {{item.value}}</h5>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

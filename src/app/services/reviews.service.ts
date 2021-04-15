@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { ResortReview } from '../resorts/shared/resort-review.model';
-import { ResortCategories } from '../resorts/shared/resort-category-review.model'
+import { ResortRatings } from '../resorts/shared/resort-ratings.model'
 
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
@@ -24,7 +24,7 @@ export class ReviewsService {
         return true;
     }
 
-    submitReviewCategories(resortCategories: ResortCategories): boolean {
+    submitReviewCategories(resortCategories: ResortRatings): boolean {
         const url = 'https://powfish.firebase.com/categories.json';
         this.http.post(
             url,
@@ -44,6 +44,32 @@ export class ReviewsService {
                 console.log(responseData);
             });
     }
+
+    retrieveResortRatings(id: string) {
+        let ratings: ResortRatings;
+        console.log('ijt rannnnnnnbn');
+        const url = 'https://powfish.firebaseio.com/ratings.json';
+        const url2 = `https://powfish.firebaseio.com/ratings.json?orderBy=resortId&equalTo=${id}`;
+        this.http.get(url)
+            .pipe(map(responseData => {
+                const resortsArray = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resortsArray.push({ ...responseData[key], id: key })
+                    }
+                }
+                return resortsArray[0];
+            }))
+            .subscribe(response => {
+                // ratings = response;
+                ratings = response;
+                console.log('responserwerlwer', response)
+            })
+            return ratings;
+    }
+
+    // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26
+
 
     // retrieveResortReviews(id: string) {
     // const cors = 'https://cors-anywhere.herokuapp.com/'

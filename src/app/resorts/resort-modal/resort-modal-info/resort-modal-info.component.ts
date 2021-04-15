@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Resort } from '../../shared/resort.model';
+import { ResortRatings } from '../../shared/resort-ratings.model';
+import { ReviewsService } from 'src/app/services/reviews.service';
 
 @Component({
     selector: 'app-resort-modal-info',
@@ -11,89 +13,37 @@ import { Resort } from '../../shared/resort.model';
 
 export class ResortModalInfoComponent implements OnInit {
     @Input() id: string;
+    ratings: ResortRatings;
     @ViewChild('reviewProgressBar') reviewProgress: ElementRef;
-    resortData = [{}];
 
-    // resortReviews: {
-    //     resortId: '123',
-    //     reviewCategories: {
-    //         overall: {name: 'Overall Rating', score: 4.2},
-    //         snow: {name: 'Snow', score: 4.2},
-    //         value: {name: 'Value', score: 2.2},
-    //         nightLife: {name: 'Nightlife', score: 2.4},
-    //         crowds: {name: 'Crowds', score: 3.3},
-    //         bcAccess: {name: 'BC Access', score: 2.5},
-    //         begTerrain: {name: 'Beginner Terrain', score: 2.9},
-    //         intTerrain: {name: 'Intermediate Terrain', score: 3.7},
-    //         advTerrain: {name: 'Advanced Terrain', score: 4.7},
-    //         terrainParks: {name: 'Terrain Parks', score: 3.7}
-    //     }
-    // };
-
-    newResortReviews = {
-        resortId: '123',
-        reviewCategories: [
-            { name: 'Overall Rating', score: 4.2 },
-            { name: 'Snow', score: 4.2 },
-            { name: 'Value', score: 2.2 },
-            { name: 'Nightlife', score: 1.9 },
-            { name: 'Crowds', score: 3.3 },
-            { name: 'BC Access', score: 2.5 },
-            { name: 'Beginner Terrain', score: 2.9 },
-            { name: 'Intermediate Terrain', score: 3.7 },
-            { name: 'Advanced Terrain', score: 4.7 },
-            { name: 'Terrain Parks', score: 3.7 }
-        ]
-    };
-
-
-    resortTable = [];
-    newResortTable = {
-        "Overall Rating": '',
-        "Lifts": '',
-        "Passes": '',
-        "Side Country Access": '',
-        "Snow": '',
-        // "Terrain Breakdown": {
-        //     green: '',
-        //     blue: '',
-        //     black: '',
-        //     extreme: ''
-        // },
-        "Terrain Parks": '',
-        "Ticket Prices": '',
-        "Trails": '',
-        "Skiable Acres": ''
-    }
-
-    constructor(public http: HttpClient) { }
+    constructor(public http: HttpClient, public reviewsService: ReviewsService) { }
 
     ngOnInit() {
-        this.retrieveResortInfo();
-    }
+        this.ratings = this.reviewsService.retrieveResortRatings(this.id);
+    };
 
-    retrieveResortInfo() {
-        const url = 'https://powfish.firebaseio.com/resortData.json';
-        this.http.get(
-            url
-        ).subscribe(responseData => {
-            for (const resort in responseData) {
-                if (responseData[resort].id === this.id) {
-                    this.newResortTable["Overall Rating"] = responseData[resort].overallRating;
-                    this.newResortTable["Lifts"] = responseData[resort].lifts;
-                    this.newResortTable["Passes"] = responseData[resort].passes;
-                    this.newResortTable["Side Country Access"] = responseData[resort].sideCountryAccess;
-                    this.newResortTable["Snow"] = responseData[resort].snow;
-                    // this.newResortTable["Terrain Breakdown"] = responseData[resort].terrainBreakdown;
-                    this.newResortTable["Terrain Parks"] = responseData[resort].terrainParks;
-                    this.newResortTable["Ticket Prices"] = responseData[resort].ticketPrices;
-                    this.newResortTable["Trails"] = responseData[resort].trails;
-                    this.newResortTable["Skiable Acres"] = responseData[resort].vertical;
-                    console.log('review progress', this.reviewProgress);
-                }
-            }
-        });
-    }
+    // retrieveResortInfo() {
+    //     const url = 'https://powfish.firebaseio.com/resortData.json';
+    //     this.http.get(
+    //         url
+    //     ).subscribe(responseData => {
+    //         for (const resort in responseData) {
+    //             if (responseData[resort].id === this.id) {
+    //                 this.newResortTable["Overall Rating"] = responseData[resort].overallRating;
+    //                 this.newResortTable["Lifts"] = responseData[resort].lifts;
+    //                 this.newResortTable["Passes"] = responseData[resort].passes;
+    //                 this.newResortTable["Side Country Access"] = responseData[resort].sideCountryAccess;
+    //                 this.newResortTable["Snow"] = responseData[resort].snow;
+    //                 // this.newResortTable["Terrain Breakdown"] = responseData[resort].terrainBreakdown;
+    //                 this.newResortTable["Terrain Parks"] = responseData[resort].terrainParks;
+    //                 this.newResortTable["Ticket Prices"] = responseData[resort].ticketPrices;
+    //                 this.newResortTable["Trails"] = responseData[resort].trails;
+    //                 this.newResortTable["Skiable Acres"] = responseData[resort].vertical;
+    //                 console.log('review progress', this.reviewProgress);
+    //             }
+    //         }
+    //     });
+    // }
 
     getStyleForBar(score) {
         return score >= 4 ? '#27ae60' : score < 2 ? '#e74c3c' : '#f1c40f';

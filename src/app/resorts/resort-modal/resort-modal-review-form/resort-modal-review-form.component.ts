@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 import { ReviewsService } from '../../../services/reviews.service';
 import { ResortReview } from '../../shared/resort-review.model'
-import { ResortCategories } from '../../shared/resort-category-review.model';
+import { ResortRatings } from '../../shared/resort-ratings.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -18,18 +18,20 @@ export class ResortModalReviewFormComponent implements OnInit {
     @Output() closeReviewForm = new EventEmitter<string>();
     today = new Date().toString();
 
-    resortCategories: ResortCategories = {
+    resortCategories: ResortRatings = {
         resortId: this.id,
+        overallRating: {label: 'Snow Quality', score: null, count: 0},
         reviewCategories: {
-            snow: {label: 'Snow Quality', score: null},
-            value: {label: 'Resort Value', score: null},
-            nightLife: {label: 'Night Life', score: null},
-            crowds: {label: 'Crowds', score: null},
-            bcAccess: {label: 'BC/Sidecountry Access', score: null},
-            begTerrain: {label: 'Beginner Terrain', score: null},
-            intTerrain: {label: 'Intermediate Terrain', score: null},
-            advTerrain: {label: 'Advanced Terrain', score: null},
-            terrainParks: {label: 'Terrain Parks', score: null}
+            snow: {label: 'Snow Quality', score: null, count: 0},
+            value: {label: 'Resort Value', score: null, count: 0},
+            nightLife: {label: 'Night Life', score: null, count: 0},
+            crowds: {label: 'Crowds', score: null, count: 0},
+            bcAccess: {label: 'BC/Sidecountry Access', score: null, count: 0},
+            begTerrain: {label: 'Beginner Terrain', score: null, count: 0},
+            intTerrain: {label: 'Intermediate Terrain', score: null, count: 0},
+            advTerrain: {label: 'Advanced Terrain', score: null, count: 0},
+            exTerrain: {label: 'Expert Terrain', score: null, count: 0},
+            terrainParks: {label: 'Terrain Parks', score: null, count: 0}
         }
     };
 

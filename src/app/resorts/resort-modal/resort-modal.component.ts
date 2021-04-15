@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
+import { ReviewsService } from 'src/app/services/reviews.service';
 import { Resort } from '../shared/resort.model';
 
 @Component({
@@ -10,13 +11,13 @@ import { Resort } from '../shared/resort.model';
 
 export class ResortModalComponent implements OnInit {
     id: string;
-    constructor(public modalService: ModalService) {
+
+    constructor(public modalService: ModalService, public reviewsService: ReviewsService) {
     }
 
     ngOnInit() {
         this.selectedResort = this.modalService.selectedResort.resort;
         this.id = this.selectedResort.id;
-        console.log(this.id);
     }
 
     selectedNav = 'Info';
