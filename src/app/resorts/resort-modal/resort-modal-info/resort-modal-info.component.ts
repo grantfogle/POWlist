@@ -22,7 +22,6 @@ export class ResortModalInfoComponent implements OnInit {
 
     constructor(public http: HttpClient, private reviewsService: ReviewsService) {
         this.reviewsService.getResortRatings().subscribe((res: ResortRatings[]) => {
-            console.log('daougs', res);
             this.ratings = res;
         });
     }

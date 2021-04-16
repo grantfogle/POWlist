@@ -20,18 +20,18 @@ export class ResortModalReviewFormComponent implements OnInit {
 
     resortCategories: ResortRatings = {
         resortId: this.id,
-        overallRating: {label: 'Snow Quality', score: null, count: 0},
+        overallRating: { label: 'Snow Quality', score: null, count: 0 },
         reviewCategories: {
-            snow: {label: 'Snow Quality', score: null, count: 0},
-            value: {label: 'Resort Value', score: null, count: 0},
-            nightLife: {label: 'Night Life', score: null, count: 0},
-            crowds: {label: 'Crowds', score: null, count: 0},
-            bcAccess: {label: 'BC/Sidecountry Access', score: null, count: 0},
-            begTerrain: {label: 'Beginner Terrain', score: null, count: 0},
-            intTerrain: {label: 'Intermediate Terrain', score: null, count: 0},
-            advTerrain: {label: 'Advanced Terrain', score: null, count: 0},
-            exTerrain: {label: 'Expert Terrain', score: null, count: 0},
-            terrainParks: {label: 'Terrain Parks', score: null, count: 0}
+            snow: { label: 'Snow Quality', score: null, count: 0 },
+            value: { label: 'Resort Value', score: null, count: 0 },
+            nightLife: { label: 'Night Life', score: null, count: 0 },
+            crowds: { label: 'Crowds', score: null, count: 0 },
+            bcAccess: { label: 'BC/Sidecountry Access', score: null, count: 0 },
+            begTerrain: { label: 'Beginner Terrain', score: null, count: 0 },
+            intTerrain: { label: 'Intermediate Terrain', score: null, count: 0 },
+            advTerrain: { label: 'Advanced Terrain', score: null, count: 0 },
+            exTerrain: { label: 'Expert Terrain', score: null, count: 0 },
+            terrainParks: { label: 'Terrain Parks', score: null, count: 0 }
         }
     };
 
@@ -44,9 +44,7 @@ export class ResortModalReviewFormComponent implements OnInit {
         overallRating: null
     };
 
-    ngOnInit(){
-        console.log(this.id);
-    }
+    ngOnInit() { }
 
     constructor(private reviewsService: ReviewsService) {
     }

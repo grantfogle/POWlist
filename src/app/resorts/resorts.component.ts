@@ -40,36 +40,32 @@ export class ResortsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.resortsService.retrieveResortsFromDb();
+    // const customIntervalObservable = Observable.create(observer => {
+    //   let count = 0;
+    //   setInterval(() => {
+    //     observer.next(count);
+    //     if (count === 2) {
+    //       observer.complete();
+    //     }
+    //     if (count > 3) {
+    //       observer.error(new Error('Count is greater than 3!'));
+    //     }
+    //     count++;
+    //   }, 1000);
+    // });
 
-    // this.observableSub = interval(4000).subscribe(count => {
-    //   console.log(count);
-    // })
-    const customIntervalObservable = Observable.create(observer => {
-      let count = 0;
-      setInterval(() => {
-        observer.next(count);
-        if (count === 2) {
-          observer.complete();
-        }
-        if (count > 3) {
-          observer.error(new Error('Count is greater than 3!'));
-        }
-        count++;
-      }, 1000);
-    });
-
-    this.observableSub = customIntervalObservable.pipe(filter(data => {
-      return data > 0;
-    }), map((data: number) => {
-      return 'Round: ' + (data + 1);
-    })).subscribe(data => {
-      console.log(data);
-    }, error => {
-      console.log(error);
-      alert(error.message);
-    }, () => {
-      console.log('completed');
-    });
+    // this.observableSub = customIntervalObservable.pipe(filter(data => {
+    //   return data > 0;
+    // }), map((data: number) => {
+    //   return 'Round: ' + (data + 1);
+    // })).subscribe(data => {
+    //   console.log(data);
+    // }, error => {
+    //   console.log(error);
+    //   alert(error.message);
+    // }, () => {
+    //   console.log('completed');
+    // });
   }
 
   ngOnDestroy() {

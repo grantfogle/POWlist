@@ -49,29 +49,22 @@ export class ReviewsService {
     private url = 'https://powfish.firebaseio.com/ratings.json';
 
     getResortRatings() {
-        console.log('cats');
         return this.http.get(this.url)
             .pipe(map(responseData => {
-                const resortsArray = [];
+                const resArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
-                        resortsArray.push({ ...responseData[key], id: key })
+                        resArray.push({ ...responseData[key], id: key })
                     }
                 }
-                console.log('res array', resortsArray);
-                return resortsArray;
+                return resArray;
             }))
     }
-    // .pipe(map(response => {
-    //     console.log('asdf', response);
-    //     return response;
-    // }))
 
     retrieveResortRatings(id: string) {
         let ratings: ResortRatings;
-        console.log('ijt rannnnnnnbn');
         const url = 'https://powfish.firebaseio.com/ratings.json';
-        const url2 = `https://powfish.firebaseio.com/ratings.json?orderBy=resortId&equalTo=${id}`;
+        // const url2 = `https://powfish.firebaseio.com/ratings.json?orderBy=resortId&equalTo=${id}`;
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
