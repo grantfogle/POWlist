@@ -30,6 +30,7 @@ export class ResortModalInfoComponent implements OnInit {
     ngOnInit() {
         this.ratings = this.reviewsService.getResortRatings(this.id);
         this.resortInfo = this.resortsService.getSelectedResortInfo(this.id);
+        console.log('this.resort info', this.resortInfo)
     };
 
     // retrieveResortInfo() {
