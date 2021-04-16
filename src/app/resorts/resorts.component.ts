@@ -89,16 +89,19 @@ export class ResortsComponent implements OnInit, OnDestroy {
   }
 
   filterResorts(filterWord: string) {
-    console.log(filterWord);
-    let filterArr = this.resorts.filter(resort => {
-      let name = resort.name.toLowerCase().indexOf(filterWord);
-      let country = resort.country.toLowerCase().indexOf(filterWord);
-      let region = resort.city.toLowerCase().indexOf(filterWord);
-      if (name !== -1 || country !== -1 || region !== -1) {
-        return resort;
-      }
-    })
-    this.displayResorts = filterArr;
+    // get full resort filters brahhh
+    // this.
+    this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
+
+    // let filterArr = this.resorts.filter(resort => {
+    //   let name = resort.name.toLowerCase().indexOf(filterWord);
+    //   let country = resort.country.toLowerCase().indexOf(filterWord);
+    //   let region = resort.city.toLowerCase().indexOf(filterWord);
+    //   if (name !== -1 || country !== -1 || region !== -1) {
+    //     return resort;
+    //   }
+    // })
+    // this.displayResorts = filterArr;
   }
 
   filterResortsByPass(pass: string) {

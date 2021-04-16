@@ -92,4 +92,16 @@ export class ResortsService {
       });
     }
 
+    filterResortByWord(searchTerm: string): Resort[] {
+        let filterArr = this.resorts.filter(resort => {
+            let name = resort.name.toLowerCase().indexOf(searchTerm);
+            let country = resort.country.toLowerCase().indexOf(searchTerm);
+            let region = resort.city.toLowerCase().indexOf(searchTerm);
+            if (name !== -1 || country !== -1 || region !== -1) {
+                return resort;
+            }
+        });
+        return filterArr;
+        // this.displayResorts = filterArr;
+    };
 }

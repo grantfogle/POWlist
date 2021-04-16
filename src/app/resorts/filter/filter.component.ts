@@ -33,7 +33,8 @@ export class FilterComponent implements OnChanges {
 
   constructor(public filterService: FilterService, public resortsService: ResortsService) { }
 
-  ngOnChanges(changes: SimpleChanges) { }
+  ngOnChanges(changes: SimpleChanges) {
+  }
 
   onSearchFilter() {
     this.filterResortsByText.emit(this.filterInput.nativeElement.value);
