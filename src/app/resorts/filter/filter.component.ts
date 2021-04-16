@@ -1,9 +1,7 @@
 import {
   Component,
-  OnChanges,
   ViewChild,
   ElementRef,
-  SimpleChanges,
   EventEmitter,
   Output
 } from '@angular/core';
@@ -16,7 +14,7 @@ import { ResortsService } from '../../services/resorts.service';
   styleUrls: ['./filter.component.css']
 })
 
-export class FilterComponent implements OnChanges {
+export class FilterComponent {
   @ViewChild('filterInput') filterInput: ElementRef;
   @Output() filterResortsByText = new EventEmitter<string>();
   @Output() filterResortsByPass = new EventEmitter<string>();
@@ -32,9 +30,6 @@ export class FilterComponent implements OnChanges {
   otherFilterSelected = '';
 
   constructor(public filterService: FilterService, public resortsService: ResortsService) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-  }
 
   onSearchFilter() {
     this.filterResortsByText.emit(this.filterInput.nativeElement.value);

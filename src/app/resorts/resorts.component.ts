@@ -28,11 +28,11 @@ export class ResortsComponent implements OnInit, OnDestroy {
     public resortsService: ResortsService,
     public reviewsService: ReviewsService,
     public http: HttpClient) {
-      
       this.resortsService.retrieveResortsFromDb();
       this.reviewsService.fetchResortRatings();
       this.resorts = this.resortsService.getAllResorts();
       this.displayResorts = this.resortsService.filteredResorts;
+      console.log(this.displayResorts);
   }
 
   initResortModal(resortData) {

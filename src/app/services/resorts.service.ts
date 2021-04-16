@@ -24,7 +24,15 @@ export class ResortsService {
     }
 
     getSelectedResortInfo(id: string) {
-        this.resorts.filter(resort => console.log('reasdfasf', resort));
+        console.log('resort id', id);
+        return this.resorts.filter(resort => {
+            if (resort[0] === id) {
+                console.log('catasssss')
+            }
+            for (const key in resort) {
+                console.log('key', resort);
+            }
+        });
     }
 
     sortResortsByRating() {
@@ -53,10 +61,12 @@ export class ResortsService {
         this.sortResortsByRating();
     }
     retrieveResortsFromDb() {
-        const url = 'https://powfish.firebaseio.com/resorts.json';
+        // const url = 'https://powfish.firebaseio.com/resorts.json';
+        const url = 'https://powfish.firebaseio.com/resort2.json';
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
+                console.log('responsoe dataaaaaa', responseData);
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
                         resortsArray.push({ ...responseData[key], id: key })
@@ -102,6 +112,5 @@ export class ResortsService {
             }
         });
         return filterArr;
-        // this.displayResorts = filterArr;
     };
 }
