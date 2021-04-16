@@ -43,7 +43,6 @@ export class Resort2 {
     longitude: string;
     website: string;
     description: string;
-    overallRating: number;
     coverImage: string;
     logo: string;
     cardImage: string;

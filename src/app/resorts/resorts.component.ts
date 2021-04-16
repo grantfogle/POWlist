@@ -6,6 +6,7 @@ import { interval, Subscription, Observable } from 'rxjs';
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
+import { ReviewsService } from '../services/reviews.service';
 import { ResortsService } from '../services/resorts.service';
 import { compileBaseDefFromMetadata } from '@angular/compiler';
 
@@ -25,10 +26,13 @@ export class ResortsComponent implements OnInit, OnDestroy {
 
   constructor(public modalService: ModalService,
     public resortsService: ResortsService,
+    public reviewsService: ReviewsService,
     public http: HttpClient) {
-
-    this.resorts = this.resortsService.getAllResorts();
-    this.displayResorts = this.resortsService.filteredResorts;
+      
+      this.resortsService.retrieveResortsFromDb();
+      this.reviewsService.fetchResortRatings();
+      this.resorts = this.resortsService.getAllResorts();
+      this.displayResorts = this.resortsService.filteredResorts;
   }
 
   initResortModal(resortData) {
@@ -39,7 +43,6 @@ export class ResortsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.resortsService.retrieveResortsFromDb();
     // const customIntervalObservable = Observable.create(observer => {
     //   let count = 0;
     //   setInterval(() => {

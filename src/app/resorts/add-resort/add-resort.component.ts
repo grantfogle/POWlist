@@ -23,7 +23,6 @@ export class AddResortComponent {
     description: '',
     latitude: '',
     longitude: '',
-    overallRating: null,
     website: '',
     coverImage: '',
     logo: '',

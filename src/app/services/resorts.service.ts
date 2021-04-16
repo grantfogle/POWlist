@@ -19,8 +19,14 @@ export class ResortsService {
 
     getAllResorts() {
         this.filteredResorts = this.resorts;
+        console.log(this.resorts);
         return this.filteredResorts;
     }
+
+    getSelectedResortInfo(id: string) {
+        this.resorts.filter(resort => console.log('reasdfasf', resort));
+    }
+
     sortResortsByRating() {
         let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
     }
@@ -46,7 +52,6 @@ export class ResortsService {
         this.filteredResorts = this.resorts;
         this.sortResortsByRating();
     }
-
     retrieveResortsFromDb() {
         const url = 'https://powfish.firebaseio.com/resorts.json';
         this.http.get(url)
