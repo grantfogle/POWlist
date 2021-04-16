@@ -5,13 +5,12 @@
             <div class="row">
                 <h3>Basic Details</h3>
                 <h4 *ngIf="!addResortForm.isValid && addResortForm.touched">Please fill out all basic resort details</h4>
-                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of resortFormBasicInfoArr">
+                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of addResortFormBasicInfo">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <input
                         type="text"
                         name="{{obj.name}}"
                         class="form-control"
-                        value="{{obj.value}}"
                         placeholder="{{obj.placeholder}}"
                         [(ngModel)]="newResort[obj.name]" required>
                 </div>
@@ -28,12 +27,11 @@
             </div>
             <div class="row">
                 <h3>Resort Stats</h3>
-                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of additionalResortFormStatsArr">
+                <div class="col-xs-6 col-sm-4 form-group" *ngFor="let obj of addResortFormStats">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <input 
                         type="text"
                         name="{{obj.name}}"
-                        value="{{obj.value}}"
                         placeholder="{{obj.placeholder}}"
                         class="form-control"
                         [(ngModel)]="newResort.stats[obj.name]">
@@ -41,7 +39,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-xs-6 col-sm-3" *ngFor="let obj of resortStatsDropdownArr">
+                <div class="form-group col-xs-6 col-sm-3" *ngFor="let obj of addResortFormDropdowns">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <select 
                         id="{{obj.name}}"
@@ -57,12 +55,11 @@
 
             <div class="row">
                 <h3>Terrain Breakdown</h3>
-                <div class="col-xs-6 col-sm-3 form-group" *ngFor="let obj of terrainBreakdownArr">
+                <div class="col-xs-6 col-sm-3 form-group" *ngFor="let obj of addResortFormTerrainBreakdown">
                     <label for="{{obj.name}}">{{obj.label}}</label>
                     <input 
                         type="text"
                         name="{{obj.name}}"
-                        value="{{obj.value}}"
                         placeholder="{{obj.placeholder}}"
                         class="form-control"
                         [(ngModel)]="newResort.stats[obj.name]">

@@ -3,6 +3,12 @@ import { Resort, Resort2 } from '../shared/resort.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { ResortsService } from '../../services/resorts.service';
+import {
+  ADD_RESORT_FORM_BASIC_INFO,
+  ADD_RESORT_FORM_STATS,
+  ADD_RESORT_FORM_TERRAIN_BREAKDOWN,
+  ADD_RESORT_FORM_DROPDOWNS 
+} from '../../shared/constants/add-resort-form.config';
 
 @Component({
   selector: 'app-add-resort',
@@ -14,6 +20,11 @@ export class AddResortComponent {
   @ViewChild('addResortForm') resortForm: NgForm;
   displayFormFail = false;
   displayThankyou = false;
+  addResortFormBasicInfo = ADD_RESORT_FORM_BASIC_INFO;
+  addResortFormStats = ADD_RESORT_FORM_STATS;
+  addResortFormTerrainBreakdown = ADD_RESORT_FORM_TERRAIN_BREAKDOWN;
+  addResortFormDropdowns = ADD_RESORT_FORM_DROPDOWNS;
+
   
   newResort: Resort2 = {
     name: '',
@@ -101,12 +112,6 @@ export class AddResortComponent {
       value: this.newResort.stats.sideCountryAccess
     }
   ];
-
-  // resortImages = {
-  //   coverPhoto: {},
-  //   icon: {},
-  //   cardImage: {},
-  // }
 
   constructor(private http: HttpClient, public resortsService: ResortsService) { }
 
