@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
 import { ResortReview } from '../resorts/shared/resort-review.model';
@@ -9,6 +10,7 @@ import { ResortRatings } from '../resorts/shared/resort-ratings.model'
 export class ReviewsService {
 
     constructor(public http: HttpClient) {
+
     }
 
     private reviews: ResortReview[] = [];
@@ -36,14 +38,34 @@ export class ReviewsService {
     }
 
     async submitUserFeedback(feedback) {
-            const url = 'https://powfish.firebaseio.com/feedback.json';
-            await this.http.post(
-                url,
-                feedback
-            ).subscribe(responseData => {
-                console.log(responseData);
-            });
+        const url = 'https://powfish.firebaseio.com/feedback.json';
+        await this.http.post(
+            url,
+            feedback
+        ).subscribe(responseData => {
+            console.log(responseData);
+        });
     }
+    private url = 'https://powfish.firebaseio.com/ratings.json';
+
+    getResortRatings() {
+        console.log('cats');
+        return this.http.get(this.url)
+            .pipe(map(responseData => {
+                const resortsArray = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resortsArray.push({ ...responseData[key], id: key })
+                    }
+                }
+                console.log('res array', resortsArray);
+                return resortsArray;
+            }))
+    }
+    // .pipe(map(response => {
+    //     console.log('asdf', response);
+    //     return response;
+    // }))
 
     retrieveResortRatings(id: string) {
         let ratings: ResortRatings;
@@ -65,7 +87,7 @@ export class ReviewsService {
                 ratings = response;
                 console.log('responserwerlwer', response)
             })
-            return ratings;
+        return ratings;
     }
 
     // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26

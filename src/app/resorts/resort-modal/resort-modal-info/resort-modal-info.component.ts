@@ -1,9 +1,13 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { map } from 'rxjs/operators';
 import { Resort } from '../../shared/resort.model';
-import { ResortRatings } from '../../shared/resort-ratings.model';
 import { ReviewsService } from 'src/app/services/reviews.service';
+
+import { ResortRatings } from '../../shared/resort-ratings.model';
+
 
 @Component({
     selector: 'app-resort-modal-info',
@@ -13,13 +17,17 @@ import { ReviewsService } from 'src/app/services/reviews.service';
 
 export class ResortModalInfoComponent implements OnInit {
     @Input() id: string;
-    ratings: ResortRatings;
+    private ratings: ResortRatings[] = [];
     @ViewChild('reviewProgressBar') reviewProgress: ElementRef;
 
-    constructor(public http: HttpClient, public reviewsService: ReviewsService) { }
+    constructor(public http: HttpClient, private reviewsService: ReviewsService) {
+        this.reviewsService.getResortRatings().subscribe((res: ResortRatings[]) => {
+            console.log('daougs', res);
+            this.ratings = res;
+        });
+    }
 
     ngOnInit() {
-        this.ratings = this.reviewsService.retrieveResortRatings(this.id);
     };
 
     // retrieveResortInfo() {
