@@ -61,8 +61,8 @@ export class ResortsService {
         this.sortResortsByRating();
     }
     retrieveResortsFromDb() {
-        // const url = 'https://powfish.firebaseio.com/resorts.json';
-        const url = 'https://powfish.firebaseio.com/resort2.json';
+        const url = 'https://powfish.firebaseio.com/resorts.json';
+        // const url = 'https://powfish.firebaseio.com/resort2.json';
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
@@ -80,6 +80,7 @@ export class ResortsService {
                 })
                 this.sortResortsByRating();
             })
+        this.getNewJsonDataForGraph();
     }
 
     filterResortsBySnowfall() {
@@ -114,4 +115,71 @@ export class ResortsService {
         });
         return filterArr;
     };
+
+    getNewJsonDataForGraph() {
+        let newResortInfo = [];
+        let finalArr = [];
+        const url = 'https://powfish.firebaseio.com/resorts.json';
+        const urlResortInfo = 'https://powfish.firebaseio.com/resortData.json';
+        // const url = 'https://powfish.firebaseio.com/resort2.json';
+        // 1) GET ALL RESORTS
+        // this.http.get(url)
+        //     .pipe(map(responseData => {
+        //         const resortsArray = [];
+        //         console.log('getnewjson data', responseData);
+        //         for (const key in responseData) {
+        //             if (responseData.hasOwnProperty(key)) {
+        //                 resortsArray.push({ ...responseData[key], id: key })
+        //             }
+        //         }
+        //         return resortsArray;
+        //     }))
+        //     .subscribe(response => {
+        //         response.forEach(resort => {
+        //             newResorts.push(resort);
+        //         })
+        //     })
+
+        // 2) GET ALL RESORTINFO
+        this.http.get(urlResortInfo)
+            .pipe(map(responseData => {
+                const resortsArray = [];
+                console.log('get resort data', responseData);
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resortsArray.push({ ...responseData[key], id: key })
+                    }
+                }
+                return resortsArray;
+            }))
+            .subscribe(response => {
+                response.forEach(resort => {
+                    newResortInfo.push(resort);
+                });
+                console.log('asdfasdfasfdasf', this.filteredResorts, newResortInfo);
+                this.getJsonFormatted(this.filteredResorts, newResortInfo);
+                // for (let i = 0; i < this.filteredResorts.length; i++) {
+                //     console.log('cats');
+            // for (const key in this.filteredResorts[i]) {
+            //     console.log(key)
+                // [key]: {
+                //     name: key.name,
+                // } 
+            });
+        
+        // 3) Combine them into a new array that's convverted into a json
+        // JSON.stringify(obj)
+    }
+
+    getJsonFormatted(resortData, resortInfo) {
+        let arr = []
+        for (const key in resortData) {
+            console.log('asdfaf resort data', resortData);
+            if (resortData.hasOwnProperty(key)) {
+                arr.push({ ...resortData[key], id: key });
+            }
+        }
+        console.log('arr', arr);
+    }
+
 }
