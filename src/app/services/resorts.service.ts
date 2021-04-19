@@ -19,12 +19,10 @@ export class ResortsService {
 
     getAllResorts() {
         this.filteredResorts = this.resorts;
-        console.log(this.resorts);
         return this.filteredResorts;
     }
 
     getSelectedResortInfo(id: string) {
-        console.log('resort id', id);
         return this.resorts.filter(resort => {
             if (resort[0] === id) {
                 console.log('catasssss')
@@ -61,8 +59,9 @@ export class ResortsService {
         this.sortResortsByRating();
     }
     retrieveResortsFromDb() {
-        const url = 'https://powfish.firebaseio.com/resorts.json';
-        // const url = 'https://powfish.firebaseio.com/resort2.json';
+        // const url = 'https://powfish.firebaseio.com/resorts.json';
+        // uncomment to get correct daata
+        const url = 'https://powfish.firebaseio.com/resort2.json';
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
@@ -116,8 +115,15 @@ export class ResortsService {
         return filterArr;
     };
 
+/**************
+
+GETTING NEW FORMATTED DATA (WILL DELETE)
+
+***************/
+ 
     getNewJsonDataForGraph() {
         let newResortInfo = [];
+        // for (const key in resort) {
         let finalArr = [];
         const url = 'https://powfish.firebaseio.com/resorts.json';
         const urlResortInfo = 'https://powfish.firebaseio.com/resortData.json';
@@ -172,14 +178,14 @@ export class ResortsService {
     }
 
     getJsonFormatted(resortData, resortInfo) {
-        let arr = []
-        for (const key in resortData) {
-            console.log('asdfaf resort data', resortData);
-            if (resortData.hasOwnProperty(key)) {
-                arr.push({ ...resortData[key], id: key });
-            }
-        }
-        console.log('arr', arr);
+        let arr = [];
+        // for (const key in resortData) {
+        //     console.log('asdfaf resort data', resortData);
+        //     if (resortData.hasOwnProperty(key)) {
+        //         arr.push({ ...resortData[key], id: key });
+        //     }
+        // }
+        // console.log('arr', arr);
     }
 
 }
