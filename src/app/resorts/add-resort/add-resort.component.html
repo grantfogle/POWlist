@@ -15,7 +15,7 @@
                         [(ngModel)]="newResort[obj.name]" required>
                 </div>
                 <div class="col-xs-12 form-group">
-                    <label for="info.key">Description</label>
+                    <label for="description">Description</label>
                     <textarea
                         class="form-control"
                         name="description"
@@ -34,7 +34,7 @@
                         name="{{obj.name}}"
                         placeholder="{{obj.placeholder}}"
                         class="form-control"
-                        [(ngModel)]="newResort.stats[obj.name]">
+                        [(ngModel)]="newResort.stats[obj.name].value">
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                     <select 
                         id="{{obj.name}}"
                         class="form-control"
-                        [(ngModel)]="newResort.stats[obj.name]"
+                        [(ngModel)]="newResort.stats[obj.name].value"
                         name="{{obj.name}}">
                         <option
                             value="{{option}}"
@@ -62,7 +62,7 @@
                         name="{{obj.name}}"
                         placeholder="{{obj.placeholder}}"
                         class="form-control"
-                        [(ngModel)]="newResort.stats[obj.name]">
+                        [(ngModel)]="newResort.terrainBreakdown[obj.name].value">
                 </div>
             </div>
 

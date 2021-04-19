@@ -20,10 +20,10 @@
   ];
 
   export let ADD_RESORT_FORM_TERRAIN_BREAKDOWN = [
-    { name: 'beginnerTerrainPercentage', label: 'Beginner Terrain (%)', placeholder: '33'},
-    { name: 'intermediateTerrainPercentage', label: 'Intermediate Terrain (%)', placeholder: '27'},
-    { name: 'advancedTerrainPercentage', label: 'Advanced Terrain (%)', placeholder: '30'},
-    { name: 'expertTerrainPercentage', label: 'Expert Terrain (%)', placeholder: '10'},
+    { name: 'begTerrainPercentage', label: 'Beginner Terrain (%)', placeholder: '33'},
+    { name: 'intTerrainPercentage', label: 'Intermediate Terrain (%)', placeholder: '27'},
+    { name: 'advTerrainPercentage', label: 'Advanced Terrain (%)', placeholder: '30'},
+    { name: 'exTerrainPercentage', label: 'Expert Terrain (%)', placeholder: '10'},
   ];
 
   export let ADD_RESORT_FORM_DROPDOWNS = [

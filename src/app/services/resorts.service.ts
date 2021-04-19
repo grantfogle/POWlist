@@ -93,6 +93,7 @@ export class ResortsService {
     }
 
     addResort(resort: Resort2) {
+        console.log('added resort', resort);
         const url = 'https://powfish.firebaseio.com/new-resort.json';
             this.http.post(
             url,

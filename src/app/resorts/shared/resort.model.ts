@@ -47,23 +47,32 @@ export class Resort2 {
     logo: string;
     cardImage: string;
     stats: ResortStats;
+    terrainBreakdown: TerrainBreakdown;
 }
 
 export class ResortStats {
-    adultFullDayTicketInUSD: number;
-    bestTimeToVisit: string;
-    bikePark: string;
-    lifts: number;
-    nearestAirportInMiles: number;
-    skiableAcres: number;
-    skiPasses: string[];
-    sideCountryAccess: string;
-    snowPerYearInInches: number;
-    terrainParks: number;
-    trails: number;
-    verticalFeet: number;
-    advancedTerrainPercentage: number;
-    beginnerTerrainPercentage: number
-    intermediateTerrainPercentage: number;
-    expertTerrainPercentage: number;
+    adultFullDayTicketInUSD: ResortStatsObj;
+    bestTimeToVisit: ResortStatsObj;
+    bikePark: ResortStatsObj;
+    lifts: ResortStatsObj;
+    nearestAirportInMiles: ResortStatsObj;
+    skiableAcres: ResortStatsObj;
+    skiPasses: ResortStatsObj;
+    sideCountryAccess: ResortStatsObj;
+    snowPerYearInInches: ResortStatsObj;
+    terrainParks: ResortStatsObj;
+    trails: ResortStatsObj;
+    verticalFeet: ResortStatsObj;
+}
+
+export class TerrainBreakdown {
+    advTerrainPercentage: ResortStatsObj;
+    begTerrainPercentage: ResortStatsObj
+    intTerrainPercentage: ResortStatsObj;
+    exTerrainPercentage: ResortStatsObj;
+}
+
+export class ResortStatsObj {
+    label: string;
+    value: any;
 }

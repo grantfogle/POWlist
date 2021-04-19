@@ -18,6 +18,7 @@ import { ResortRatings } from '../../shared/resort-ratings.model';
 
 export class ResortModalInfoComponent implements OnInit {
     @Input() id: string;
+    @Input() resortData: any;
     private ratings: ResortRatings[] = [];
     private resortInfo: any;
     @ViewChild('reviewProgressBar') reviewProgress: ElementRef;
