@@ -31,6 +31,8 @@ export class ResortsService {
     }
 
     sortResortsByRating() {
+        // let filterArr = this.resorts.forEach(resort => {
+        // });
         // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
     }
 
