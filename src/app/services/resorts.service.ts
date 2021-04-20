@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { FilterService } from './filter.service';
-import { Resort } from '../resorts/shared/resort.model';
+import { ResortData } from '../resorts/shared/resort-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -14,8 +14,8 @@ export class ResortsService {
         this.filteredResorts = this.resorts;
     }
 
-    private resorts: Resort[] = [];
-    public filteredResorts: Resort[];
+    private resorts: ResortData[] = [];
+    public filteredResorts: ResortData[];
 
     getAllResorts() {
         this.filteredResorts = this.resorts;
@@ -87,7 +87,7 @@ export class ResortsService {
         this.filteredResorts = resortsOrderByPrice;
     }
 
-    addResort(resort: Resort) {
+    addResort(resort: ResortData) {
         console.log('added resort', resort);
         const url = 'https://powfish.firebaseio.com/new-resort.json';
         this.http.post(
@@ -98,7 +98,7 @@ export class ResortsService {
         });
     }
 
-    filterResortByWord(searchTerm: string): Resort[] {
+    filterResortByWord(searchTerm: string): ResortData[] {
         let filterArr = this.resorts.filter(resort => {
             let name = resort.name.toLowerCase().indexOf(searchTerm);
             let country = resort.country.toLowerCase().indexOf(searchTerm);
@@ -109,6 +109,15 @@ export class ResortsService {
         });
         return filterArr;
     };
+
+    addReviewsToResorts(resortData, resortRatings) {
+        let finalArr = [];
+        resortData.forEach(resort => {
+            resort.ratings = resortRatings.filter(rating => resort.id === rating.id);
+            finalArr.push('resort.ratings', resort.ratings);
+        });
+        console.log('finalArr WITH RATINGS', finalArr);
+    }
 
     /**************
     

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input, ViewChild } from '@angular/core';
-import { Resort, ResortStatsObj } from '../shared/resort.model';
+import { ResortData, ResortStatsObj } from '../shared/resort-data.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { ResortsService } from '../../services/resorts.service';
@@ -24,7 +24,7 @@ export class AddResortComponent {
   addResortFormStats = ADD_RESORT_FORM_STATS;
   addResortFormTerrainBreakdown = ADD_RESORT_FORM_TERRAIN_BREAKDOWN;
   addResortFormDropdowns = ADD_RESORT_FORM_DROPDOWNS;
-  newResort: Resort = {
+  newResort: ResortData = {
     name: '',
     city: '',
     province: '',

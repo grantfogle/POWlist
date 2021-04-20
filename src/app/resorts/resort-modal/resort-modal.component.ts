@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { ReviewsService } from 'src/app/services/reviews.service';
-import { Resort } from '../shared/resort.model';
+import { ResortData } from '../shared/resort-data.model';
 
 @Component({
     selector: 'app-resort-modal',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Resort } from '../shared/resort.model';
+import { ResortData } from '../shared/resort-data.model';
 
 @Component({
   selector: 'app-resort-card',
@@ -9,7 +9,7 @@ import { Resort } from '../shared/resort.model';
 
 export class ResortCardComponent {
   showAddResortForm = false;
-  @Input() resort: Resort;
+  @Input() resort: ResortData;
   @Input() rank;
 
   constructor() {

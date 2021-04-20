@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { Resort } from '../../shared/resort.model';
+import { ResortData } from '../../shared/resort-data.model';
 import { ReviewsService } from 'src/app/services/reviews.service';
 import { ResortsService } from 'src/app/services/resorts.service';
 

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { interval, Subscription, Observable } from 'rxjs';
 
-import { Resort } from './shared/resort.model';
+import { ResortData } from './shared/resort-data.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
 import { ReviewsService } from '../services/reviews.service';
@@ -19,8 +19,8 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
 export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
-  resorts: Resort[];
-  @Input() displayResorts: Resort[];
+  resorts: ResortData[];
+  @Input() displayResorts: ResortData[];
 
   private observableSub: Subscription;
 
@@ -84,7 +84,7 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.showAddResortForm = false;
   }
 
-  addResort(resort: Resort) {
+  addResort(resort: ResortData) {
     this.resorts.push(resort);
   }
 

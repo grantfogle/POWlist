@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DomService } from './dom.service';
-import { Resort } from '../resorts/shared/resort.model';
+import { ResortData } from '../resorts/shared/resort-data.model';
 @Injectable({ providedIn: 'root' })
 export class ModalService {
     constructor(private domService: DomService) { }

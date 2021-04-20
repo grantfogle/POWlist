@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resort } from '../resorts/shared/resort.model';
+import { ResortData } from '../resorts/shared/resort-data.model';
 import { ResortsService } from './resorts.service';
 
 @Injectable({providedIn: 'root'})

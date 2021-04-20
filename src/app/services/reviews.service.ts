@@ -11,7 +11,7 @@ export class ReviewsService {
 
     constructor(public http: HttpClient) { }
 
-    private resortRatings: ResortRatings[] = [];
+    public resortRatings: ResortRatings[] = [];
     public selectedResortRatings: ResortRatings[] = [];
     private url = 'https://powfish.firebaseio.com/ratings.json';
 
@@ -56,7 +56,6 @@ export class ReviewsService {
     }
 
     fetchResortRatings() {
-        console.log('dogs');
         this.http.get(this.url)
             .pipe(map(responseData => {
                 const resArray = [];
@@ -68,7 +67,6 @@ export class ReviewsService {
                 return resArray;
             })).subscribe(response => {
                 this.resortRatings = response;
-                console.log('aaaaaa', response);
             });;
     }
 
