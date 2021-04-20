@@ -1,7 +1,5 @@
-<div
-    class="resort-card-container" 
-    [ngClass]="resort.stats.skiPasses.value[0] ? 'resort-card-container-border-' + resort.stats.skiPasses.value[0] : ''"
-    [ngStyle]="{'background-image': 'url(' + resort.coverImage + ')'}">
+<!-- <div class="resort-card-container" [ngClass]="resort.stats.skiPasses.value[0] ? 'resort-card-container-border-' + resort.stats.skiPasses.value[0] : ''" -->
+<div class="resort-card-container" [ngStyle]="{'background-image': 'url(' + resort.coverImage + ')'}">
     <div class="resort-card-header d-flex">
         <p>{{'#' + (rank + 1)}}</p>
         <p>{{resort.stats.snowPerYearInInches.value}}" yr</p>
@@ -11,7 +9,7 @@
         <h5 class="text-center">{{resort.province}}, {{resort.country}}</h5>
     </div>
     <div class="resort-card-footer">
-        <p><span *ngFor="let pass of resort.stats.skiPasses.value">{{pass}} </span></p>
+        <p>{{resort.stats.verticalFeet.value}}' Vertical</p>
         <p>{{resort.stats.skiableAcres.value}} Acres</p>
     </div>
 </div>
