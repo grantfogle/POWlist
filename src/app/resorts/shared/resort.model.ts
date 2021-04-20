@@ -1,7 +1,7 @@
 import { ResortData } from './resort-data.model';
-import { ResortReviews } from './resort-reviews.model';
+import { ResortRatings } from './resort-ratings.model';
 
 export interface Resort {
     resortData: ResortData;
-    resortReviews: ResortReviews;
+    resortReviews: ResortRatings;
 }
