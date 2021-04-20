@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment as ENV } from '../../environments/environment';
+import { Endpoints } from '../shared/endpoints';
 
 import { FilterService } from './filter.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
@@ -58,7 +60,7 @@ export class ResortsService {
         this.sortResortsByRating();
     }
     retrieveResortsFromDb() {
-        const url = 'https://powfish.firebaseio.com/resorts3.json';
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
@@ -88,8 +90,7 @@ export class ResortsService {
     }
 
     addResort(resort: ResortData) {
-        console.log('added resort', resort);
-        const url = 'https://powfish.firebaseio.com/new-resort.json';
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.NEW_RESORT}`;
         this.http.post(
             url,
             resort
@@ -129,9 +130,6 @@ export class ResortsService {
     //     let newResortInfo = [];
     //     // for (const key in resort) {
     //     let finalArr = [];
-    //     const url = 'https://powfish.firebaseio.com/resorts.json';
-    //     const urlResortInfo = 'https://powfish.firebaseio.com/resortData.json';
-    //     // const url = 'https://powfish.firebaseio.com/resort2.json';
     //     // 1) GET ALL RESORTS
     //     // this.http.get(url)
     //     //     .pipe(map(responseData => {

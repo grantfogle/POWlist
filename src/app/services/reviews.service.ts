@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment as ENV } from '../../environments/environment';
+import { Endpoints } from '../shared/endpoints';
 
 import { ResortReview } from '../resorts/shared/resort-review.model';
 import { ResortRatings } from '../resorts/shared/resort-ratings.model'
@@ -13,12 +15,12 @@ export class ReviewsService {
 
     public resortRatings: ResortRatings[] = [];
     public selectedResortRatings: ResortRatings[] = [];
-    private url = 'https://powfish.firebaseio.com/ratings.json';
+    private url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
 
     private reviews: ResortReview[] = [];
 
     submitReview(review: ResortReview): boolean {
-        const url = 'https://powfish.firebaseio.com/reviews.json';
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
         this.http.post(
             url,
             review
@@ -29,7 +31,7 @@ export class ReviewsService {
     }
 
     submitReviewCategories(resortCategories: ResortRatings): boolean {
-        const url = 'https://powfish.firebase.com/categories.json';
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         this.http.post(
             url,
             resortCategories
@@ -40,7 +42,7 @@ export class ReviewsService {
     }
 
     async submitUserFeedback(feedback) {
-        const url = 'https://powfish.firebaseio.com/feedback.json';
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.FEEDBACK}`;
         await this.http.post(
             url,
             feedback

@@ -1,9 +1,12 @@
+import { shallowEqual } from '@angular/router/src/utils/collection';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  POWLIST_CONNECT_URL: 'https://powfish.firebaseio.com/',
 };
 
 /*

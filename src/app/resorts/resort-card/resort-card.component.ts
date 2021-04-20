@@ -13,7 +13,11 @@ export class ResortCardComponent {
   @Input() rank;
 
   getResortCardBorder() {
-    let returnClass = ``;
+    let resortBorderClass = '';
+    if (this.resort.stats.skiPasses.value[0]) {
+      resortBorderClass += this.resort.stats.skiPasses.value[0];
+    }
+    return resortBorderClass;
     // return border;
     // '`ngClass]="resort.stats.skiPasses.value[0] ? 'resort-card-container-border-' + resort.stats.skiPasses.value[0] : ''"`
     // if (this.resortCard.stats.skiPasses.value.length > 0) {
