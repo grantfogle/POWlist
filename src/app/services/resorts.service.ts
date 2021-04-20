@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { FilterService } from './filter.service';
-import { Resort, Resort2 } from '../resorts/shared/resort.model';
+import { Resort } from '../resorts/shared/resort.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -34,7 +34,7 @@ export class ResortsService {
     }
 
     sortResortsByRating() {
-        let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
+        // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
     }
 
     getResortsByName(filterWord: string) {
@@ -50,7 +50,7 @@ export class ResortsService {
     }
 
     filterBySkiPass(pass: string) {
-        let filterArr = this.resorts.filter(resort => resort.skiPasses === pass);
+        let filterArr = this.resorts.filter(resort => resort.stats.skiPasses.value === pass);
         this.filteredResorts = filterArr;
     }
 
@@ -83,16 +83,16 @@ export class ResortsService {
     }
 
     filterResortsBySnowfall() {
-        let resortsOrderBySnow = this.resorts.sort((a, b) => b.snowInInches - a.snowInInches);
+        let resortsOrderBySnow = this.resorts.sort((a, b) => b.stats.snowPerYearInInches.value - a.stats.snowPerYearInInches.value);
         this.filteredResorts = resortsOrderBySnow;
     }
 
     filterByResortAffordability() {
-        let resortsOrderByPrice = this.resorts.sort((a, b) => a.liftPassCost - b.liftPassCost);
+        let resortsOrderByPrice = this.resorts.sort((a, b) => a.stats.adultFullDayTicketInUSD.value - b.stats.adultFullDayTicketInUSD.value);
         this.filteredResorts = resortsOrderByPrice;
     }
 
-    addResort(resort: Resort2) {
+    addResort(resort: Resort) {
         console.log('added resort', resort);
         const url = 'https://powfish.firebaseio.com/new-resort.json';
         this.http.post(
