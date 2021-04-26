@@ -116,32 +116,37 @@ export class ReviewsService {
         return Math.floor(Math.random() * 5);
 
     }
-    getMockRatings(resorts) {
-        let mockResortRatingArr: ResortRatings[];
-        // fetch all 52 resorts that we have;
-        // create a mock review obj  
 
-        for (let i = 0; i < resorts.length; i++) {
-            let rating = {
-                resortId: resorts[i].id,
-                overallRating: {
-                    count: 1,
-                    label: 'Overall Rating',
-                    score: this.getRandomNumberBetween1and5()
-                },
-                reviewCategories: {
-                    begTerrain: {count: 1, label: 'Beginner Terrain', score: this.getRandomNumberBetween1and5()},
-                    intTerrain: {count: 1, label: 'Intermediate Terrain', score: this.getRandomNumberBetween1and5()},
-                    advTerrain: {count: 1, label: 'Advanced Terrain', score: this.getRandomNumberBetween1and5()},
-                    exTerrain: {count: 1, label: 'Expert Terrain', score: this.getRandomNumberBetween1and5()},
-                    bcAccess: {count: 1, label: 'BC/Sidecountry Access', score: this.getRandomNumberBetween1and5()},
-                    crowds: {count: 1, label: 'Crowds', score: this.getRandomNumberBetween1and5()},
-                    nightLife: {count: 1, label: 'Night Life', score: this.getRandomNumberBetween1and5()},
-                    snow: {count: 1, label: 'Snow', score: this.getRandomNumberBetween1and5()},
-                    terrainParks: {count: 1, label: 'Terrain Parks', score: this.getRandomNumberBetween1and5()},
-                    value: {count: 1, label: 'Value', score: this.getRandomNumberBetween1and5()}
+    getMockRatings(resorts) {
+        console.log('called get mock ratings');
+        let mockResortRatingArr = [];
+        // fetch all 52 resorts that we have;
+        // create a mock review obj
+        if (resorts.length > 1) {
+            for (let i = 0; i < resorts.length; i++) {
+                let rating = {
+                    resortId: resorts[i].id,
+                    overallRating: {
+                        count: 1,
+                        label: 'Overall Rating',
+                        score: this.getRandomNumberBetween1and5()
+                    },
+                    reviewCategories: {
+                        begTerrain: { count: 1, label: 'Beginner Terrain', score: this.getRandomNumberBetween1and5() },
+                        intTerrain: { count: 1, label: 'Intermediate Terrain', score: this.getRandomNumberBetween1and5() },
+                        advTerrain: { count: 1, label: 'Advanced Terrain', score: this.getRandomNumberBetween1and5() },
+                        exTerrain: { count: 1, label: 'Expert Terrain', score: this.getRandomNumberBetween1and5() },
+                        bcAccess: { count: 1, label: 'BC/Sidecountry Access', score: this.getRandomNumberBetween1and5() },
+                        crowds: { count: 1, label: 'Crowds', score: this.getRandomNumberBetween1and5() },
+                        nightLife: { count: 1, label: 'Night Life', score: this.getRandomNumberBetween1and5() },
+                        snow: { count: 1, label: 'Snow', score: this.getRandomNumberBetween1and5() },
+                        terrainParks: { count: 1, label: 'Terrain Parks', score: this.getRandomNumberBetween1and5() },
+                        value: { count: 1, label: 'Value', score: this.getRandomNumberBetween1and5() }
+                    }
                 }
+                mockResortRatingArr.push(rating);
             }
+            console.log('mock resort ratings', JSON.stringify(mockResortRatingArr));
         }
     }
 }

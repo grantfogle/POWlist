@@ -5,12 +5,14 @@ import { environment as ENV } from '../../environments/environment';
 import { Endpoints } from '../shared/endpoints';
 
 import { FilterService } from './filter.service';
+import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
 
     constructor(private filterService: FilterService,
+        public reviewsService: ReviewsService,
         public http: HttpClient) {
         this.sortResortsByRating();
         this.filteredResorts = this.resorts;
@@ -76,6 +78,7 @@ export class ResortsService {
                     this.resorts.push(resort);
                 })
                 this.sortResortsByRating();
+                // this.addReviewsToResorts();
             })
     }
 
@@ -111,14 +114,18 @@ export class ResortsService {
         return filterArr;
     };
 
-    addReviewsToResorts(resortData, resortRatings) {
-        let finalArr = [];
-        resortData.forEach(resort => {
-            resort.ratings = resortRatings.filter(rating => resort.id === rating.id);
-            finalArr.push('resort.ratings', resort.ratings);
-        });
-        console.log('finalArr WITH RATINGS', finalArr);
-    }
+    // addReviewsToResorts() {
+    // let finalArr = [];
+    // resortData.forEach(resort => {
+    //     resort.ratings = resortRatings.filter(rating => resort.id === rating.id);
+    //     finalArr.push('resort.ratings', resort.ratings);
+    // });
+    // if (this.resorts.length > 1) {
+    //     console.log('CALLLED RESORTS', this.resorts)
+    //     this.reviewsService.getMockRatings(this.resorts);
+    // }
+    // console.log('finalArr WITH RATINGS', finalArr);
+    // }
 
     /**************
     
