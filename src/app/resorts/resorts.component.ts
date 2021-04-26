@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { interval, Subscription, Observable } from 'rxjs';
 
 import { ResortData } from './shared/resort-data.model';
+import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
 import { ReviewsService } from '../services/reviews.service';
@@ -19,20 +20,20 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
 export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
-  resorts: ResortData[];
-  @Input() displayResorts: ResortData[];
+  displayResorts: ResortData[];
+  displayResorts2: Resort[];
 
-  private observableSub: Subscription;
+  // private observableSub: Subscription;
 
   constructor(public modalService: ModalService,
     public resortsService: ResortsService,
     public reviewsService: ReviewsService,
     public http: HttpClient) {
-      this.resortsService.retrieveResortsFromDb();
       this.reviewsService.fetchResortRatings();
-      this.resorts = this.resortsService.getAllResorts();
+      this.resortsService.retrieveResortsFromDb();
+      // this.resorts = this.resortsService.getAllResorts();
       this.displayResorts = this.resortsService.filteredResorts;
-      console.log(this.displayResorts);
+      this.displayResorts2 = this.resortsService.resortsAndRatings;
   }
 
   initResortModal(resortData) {
@@ -42,37 +43,10 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.modalService.init(ResortModalComponent, {}, outputs);
   }
 
-  ngOnInit() {
-    // const customIntervalObservable = Observable.create(observer => {
-    //   let count = 0;
-    //   setInterval(() => {
-    //     observer.next(count);
-    //     if (count === 2) {
-    //       observer.complete();
-    //     }
-    //     if (count > 3) {
-    //       observer.error(new Error('Count is greater than 3!'));
-    //     }
-    //     count++;
-    //   }, 1000);
-    // });
-
-    // this.observableSub = customIntervalObservable.pipe(filter(data => {
-    //   return data > 0;
-    // }), map((data: number) => {
-    //   return 'Round: ' + (data + 1);
-    // })).subscribe(data => {
-    //   console.log(data);
-    // }, error => {
-    //   console.log(error);
-    //   alert(error.message);
-    // }, () => {
-    //   console.log('completed');
-    // });
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
-    this.observableSub.unsubscribe();
+    // this.observableSub.unsubscribe();
   }
 
   toggleAddResortForm() {
@@ -84,9 +58,9 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.showAddResortForm = false;
   }
 
-  addResort(resort: ResortData) {
-    this.resorts.push(resort);
-  }
+  // addResort(resort: ResortData) {
+  //   this.resorts.push(resort);
+  // }
 
   filterResorts(filterWord: string) {
     // get full resort filters brahhh

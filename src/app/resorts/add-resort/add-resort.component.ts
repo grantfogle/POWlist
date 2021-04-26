@@ -25,6 +25,7 @@ export class AddResortComponent {
   addResortFormTerrainBreakdown = ADD_RESORT_FORM_TERRAIN_BREAKDOWN;
   addResortFormDropdowns = ADD_RESORT_FORM_DROPDOWNS;
   newResort: ResortData = {
+    id: '',
     name: '',
     city: '',
     province: '',

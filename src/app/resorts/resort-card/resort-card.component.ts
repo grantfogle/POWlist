@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ResortData } from '../shared/resort-data.model';
+import { Resort} from '../shared/resort.model';
 
 @Component({
   selector: 'app-resort-card',
@@ -9,13 +9,13 @@ import { ResortData } from '../shared/resort-data.model';
 
 export class ResortCardComponent {
   showAddResortForm = false;
-  @Input() resort: ResortData;
+  @Input() resort: Resort;
   @Input() rank;
 
   getResortCardBorder() {
     let resortBorderClass = '';
-    if (this.resort.stats.skiPasses.value[0]) {
-      resortBorderClass += this.resort.stats.skiPasses.value[0];
+    if (this.resort.resortData.stats.skiPasses.value[0]) {
+      resortBorderClass += this.resort.resortData.stats.skiPasses.value[0];
     }
     return resortBorderClass;
     // return border;
@@ -25,5 +25,6 @@ export class ResortCardComponent {
   }
 
   constructor() {
+    console.log(this.resort);
   } 
 }

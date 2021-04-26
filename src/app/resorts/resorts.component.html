@@ -15,11 +15,11 @@
       </div>
     </div>
     <hr>
-  <div class="row" *ngIf="displayResorts.length === 0">
+  <div class="row" *ngIf="displayResorts2.length === 0">
     <h3>There doesn't appear to be anything here</h3>
   </div>
   <div class="row">
-    <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of displayResorts;let indexOfElement=index;">
+    <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of displayResorts2;let indexOfElement=index;">
       <app-resort-card
         (click)="initResortModal(resort)"
         [resort]="resort"

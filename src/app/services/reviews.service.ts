@@ -6,7 +6,7 @@ import { environment as ENV } from '../../environments/environment';
 import { Endpoints } from '../shared/endpoints';
 
 import { ResortReview } from '../resorts/shared/resort-review.model';
-import { ResortRatings } from '../resorts/shared/resort-ratings.model'
+import { ResortRatings } from '../resorts/shared/resort-ratings.model';
 
 @Injectable({ providedIn: 'root' })
 export class ReviewsService {
@@ -63,17 +63,16 @@ export class ReviewsService {
                 const resArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
-                        resArray.push({ ...responseData[key], id: key })
+                        resArray.push({ ...responseData[key]})
                     }
                 }
                 return resArray;
             })).subscribe(response => {
                 this.resortRatings = response;
-            });;
+            });
     }
 
     // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26
-
 
     // retrieveResortReviews(id: string) {
     // const cors = 'https://cors-anywhere.herokuapp.com/'

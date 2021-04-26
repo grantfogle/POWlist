@@ -1,4 +1,5 @@
 export class ResortData {
+    id: any;
     name: string;
     city: string;
     province: string;
