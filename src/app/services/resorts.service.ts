@@ -114,6 +114,10 @@ export class ResortsService {
         return filterArr;
     };
 
+    // combineResortsAndRatings(){
+
+    // }
+
     // addReviewsToResorts() {
     // let finalArr = [];
     // resortData.forEach(resort => {
