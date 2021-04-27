@@ -21,6 +21,7 @@ export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
   displayResorts: ResortData[];
+  resorts: ResortData[];
   displayResorts2: Resort[];
 
   // private observableSub: Subscription;
@@ -29,11 +30,12 @@ export class ResortsComponent implements OnInit, OnDestroy {
     public resortsService: ResortsService,
     public reviewsService: ReviewsService,
     public http: HttpClient) {
-      this.reviewsService.fetchResortRatings();
-      this.resortsService.retrieveResortsFromDb();
-      // this.resorts = this.resortsService.getAllResorts();
-      this.displayResorts = this.resortsService.filteredResorts;
-      this.displayResorts2 = this.resortsService.resortsAndRatings;
+    this.reviewsService.fetchResortRatings();
+    this.resortsService.retrieveResortsFromDb();
+    // this.resorts = this.resortsService.getAllResorts();
+    this.displayResorts = this.resortsService.filteredResorts;
+    this.resorts = this.resortsService.getAllResorts();
+    this.displayResorts2 = this.resortsService.resortsAndRatings;
   }
 
   initResortModal(resortData) {
@@ -43,7 +45,7 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.modalService.init(ResortModalComponent, {}, outputs);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     // this.observableSub.unsubscribe();

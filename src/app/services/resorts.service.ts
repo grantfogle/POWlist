@@ -16,15 +16,15 @@ export class ResortsService {
         public reviewsService: ReviewsService,
         public http: HttpClient) {
         this.sortResortsByRating();
-        this.filteredResorts = this.resorts;
     }
 
-    private resorts: ResortData[] = [];
-    public filteredResorts: ResortData[];
-    public resortsAndRatings: Resort[];
+    public resorts: Resort[] = [];
+    public filteredResorts: Resort[];
+    // public resortsAndRatings: Resort[] = [];
 
     getAllResorts() {
-        this.filteredResorts = this.resorts;
+        this.filteredResorts = this.resortsAndRatings;
+        // this.filteredResorts = this.resortsAndRatings;
         return this.filteredResorts;
     }
 
@@ -127,6 +127,7 @@ export class ResortsService {
                 arr.push(resortAndRatingObj);
             })
             this.resortsAndRatings = arr;
+            console.log('resorts and ratings:', this.resortsAndRatings);
         }
     }
 }
