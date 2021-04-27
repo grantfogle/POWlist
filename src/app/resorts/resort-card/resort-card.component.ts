@@ -8,7 +8,6 @@ import { Resort} from '../shared/resort.model';
 })
 
 export class ResortCardComponent {
-  showAddResortForm = false;
   @Input() resort: Resort;
   @Input() rank;
 

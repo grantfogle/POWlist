@@ -15,18 +15,19 @@ export class ResortsService {
     constructor(private filterService: FilterService,
         public reviewsService: ReviewsService,
         public http: HttpClient) {
-        this.sortResortsByRating();
+        // this.sortResortsByRating();
     }
 
-    public resorts: Resort[] = [];
+    private resorts: ResortData[];
     public filteredResorts: Resort[];
-    // public resortsAndRatings: Resort[] = [];
+    public resortsAndRatings: Resort[];
+    // resortsObservable$: Observable<Resort[]>;
 
-    getAllResorts() {
-        this.filteredResorts = this.resortsAndRatings;
+    // getAllResorts() {
+    //     this.filteredResorts = this.resortsAndRatings;
         // this.filteredResorts = this.resortsAndRatings;
-        return this.filteredResorts;
-    }
+    //     return this.filteredResorts;
+    // }
 
     getSelectedResortInfo(id: string) {
         return this.resorts.filter(resort => {
@@ -36,35 +37,36 @@ export class ResortsService {
         });
     }
 
-    sortResortsByRating() {
+    // sortResortsByRating() {
         // let filterArr = this.resorts.forEach(resort => {
         // });
         // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
-    }
+    // }
 
-    getResortsByName(filterWord: string) {
-        let filterArr = this.resorts.filter(resort => {
-            let name = resort.name.toLowerCase().indexOf(filterWord);
-            let country = resort.country.toLowerCase().indexOf(filterWord);
-            let region = resort.city.toLowerCase().indexOf(filterWord);
-            if (name !== -1 || country !== -1 || region !== -1) {
-                return resort;
-            }
-        })
-        this.filteredResorts = filterArr;
-    }
+    // getResortsByName(filterWord: string) {
+    //     let filterArr = this.resorts.filter(resort => {
+    //         let name = resort.name.toLowerCase().indexOf(filterWord);
+    //         let country = resort.country.toLowerCase().indexOf(filterWord);
+    //         let region = resort.city.toLowerCase().indexOf(filterWord);
+    //         if (name !== -1 || country !== -1 || region !== -1) {
+    //             return resort;
+    //         }
+    //     })
+    //     this.filteredResorts = filterArr;
+    // }
 
-    filterBySkiPass(pass: string) {
-        let filterArr = this.resorts.filter(resort => resort.stats.skiPasses.value === pass);
-        this.filteredResorts = filterArr;
-    }
+    // filterBySkiPass(pass: string) {
+    //     let filterArr = this.resorts.filter(resort => resort.stats.skiPasses.value === pass);
+    //     this.filteredResorts = filterArr;
+    // }
 
-    resetResorts() {
-        this.filteredResorts = this.resorts;
-        this.sortResortsByRating();
-    }
+    // resetResorts() {
+    //     this.filteredResorts = this.resorts;
+    //     this.sortResortsByRating();
+    // }
+
     retrieveResortsFromDb() {
-        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
         this.http.get(url)
             .pipe(map(responseData => {
                 const resortsArray = [];
@@ -76,44 +78,10 @@ export class ResortsService {
                 return resortsArray;
             }))
             .subscribe(response => {
-                response.forEach(resort => {
-                    this.resorts.push(resort);
-                })
+                this.resorts = response;
                 this.combineResortsAndRatings();
             })
     }
-
-    filterResortsBySnowfall() {
-        let resortsOrderBySnow = this.resorts.sort((a, b) => b.stats.snowPerYearInInches.value - a.stats.snowPerYearInInches.value);
-        this.filteredResorts = resortsOrderBySnow;
-    }
-
-    filterByResortAffordability() {
-        let resortsOrderByPrice = this.resorts.sort((a, b) => a.stats.adultFullDayTicketInUSD.value - b.stats.adultFullDayTicketInUSD.value);
-        this.filteredResorts = resortsOrderByPrice;
-    }
-
-    addResort(resort: ResortData) {
-        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.NEW_RESORT}`;
-        this.http.post(
-            url,
-            resort
-        ).subscribe(responseData => {
-            console.log(responseData);
-        });
-    }
-
-    filterResortByWord(searchTerm: string): ResortData[] {
-        let filterArr = this.resorts.filter(resort => {
-            let name = resort.name.toLowerCase().indexOf(searchTerm);
-            let country = resort.country.toLowerCase().indexOf(searchTerm);
-            let region = resort.city.toLowerCase().indexOf(searchTerm);
-            if (name !== -1 || country !== -1 || region !== -1) {
-                return resort;
-            }
-        });
-        return filterArr;
-    };
 
     combineResortsAndRatings() {
         let arr = [];
@@ -127,7 +95,43 @@ export class ResortsService {
                 arr.push(resortAndRatingObj);
             })
             this.resortsAndRatings = arr;
-            console.log('resorts and ratings:', this.resortsAndRatings);
         }
     }
+
+    getResortsAndRatings() {
+        return this.resortsAndRatings;
+    }
+
+    // filterResortsBySnowfall() {
+    //     let resortsOrderBySnow = this.resorts.sort((a, b) => b.stats.snowPerYearInInches.value - a.stats.snowPerYearInInches.value);
+    //     this.filteredResorts = resortsOrderBySnow;
+    // }
+
+    // filterByResortAffordability() {
+    //     let resortsOrderByPrice = this.resorts.sort((a, b) => a.stats.adultFullDayTicketInUSD.value - b.stats.adultFullDayTicketInUSD.value);
+    //     this.filteredResorts = resortsOrderByPrice;
+    // }
+
+    addResort(resort: ResortData) {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.NEW_RESORT}`;
+        this.http.post(
+            url,
+            resort
+        ).subscribe(responseData => {
+            console.log(responseData);
+        });
+    }
+
+    // filterResortByWord(searchTerm: string): ResortData[] {
+    //     let filterArr = this.resorts.filter(resort => {
+    //         let name = resort.name.toLowerCase().indexOf(searchTerm);
+    //         let country = resort.country.toLowerCase().indexOf(searchTerm);
+    //         let region = resort.city.toLowerCase().indexOf(searchTerm);
+    //         if (name !== -1 || country !== -1 || region !== -1) {
+    //             return resort;
+    //         }
+    //     });
+    //     return filterArr;
+    // };
+
 }

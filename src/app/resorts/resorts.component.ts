@@ -20,9 +20,9 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
 export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
-  displayResorts: ResortData[];
+  // displayResorts: ResortData[];
   resorts: ResortData[];
-  displayResorts2: Resort[];
+  displayResorts: Resort[] = [];
 
   // private observableSub: Subscription;
 
@@ -33,9 +33,13 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.reviewsService.fetchResortRatings();
     this.resortsService.retrieveResortsFromDb();
     // this.resorts = this.resortsService.getAllResorts();
-    this.displayResorts = this.resortsService.filteredResorts;
-    this.resorts = this.resortsService.getAllResorts();
-    this.displayResorts2 = this.resortsService.resortsAndRatings;
+    // this.displayResorts = this.resortsService.filteredResorts;
+    // this.resorts = this.resortsService.getAllResorts();
+    // this.displayResorts = this.reso
+    // this.resortsService.resortsAndRatings.subscribe(resortAndRating => {
+    //   this.displayResorts = resortAndRating;
+    // })
+    this.displayResorts = this.resortsService.getResortsAndRatings();
   }
 
   initResortModal(resortData) {
@@ -45,7 +49,8 @@ export class ResortsComponent implements OnInit, OnDestroy {
     this.modalService.init(ResortModalComponent, {}, outputs);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   ngOnDestroy() {
     // this.observableSub.unsubscribe();
@@ -64,10 +69,10 @@ export class ResortsComponent implements OnInit, OnDestroy {
   //   this.resorts.push(resort);
   // }
 
-  filterResorts(filterWord: string) {
+  // filterResorts(filterWord: string) {
     // get full resort filters brahhh
     // this.
-    this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
+    // this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
 
     // let filterArr = this.resorts.filter(resort => {
     //   let name = resort.name.toLowerCase().indexOf(filterWord);
@@ -78,26 +83,26 @@ export class ResortsComponent implements OnInit, OnDestroy {
     //   }
     // })
     // this.displayResorts = filterArr;
-  }
+  // }
 
-  filterResortsByPass(pass: string) {
-    this.resortsService.filterBySkiPass(pass);
-    this.displayResorts = this.resortsService.filteredResorts;
-  }
+  // filterResortsByPass(pass: string) {
+  //   this.resortsService.filterBySkiPass(pass);
+  //   this.displayResorts = this.resortsService.filteredResorts;
+  // }
 
-  resetResortFilters() {
-    this.resortsService.resetResorts();
-    this.displayResorts = this.resortsService.filteredResorts;
-  }
+  // resetResortFilters() {
+  //   this.resortsService.resetResorts();
+  //   this.displayResorts = this.resortsService.filteredResorts;
+  // }
 
-  filterResortsForPowder() {
-    this.resortsService.filterResortsBySnowfall();
-    this.displayResorts = this.resortsService.filteredResorts;
-  }
+  // filterResortsForPowder() {
+  //   this.resortsService.filterResortsBySnowfall();
+  //   this.displayResorts = this.resortsService.filteredResorts;
+  // }
 
-  filterByPrice() {
-    this.resortsService.filterByResortAffordability();
-    this.displayResorts = this.resortsService.filteredResorts;
-  }
+  // filterByPrice() {
+  //   this.resortsService.filterByResortAffordability();
+  //   this.displayResorts = this.resortsService.filteredResorts;
+  // }
 
 }
