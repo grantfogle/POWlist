@@ -21,8 +21,9 @@ export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
   // displayResorts: ResortData[];
-  resorts: ResortData[];
+  resorts: ResortData[] = [];
   displayResorts: Resort[] = [];
+  // resortRatings: Ra[]
 
   // private observableSub: Subscription;
 
@@ -32,15 +33,35 @@ export class ResortsComponent implements OnInit, OnDestroy {
     public http: HttpClient) {
     this.reviewsService.fetchResortRatings();
     this.resortsService.retrieveResortsFromDb();
-    // this.resorts = this.resortsService.getAllResorts();
-    // this.displayResorts = this.resortsService.filteredResorts;
-    // this.resorts = this.resortsService.getAllResorts();
-    // this.displayResorts = this.reso
-    // this.resortsService.resortsAndRatings.subscribe(resortAndRating => {
-    //   this.displayResorts = resortAndRating;
-    // })
     this.displayResorts = this.resortsService.getResortsAndRatings();
+    this.getResortData();
+    // this.getResortRatings();
+    // this.combineResortRatings();
+
   }
+
+  getResortData() {
+    return this.resortsService.retrieveResorts().subscribe(resortsList => {
+      console.log('resort observable bruh', resortsList);
+      this.resorts = resortsList;
+      // this.getResortRatings(resortsList);
+    });
+  }
+
+  getResortRatings(resortList) {
+    this.reviewsService.retrieveRatings().subscribe(ratings => {
+      console.log('resort ratings bruh', ratings);
+      this.resortsService.mergeResortsAndRatings(resortList, ratings);
+    })
+  }
+  // combineResortRatings(resortList) {
+    // const resortList = this.resortsService.retrieveResorts().subscribe(resortsList => resortsList);
+    // const ratings = this.reviewsService.retrieveRatings().subscribe(ratings => ratings);
+  //   return this.resortsService.mergeResortsAndRatings(resortList, ratings);
+  // }
+  // getResortRatings() {
+
+  // }
 
   initResortModal(resortData) {
     let outputs = {

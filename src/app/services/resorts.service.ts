@@ -8,6 +8,8 @@ import { FilterService } from './filter.service';
 import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 import { Resort } from '../resorts/shared/resort.model';
+import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -65,6 +67,20 @@ export class ResortsService {
     //     this.sortResortsByRating();
     // }
 
+    retrieveResorts() {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
+        return this.http.get<ResortData[]>(url)
+            .pipe(map(responseData => {
+                const resortsArray = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resortsArray.push({ ...responseData[key], id: key })
+                    }
+                }
+                return resortsArray;
+            }));
+    }
+
     retrieveResortsFromDb() {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
         this.http.get(url)
@@ -95,6 +111,22 @@ export class ResortsService {
                 arr.push(resortAndRatingObj);
             })
             this.resortsAndRatings = arr;
+        }
+    }
+
+    mergeResortsAndRatings(resortList, ratings) {
+        let arr = [];
+        if (resortList > 1 && ratings.length > 1) {
+            resortList.forEach(resort => {
+                const filteredRating = ratings.filter(rating => rating.resortId === resort.id)[0];
+                const resortAndRatingObj: Resort = {
+                    resortData: resort,
+                    resortReviews: filteredRating
+                }
+                arr.push(resortAndRatingObj);
+            })
+            return arr;
+            // this.resortsAndRatings = arr;
         }
     }
 

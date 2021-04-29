@@ -1,9 +1,9 @@
 <div
     class="resort-card-container"
-    [ngClass]="this.resort.stats.skiPasses.value ? 'resort-card-container-border-' + getResortCardBorder() : ''"
+    [ngClass]="resort.stats.skiPasses.value ? 'resort-card-container-border-' + getResortCardBorder() : ''"
     [ngStyle]="{'background-image': 'url(' + resort.coverImage + ')'}">
     <div class="resort-card-header d-flex">
-        <p>{{'#' + (rank + 1)}}</p>
+        <!-- <p>{{'#' + (rank + 1)}}</p> -->
         <p>{{resort.stats.snowPerYearInInches.value}}" yr</p>
     </div>
     <div class="resort-card-geo">

@@ -72,6 +72,19 @@ export class ReviewsService {
             });
     }
 
+    retrieveRatings() {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
+        return this.http.get<ResortRatings[]>(url)
+            .pipe(map(responseData => {
+                const resArray = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        resArray.push({ ...responseData[key]})
+                    }
+                }
+                return resArray;
+            }));
+    }
     // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26
 
     // retrieveResortReviews(id: string) {
