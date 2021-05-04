@@ -27,7 +27,7 @@ export class ResortsService {
 
     // getAllResorts() {
     //     this.filteredResorts = this.resortsAndRatings;
-        // this.filteredResorts = this.resortsAndRatings;
+    // this.filteredResorts = this.resortsAndRatings;
     //     return this.filteredResorts;
     // }
 
@@ -40,9 +40,9 @@ export class ResortsService {
     }
 
     // sortResortsByRating() {
-        // let filterArr = this.resorts.forEach(resort => {
-        // });
-        // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
+    // let filterArr = this.resorts.forEach(resort => {
+    // });
+    // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
     // }
 
     // getResortsByName(filterWord: string) {
@@ -65,6 +65,15 @@ export class ResortsService {
     // resetResorts() {
     //     this.filteredResorts = this.resorts;
     //     this.sortResortsByRating();
+    // }
+
+    //filter by all categories
+    // filter by terrain (green, blue, black, extreme)
+    // rework other filters to include this, so itd just be one function
+    // filter by nightlife
+    // filter by 
+    // filterBy(category: string) {
+    //     arr.sort(resort.[category] => resort[category] - resort[category])
     // }
 
     retrieveResorts() {
