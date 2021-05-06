@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { environment as ENV } from '../../environments/environment';
 import { Endpoints } from '../shared/endpoints';
 
@@ -83,7 +83,9 @@ export class ReviewsService {
                     }
                 }
                 return resArray;
-            }));
+            }),
+            shareReplay()
+            );
     }
     // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26
 
