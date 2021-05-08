@@ -11,7 +11,6 @@ import { Resort } from '../shared/resort.model';
 })
 
 export class ResortModalComponent implements OnInit {
-    // id: string;
     selectedNav = 'Info';
     showReviewForm = false;
     selectedResort: Resort;

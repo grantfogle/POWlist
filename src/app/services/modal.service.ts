@@ -18,7 +18,6 @@ export class ModalService {
         }
         this.domService.appendComponentTo(this.modalElementId, component, componentConfig);
         this.selectedResort = outputs;
-        console.log('selected resort', this.selectedResort);
         document.getElementById(this.modalElementId).className = 'show';
         document.getElementById(this.overlayElementId).className = 'show';
     }

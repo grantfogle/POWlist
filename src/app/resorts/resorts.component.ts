@@ -1,14 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, filter } from 'rxjs/operators';
-import { interval, Subscription, Observable } from 'rxjs';
-import { ResortData } from './shared/resort-data.model';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
 import { ModalService } from '../services/modal.service';
 import { ReviewsService } from '../services/reviews.service';
 import { ResortsService } from '../services/resorts.service';
-import { compileBaseDefFromMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-resorts',
@@ -16,40 +12,15 @@ import { compileBaseDefFromMetadata } from '@angular/compiler';
   styleUrls: ['./resorts.component.css'],
   providers: [ResortsService]
 })
-export class ResortsComponent implements OnInit, OnDestroy {
+export class ResortsComponent implements OnInit {
   showAddResortForm = false;
   showFeedbackForm = false;
-  // displayResorts: ResortData[];
-  // resorts$: Resort;
   displayResorts$: Observable<Resort[]>;
-  // displayResorts: Resort[] = [];
-  // resortRatings: Ra[]
-
-  // private observableSub: Subscription;
 
   constructor(
     public modalService: ModalService,
     public resortsService: ResortsService,
-    public reviewsService: ReviewsService,
-    public http: HttpClient) {
-    this.reviewsService.fetchResortRatings();
-  }
-
-
-  // getResortRatings(resortList) {
-  //   this.reviewsService.retrieveRatings().subscribe(ratings => {
-  //     console.log('resort ratings bruh', ratings);
-  //     this.resortsService.mergeResortsAndRatings(resortList, ratings);
-  //   })
-  // }
-  // combineResortRatings(resortList) {
-  // const resortList = this.resortsService.retrieveResorts().subscribe(resortsList => resortsList);
-  // const ratings = this.reviewsService.retrieveRatings().subscribe(ratings => ratings);
-  //   return this.resortsService.mergeResortsAndRatings(resortList, ratings);
-  // }
-  // getResortRatings() {
-
-  // }
+    public reviewsService: ReviewsService) { }
 
   initResortModal(resortData) {
     let outputs = {
@@ -61,62 +32,16 @@ export class ResortsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.resortsService.loadAllResortsAndRatings();
     this.displayResorts$ = this.resortsService.loadAllResortsAndRatings();
-    // .pipe(
-    //   map(res => console.log(res))
-    // );
-  }
-
-  ngOnDestroy() {
-    // this.observableSub.unsubscribe();
   }
 
   toggleAddResortForm() {
     this.showAddResortForm = !this.showAddResortForm;
     this.showFeedbackForm = false;
   }
+
   toggleFeedbackForm() {
     this.showFeedbackForm = !this.showFeedbackForm;
     this.showAddResortForm = false;
   }
-
-  // addResort(resort: ResortData) {
-  //   this.resorts.push(resort);
-  // }
-
-  // filterResorts(filterWord: string) {
-  // get full resort filters brahhh
-  // this.
-  // this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
-
-  // let filterArr = this.resorts.filter(resort => {
-  //   let name = resort.name.toLowerCase().indexOf(filterWord);
-  //   let country = resort.country.toLowerCase().indexOf(filterWord);
-  //   let region = resort.city.toLowerCase().indexOf(filterWord);
-  //   if (name !== -1 || country !== -1 || region !== -1) {
-  //     return resort;
-  //   }
-  // })
-  // this.displayResorts = filterArr;
-  // }
-
-  // filterResortsByPass(pass: string) {
-  //   this.resortsService.filterBySkiPass(pass);
-  //   this.displayResorts = this.resortsService.filteredResorts;
-  // }
-
-  // resetResortFilters() {
-  //   this.resortsService.resetResorts();
-  //   this.displayResorts = this.resortsService.filteredResorts;
-  // }
-
-  // filterResortsForPowder() {
-  //   this.resortsService.filterResortsBySnowfall();
-  //   this.displayResorts = this.resortsService.filteredResorts;
-  // }
-
-  // filterByPrice() {
-  //   this.resortsService.filterByResortAffordability();
-  //   this.displayResorts = this.resortsService.filteredResorts;
-  // }
 
 }
