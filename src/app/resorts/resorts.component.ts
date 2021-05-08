@@ -71,6 +71,7 @@ export class ResortsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.resortsService.loadAllResortsAndRatings();
   }
 
   ngOnDestroy() {

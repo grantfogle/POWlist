@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { environment as ENV } from '../../environments/environment';
 import { Endpoints } from '../shared/endpoints';
 
@@ -9,7 +9,7 @@ import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 import { Resort } from '../resorts/shared/resort.model';
 import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -66,7 +66,6 @@ export class ResortsService {
     //     this.filteredResorts = this.resorts;
     //     this.sortResortsByRating();
     // }
-
     //filter by all categories
     // filter by terrain (green, blue, black, extreme)
     // rework other filters to include this, so itd just be one function
@@ -76,7 +75,23 @@ export class ResortsService {
     //     arr.sort(resort.[category] => resort[category] - resort[category])
     // }
 
-    retrieveResorts() {
+    loadAllResortsAndRatings() {
+        // fetch resortdata
+        let resortsObj: Resort[] = [];
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
+        const resortDataRetrieved$ = this.retrieveResorts();
+        const ratingsRetrieved$ = this.reviewsService.retrieveRatings();
+        // merge them
+        const resortsAndRatingsObj$ = forkJoin([resortDataRetrieved$, ratingsRetrieved$])
+            .pipe(map(res => {
+                console.log('asdfasdf', res)
+                return res;
+            }))
+            .subscribe(asdf => console.log(asdf));
+        // return resortsAndRatingsObj$;
+    }
+
+    retrieveResorts(): Observable<ResortData[]> {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
         return this.http.get<ResortData[]>(url)
             .pipe(map(responseData => {
@@ -101,7 +116,8 @@ export class ResortsService {
                     }
                 }
                 return resortsArray;
-            }))
+            }),
+                shareReplay())
             .subscribe(response => {
                 this.resorts = response;
                 this.combineResortsAndRatings();
