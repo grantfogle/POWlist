@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, filter } from 'rxjs/operators';
 import { interval, Subscription, Observable } from 'rxjs';
-
 import { ResortData } from './shared/resort-data.model';
 import { Resort } from './shared/resort.model';
 import { ResortModalComponent } from './resort-modal/resort-modal.component';
@@ -21,42 +20,31 @@ export class ResortsComponent implements OnInit, OnDestroy {
   showAddResortForm = false;
   showFeedbackForm = false;
   // displayResorts: ResortData[];
-  resorts: ResortData[] = [];
-  displayResorts: Resort[] = [];
+  // resorts$: Resort;
+  displayResorts$: Observable<Resort[]>;
+  // displayResorts: Resort[] = [];
   // resortRatings: Ra[]
 
   // private observableSub: Subscription;
 
-  constructor(public modalService: ModalService,
+  constructor(
+    public modalService: ModalService,
     public resortsService: ResortsService,
     public reviewsService: ReviewsService,
     public http: HttpClient) {
     this.reviewsService.fetchResortRatings();
-    this.resortsService.retrieveResortsFromDb();
-    this.displayResorts = this.resortsService.getResortsAndRatings();
-    this.getResortData();
-    // this.getResortRatings();
-    // this.combineResortRatings();
-
   }
 
-  getResortData() {
-    return this.resortsService.retrieveResorts().subscribe(resortsList => {
-      console.log('resort observable bruh', resortsList);
-      this.resorts = resortsList;
-      // this.getResortRatings(resortsList);
-    });
-  }
 
-  getResortRatings(resortList) {
-    this.reviewsService.retrieveRatings().subscribe(ratings => {
-      console.log('resort ratings bruh', ratings);
-      this.resortsService.mergeResortsAndRatings(resortList, ratings);
-    })
-  }
+  // getResortRatings(resortList) {
+  //   this.reviewsService.retrieveRatings().subscribe(ratings => {
+  //     console.log('resort ratings bruh', ratings);
+  //     this.resortsService.mergeResortsAndRatings(resortList, ratings);
+  //   })
+  // }
   // combineResortRatings(resortList) {
-    // const resortList = this.resortsService.retrieveResorts().subscribe(resortsList => resortsList);
-    // const ratings = this.reviewsService.retrieveRatings().subscribe(ratings => ratings);
+  // const resortList = this.resortsService.retrieveResorts().subscribe(resortsList => resortsList);
+  // const ratings = this.reviewsService.retrieveRatings().subscribe(ratings => ratings);
   //   return this.resortsService.mergeResortsAndRatings(resortList, ratings);
   // }
   // getResortRatings() {
@@ -72,6 +60,10 @@ export class ResortsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.resortsService.loadAllResortsAndRatings();
+    this.displayResorts$ = this.resortsService.loadAllResortsAndRatings();
+    // .pipe(
+    //   map(res => console.log(res))
+    // );
   }
 
   ngOnDestroy() {
@@ -92,19 +84,19 @@ export class ResortsComponent implements OnInit, OnDestroy {
   // }
 
   // filterResorts(filterWord: string) {
-    // get full resort filters brahhh
-    // this.
-    // this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
+  // get full resort filters brahhh
+  // this.
+  // this.displayResorts = this.resortsService.filterResortByWord(filterWord.toLowerCase());
 
-    // let filterArr = this.resorts.filter(resort => {
-    //   let name = resort.name.toLowerCase().indexOf(filterWord);
-    //   let country = resort.country.toLowerCase().indexOf(filterWord);
-    //   let region = resort.city.toLowerCase().indexOf(filterWord);
-    //   if (name !== -1 || country !== -1 || region !== -1) {
-    //     return resort;
-    //   }
-    // })
-    // this.displayResorts = filterArr;
+  // let filterArr = this.resorts.filter(resort => {
+  //   let name = resort.name.toLowerCase().indexOf(filterWord);
+  //   let country = resort.country.toLowerCase().indexOf(filterWord);
+  //   let region = resort.city.toLowerCase().indexOf(filterWord);
+  //   if (name !== -1 || country !== -1 || region !== -1) {
+  //     return resort;
+  //   }
+  // })
+  // this.displayResorts = filterArr;
   // }
 
   // filterResortsByPass(pass: string) {

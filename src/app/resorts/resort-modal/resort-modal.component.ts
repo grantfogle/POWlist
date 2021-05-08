@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
 import { ReviewsService } from 'src/app/services/reviews.service';
 import { ResortData } from '../shared/resort-data.model';
+import { Resort } from '../shared/resort.model';
 
 @Component({
     selector: 'app-resort-modal',
@@ -10,20 +11,19 @@ import { ResortData } from '../shared/resort-data.model';
 })
 
 export class ResortModalComponent implements OnInit {
-    id: string;
+    // id: string;
+    selectedNav = 'Info';
+    showReviewForm = false;
+    selectedResort: Resort;
 
-    constructor(public modalService: ModalService, public reviewsService: ReviewsService) {
+    constructor(
+        public modalService: ModalService,
+        public reviewsService: ReviewsService) {
     }
 
     ngOnInit() {
         this.selectedResort = this.modalService.selectedResort.resort;
-        this.id = this.selectedResort.id;
     }
-
-    selectedNav = 'Info';
-    showReviewForm = false;
-    selectedResort: any;
-    // resort: any;
 
     handleModalNavigation(term: string) {
         this.selectedNav = term;

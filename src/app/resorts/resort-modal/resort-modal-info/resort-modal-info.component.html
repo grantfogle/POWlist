@@ -1,11 +1,9 @@
 <div class="modal-data-info-container">
-    <div class="resort-modal-ratings row" *ngIf="ratings[0]">
-        <div class="resort-modal-rating col-sm-6 col-xs-12" *ngFor="let category of ratings[0].reviewCategories | keyvalue">
+    <div class="resort-modal-ratings row" *ngIf="ratings">
+        <div class="resort-modal-rating col-sm-6 col-xs-12" *ngFor="let category of ratings.reviewCategories | keyvalue">
             <p>{{ category.value.label }}</p>
             <div class="review-rating-container">
-                <div
-                    class="review-rating-bar"
-                    [ngStyle]="{'background-color': getStyleForBar(category.value.score), 'width': getScoreBarWidth(category.value.score)}">
+                <div class="review-rating-bar" [ngStyle]="{'background-color': getStyleForBar(category.value.score), 'width': getScoreBarWidth(category.value.score)}">
                     {{ category.value.score | number: '1.1' }}
                 </div>
             </div>

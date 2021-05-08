@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
 import { ResortData } from '../../shared/resort-data.model';
+import { Resort } from '../../shared/resort.model';
 import { ReviewsService } from 'src/app/services/reviews.service';
 import { ResortsService } from 'src/app/services/resorts.service';
 
@@ -19,19 +20,22 @@ import { ResortRatings } from '../../shared/resort-ratings.model';
 export class ResortModalInfoComponent implements OnInit {
     @Input() id: string;
     @Input() resortData: any;
-    private ratings: ResortRatings[] = [];
-    private resortInfo: any;
+    @Input() ratings: ResortRatings;
+    // resortInfo;
+    // private resortInfo$: Observable<Resort>;
     @ViewChild('reviewProgressBar') reviewProgress: ElementRef;
 
-    constructor(public http: HttpClient,
+    constructor(
         private reviewsService: ReviewsService,
-        private resortsService: ResortsService) {
+        private resortsService: ResortsService, ) {
     }
 
     ngOnInit() {
-        this.ratings = this.reviewsService.getResortRatings(this.id);
-        this.resortInfo = this.resortsService.getSelectedResortInfo(this.id);
-        console.log('this.resort info', this.resortInfo)
+        console.log(this.ratings, this.resortData);
+        // this.ratings = this.reviewsService.getResortRatings(this.id);
+        // this.resortInfo = this.
+        // this.resortInfo$ = this.resortsService.getSelectedResortInfo(this.id);
+        // console.log('this.resort info', this.resortInfo)
     };
 
     // retrieveResortInfo() {

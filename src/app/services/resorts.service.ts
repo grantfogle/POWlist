@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment as ENV } from '../../environments/environment';
 import { Endpoints } from '../shared/endpoints';
-
 import { FilterService } from './filter.service';
 import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 import { Resort } from '../resorts/shared/resort.model';
 import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
 import { Observable, forkJoin } from 'rxjs';
+import { ResortRatings } from '../resorts/shared/resort-ratings.model';
 
 @Injectable({ providedIn: 'root' })
 export class ResortsService {
@@ -17,13 +17,12 @@ export class ResortsService {
     constructor(private filterService: FilterService,
         public reviewsService: ReviewsService,
         public http: HttpClient) {
-        // this.sortResortsByRating();
     }
 
-    private resorts: ResortData[];
+    private resorts$: Observable<Resort[]> = this.loadAllResortsAndRatings();
     public filteredResorts: Resort[];
     public resortsAndRatings: Resort[];
-    // resortsObservable$: Observable<Resort[]>;
+    public selectedResort: Resort;
 
     // getAllResorts() {
     //     this.filteredResorts = this.resortsAndRatings;
@@ -31,19 +30,13 @@ export class ResortsService {
     //     return this.filteredResorts;
     // }
 
-    getSelectedResortInfo(id: string) {
-        return this.resorts.filter(resort => {
-            for (const key in resort) {
-                console.log('key', resort);
-            }
-        });
+    getSelectedResortInfo(id: string): Observable<Resort> {
+        return this.resorts$
+            .pipe(
+                map(resorts => resorts.filter(resort => resort.resortData.id === id)[0]
+                )
+            );
     }
-
-    // sortResortsByRating() {
-    // let filterArr = this.resorts.forEach(resort => {
-    // });
-    // let ratings = this.resorts.sort((a, b) => b.rating - a.rating)
-    // }
 
     // getResortsByName(filterWord: string) {
     //     let filterArr = this.resorts.filter(resort => {
@@ -75,19 +68,24 @@ export class ResortsService {
     //     arr.sort(resort.[category] => resort[category] - resort[category])
     // }
 
-    loadAllResortsAndRatings() {
-        // fetch resortdata
+    loadAllResortsAndRatings(): Observable<Resort[]> {
         let resortsObj: Resort[] = [];
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
         const resortDataRetrieved$ = this.retrieveResorts();
         const ratingsRetrieved$ = this.reviewsService.retrieveRatings();
-        // merge them
         const resortsAndRatingsObj$ = forkJoin([resortDataRetrieved$, ratingsRetrieved$])
-            .pipe(map(res => {
-                console.log('asdfasdf', res)
-                return res;
-            }))
-            .subscribe(asdf => console.log(asdf));
+            .pipe(
+                map(res => {
+                    const combinedArr = this.combineResortsAndRatings(res[0], res[1])
+                    return combinedArr;
+                }),
+                shareReplay())
+        return resortsAndRatingsObj$
+            .pipe(
+                map(resorts => resorts.sort((a: any, b: any) => b.resortReviews.overallRating.score - a.resortReviews.overallRating.score)
+                )
+            );
+        // .subscribe(asdf => console.log(asdf));
         // return resortsAndRatingsObj$;
     }
 
@@ -105,54 +103,36 @@ export class ResortsService {
             }));
     }
 
-    retrieveResortsFromDb() {
-        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
-        this.http.get(url)
-            .pipe(map(responseData => {
-                const resortsArray = [];
-                for (const key in responseData) {
-                    if (responseData.hasOwnProperty(key)) {
-                        resortsArray.push({ ...responseData[key], id: key })
-                    }
-                }
-                return resortsArray;
-            }),
-                shareReplay())
-            .subscribe(response => {
-                this.resorts = response;
-                this.combineResortsAndRatings();
-            })
-    }
+    // retrieveResortsFromDb() {
+    //     const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RESORTS}`;
+    //     this.http.get(url)
+    //         .pipe(map(responseData => {
+    //             const resortsArray = [];
+    //             for (const key in responseData) {
+    //                 if (responseData.hasOwnProperty(key)) {
+    //                     resortsArray.push({ ...responseData[key], id: key })
+    //                 }
+    //             }
+    //             return resortsArray;
+    //         }),
+    //             shareReplay())
+    //         .subscribe(response => {
+    // this.resorts = response;
+    // this.combineResortsAndRatings();
+    //         })
+    // }
 
-    combineResortsAndRatings() {
+    combineResortsAndRatings(resortArr: ResortData[], ratingsArr: ResortRatings[]): Resort[] {
         let arr = [];
-        if (this.resorts.length > 1 && this.reviewsService.resortRatings.length > 1) {
-            this.resorts.forEach(resort => {
-                const filteredRating = this.reviewsService.resortRatings.filter(rating => rating.resortId === resort.id)[0];
-                const resortAndRatingObj: Resort = {
-                    resortData: resort,
-                    resortReviews: filteredRating
-                }
-                arr.push(resortAndRatingObj);
-            })
-            this.resortsAndRatings = arr;
-        }
-    }
-
-    mergeResortsAndRatings(resortList, ratings) {
-        let arr = [];
-        if (resortList > 1 && ratings.length > 1) {
-            resortList.forEach(resort => {
-                const filteredRating = ratings.filter(rating => rating.resortId === resort.id)[0];
-                const resortAndRatingObj: Resort = {
-                    resortData: resort,
-                    resortReviews: filteredRating
-                }
-                arr.push(resortAndRatingObj);
-            })
-            return arr;
-            // this.resortsAndRatings = arr;
-        }
+        resortArr.forEach(resort => {
+            const filteredRating = ratingsArr.filter(rating => rating.resortId === resort.id)[0];
+            const resortAndRatingObj: Resort = {
+                resortData: resort,
+                resortReviews: filteredRating
+            }
+            arr.push(resortAndRatingObj);
+        })
+        return arr;
     }
 
     getResortsAndRatings() {

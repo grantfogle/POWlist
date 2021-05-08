@@ -1,17 +1,15 @@
 <div class="modal-container" *ngIf="!showReviewForm">
-    <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.coverImage + ')'}">
-        <h1>{{selectedResort.name}}</h1>
-        <h4>{{selectedResort.city + ", " + selectedResort.province}}</h4>
+    <div class="modal-banner" [ngStyle]="{'background-image': 'url(' + resort.resortData.coverImage + ')'}">
+        <h1>{{selectedResort.resortData.name}}</h1>
+        <h4>{{selectedResort.resortData.city + ", " + selectedResort.resortData.province}}</h4>
         <button class="btn btn-warning" (click)="handleModalNavigation('Review Form')">Add a Review</button>
     </div>
 
     <div class="modal-navigation">
-        <p
-            (click)="handleModalNavigation('Info')"
-            [ngClass]="selectedNav === 'Info' ? 'modal-nav-active' : 'modal-nav-inactive'">Resort Info</p>
-        <p
-            [ngClass]="selectedNav === 'Reviews' ? 'modal-nav-active' : 'modal-nav-inactive'"
-            (click)="handleModalNavigation('Reviews')">Reviews</p>
+        <p (click)="handleModalNavigation('Info')" [ngClass]="selectedNav === 'Info' ? 'modal-nav-active' : 'modal-nav-inactive'">Resort
+            Info
+        </p>
+        <p [ngClass]="selectedNav === 'Reviews' ? 'modal-nav-active' : 'modal-nav-inactive'" (click)="handleModalNavigation('Reviews')">Reviews</p>
         <p class="modal-nav-disabled">Forecast</p>
         <p class="modal-nav-disabled">Trail Maps</p>
         <p class="modal-nav-disabled">Photos</p>
@@ -20,25 +18,15 @@
 
     <div class="modal-data">
         <div class="modal-data-table">
-            <app-resort-modal-reviews
-                *ngIf="selectedNav === 'Reviews'"
-                [id]="selectedResort.id"
-                [name]="selectedResort.name">
+            <app-resort-modal-reviews *ngIf="selectedNav === 'Reviews'" [id]="selectedResort.resortData.id" [name]="selectedResort.resortData.name">
             </app-resort-modal-reviews>
-            <app-resort-modal-forecast
-                *ngIf="selectedNav === 'Forecast'">
+            <app-resort-modal-forecast *ngIf="selectedNav === 'Forecast'">
             </app-resort-modal-forecast>
-            <app-resort-modal-info
-                *ngIf="selectedNav === 'Info'"
-                [id]="selectedResort.id"
-                [resortData]="selectedResort">
+            <app-resort-modal-info *ngIf="selectedNav === 'Info'" [id]="selectedResort.resortData.id" [resortData]="selectedResort.resortData"
+                [ratings]="selectedResort.resortReviews">
             </app-resort-modal-info>
-            <app-resort-modal-review-form
-                *ngIf="selectedNav === 'Review Form'"
-                [name]="selectedResort.name"
-                [id]="selectedResort.id"
-                class="modal-review"
-                (closeReviewForm)="toggleReviewForm($event)">
+            <app-resort-modal-review-form *ngIf="selectedNav === 'Review Form'" [name]="selectedResort.resortData.name" [id]="selectedResort.resortData.id"
+                class="modal-review" (closeReviewForm)="toggleReviewForm($event)">
             </app-resort-modal-review-form>
             <hr>
         </div>
