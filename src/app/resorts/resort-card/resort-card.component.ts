@@ -20,6 +20,5 @@ export class ResortCardComponent {
     return resortBorderClass;
   }
 
-  constructor() {
-  }
+  constructor() { }
 }
