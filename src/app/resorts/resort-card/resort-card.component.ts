@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ResortData } from '../shared/resort-data.model';
+import { ResortRatings } from '../shared/resort-ratings.model';
 
 @Component({
   selector: 'app-resort-card',
@@ -9,7 +10,7 @@ import { ResortData } from '../shared/resort-data.model';
 
 export class ResortCardComponent {
   @Input() resort: ResortData;
-  // @Input() ratings: ResortReviews;
+  @Input() ratings: ResortRatings;
   @Input() rank;
 
   getResortCardBorder() {

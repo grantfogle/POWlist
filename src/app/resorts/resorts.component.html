@@ -26,7 +26,7 @@
 
   <div class="row">
     <div class="center col-lg-3 col-md-4 col-sm-12 resort-card" *ngFor="let resort of (displayResorts$ | async);let indexOfElement=index;">
-      <app-resort-card (click)="initResortModal(resort)" [resort]="resort.resortData" [rank]="indexOfElement"></app-resort-card>
+      <app-resort-card (click)="initResortModal(resort)" [resort]="resort.resortData" [ratings]="resort.resortReviews" [rank]="indexOfElement"></app-resort-card>
     </div>
   </div>
 
