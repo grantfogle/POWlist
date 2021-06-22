@@ -8,7 +8,7 @@ import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 import { Resort } from '../resorts/shared/resort.model';
 import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, Subject } from 'rxjs';
 import { ResortRatings } from '../resorts/shared/resort-ratings.model';
 
 @Injectable({ providedIn: 'root' })
@@ -23,6 +23,7 @@ export class ResortsService {
     public filteredResorts: Resort[];
     public resortsAndRatings: Resort[];
     public selectedResort: Resort;
+    public addResortFilter = new Subject<Resort[]>();
 
     // getAllResorts() {
     //     this.filteredResorts = this.resortsAndRatings;
@@ -85,8 +86,6 @@ export class ResortsService {
                 map(resorts => resorts.sort((a: any, b: any) => b.resortReviews.overallRating.score - a.resortReviews.overallRating.score)
                 )
             );
-        // .subscribe(asdf => console.log(asdf));
-        // return resortsAndRatingsObj$;
     }
 
     retrieveResorts(): Observable<ResortData[]> {
@@ -158,6 +157,16 @@ export class ResortsService {
             console.log(responseData);
         });
     }
+
+
+    filterResortByPass(skiPass: string) {
+        // const resortsToDisplay =
+        //     this.addResortFilter.next([] );
+    }
+
+
+    clearOneFilter(filterName) { }
+    clearAllFilters() { }
 
     // filterResortByWord(searchTerm: string): ResortData[] {
     //     let filterArr = this.resorts.filter(resort => {
