@@ -24,6 +24,9 @@ export class ResortsService {
     public resortsAndRatings: Resort[];
     public selectedResort: Resort;
     public addResortFilter = new Subject<Resort[]>();
+    
+    // show resorts 
+    // observable
 
     // getAllResorts() {
     //     this.filteredResorts = this.resortsAndRatings;
