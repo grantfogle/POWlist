@@ -4,10 +4,6 @@ import { ResortsService } from './resorts.service';
 
 @Injectable({ providedIn: 'root' })
 export class FilterService {
-    // default filter
-    // filterByRating(resortList: Resort[]) {    
-    //     return resortList.filter(resort => a > b );
-    // }
     constructor() { }
     // filterBySnowfall(resorts: Resort[]) {}
     filterByGeo(term: string) { }

@@ -5,11 +5,7 @@
                 View Filters <span class="caret"></span>
             </button>
             <div class="input-group filter-search">
-                <input
-                    type="text"
-                    class="form-control"
-                    (input)="onSearchFilter()"
-                    placeholder="Search Resort or Region" #filterInput>
+                <input type="text" class="form-control" (input)="onSearchFilter()" placeholder="Search Resort or Region" #filterInput>
             </div>
             <button class="btn btn-warning" id="removeFilterBtn" (click)="clearFilters()">Remove Filters</button>
         </div>
