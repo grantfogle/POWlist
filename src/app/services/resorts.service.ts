@@ -8,7 +8,7 @@ import { ReviewsService } from './reviews.service';
 import { ResortData } from '../resorts/shared/resort-data.model';
 import { Resort } from '../resorts/shared/resort.model';
 import { resolveComponentResources } from '@angular/core/src/metadata/resource_loading';
-import { Observable, forkJoin, Subject } from 'rxjs';
+import { Observable, forkJoin, Subject, BehaviorSubject } from 'rxjs';
 import { ResortRatings } from '../resorts/shared/resort-ratings.model';
 
 @Injectable({ providedIn: 'root' })
@@ -20,6 +20,7 @@ export class ResortsService {
     }
 
     private resorts$: Observable<Resort[]> = this.loadAllResortsAndRatings();
+    public displayResorts: BehaviorSubject<Resort[]>;
     public filteredResorts: Resort[];
     public resortsAndRatings: Resort[];
     public selectedResort: Resort;
@@ -39,17 +40,10 @@ export class ResortsService {
             );
     }
 
-    // getResortsByName(filterWord: string) {
-    //     let filterArr = this.resorts.filter(resort => {
-    //         let name = resort.name.toLowerCase().indexOf(filterWord);
-    //         let country = resort.country.toLowerCase().indexOf(filterWord);
-    //         let region = resort.city.toLowerCase().indexOf(filterWord);
-    //         if (name !== -1 || country !== -1 || region !== -1) {
-    //             return resort;
-    //         }
-    //     })
-    //     this.filteredResorts = filterArr;
-    // }
+    getResortsByName(filterWord: string) {
+        const filteredList = this.filterService.filterByName(this.resorts$, filterWord);
+        this.displayResorts.next(filteredList);
+    }
 
     // filterBySkiPass(pass: string) {
     //     let filterArr = this.resorts.filter(resort => resort.stats.skiPasses.value === pass);
@@ -60,6 +54,7 @@ export class ResortsService {
     //     this.filteredResorts = this.resorts;
     //     this.sortResortsByRating();
     // }
+
     //filter by all categories
     // filter by terrain (green, blue, black, extreme)
     // rework other filters to include this, so itd just be one function
@@ -80,7 +75,8 @@ export class ResortsService {
                     const combinedArr = this.combineResortsAndRatings(res[0], res[1])
                     return combinedArr;
                 }),
-                shareReplay())
+                shareReplay());
+
         return resortsAndRatingsObj$
             .pipe(
                 map(resorts => resorts.sort((a: any, b: any) => b.resortReviews.overallRating.score - a.resortReviews.overallRating.score)

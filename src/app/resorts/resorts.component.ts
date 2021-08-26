@@ -43,5 +43,9 @@ export class ResortsComponent implements OnInit {
     this.showFeedbackForm = !this.showFeedbackForm;
     this.showAddResortForm = false;
   }
+  filterResorts($event) {
+    console.log($event);
+    this.resortsService.getResortsByName($event);
+  }
 
 }
