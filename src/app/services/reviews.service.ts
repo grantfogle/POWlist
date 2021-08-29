@@ -19,6 +19,15 @@ export class ReviewsService {
 
     private reviews: ResortReview[] = [];
 
+    /** 
+     * Review user flow
+     * 1) create a review
+     * 2) fetch reviews
+     * 3) adding a new rating to the resort
+     * 4) making a post request to firebase
+     * */
+
+
     submitReview(review: ResortReview): boolean {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
         this.http.post(
@@ -28,6 +37,24 @@ export class ReviewsService {
             console.log(responseData);
         });
         return true;
+    }
+
+    submitRatings(currentRating: ResortRatings, rating: ResortRatings) {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
+        // how do i get
+        console.log(currentRating, rating);
+        // going to get the updating rating
+        // update current review with ++ count and new score
+        // 
+        // let updatedRating = {
+        // }
+
+        // this.http.post(
+        //     url, 
+        //     updatedRating
+        //     ).subscribe(response => {
+        //         console.log(response);
+        //     })
     }
 
     submitReviewCategories(resortCategories: ResortRatings): boolean {
