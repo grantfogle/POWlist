@@ -27,6 +27,20 @@ export class ReviewsService {
      * 4) making a post request to firebase
      * */
 
+    submitResortRating(rating) {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
+        const patchData = {
+            overallRating: {},
+            reviewCategories: {}
+        };
+
+        // increase count, recalc average score
+
+        this.http.patch(url, patchData).subscribe(responseData => {
+            console.log(responseData);
+        });
+    }
+
 
     submitReview(review: ResortReview): boolean {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
@@ -38,7 +52,6 @@ export class ReviewsService {
         });
         return true;
     }
-
     submitRatings(currentRating: ResortRatings, rating: ResortRatings) {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         // how do i get
@@ -90,7 +103,7 @@ export class ReviewsService {
                 const resArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
-                        resArray.push({ ...responseData[key]})
+                        resArray.push({ ...responseData[key] })
                     }
                 }
                 return resArray;
@@ -106,40 +119,14 @@ export class ReviewsService {
                 const resArray = [];
                 for (const key in responseData) {
                     if (responseData.hasOwnProperty(key)) {
-                        resArray.push({ ...responseData[key]})
+                        resArray.push({ ...responseData[key] })
                     }
                 }
                 return resArray;
             }),
-            shareReplay()
+                shareReplay()
             );
     }
-    // https://<myid>.firebaseio.com/todos.json?orderBy="id"&equalTo=26
-
-    // retrieveResortReviews(id: string) {
-    // const cors = 'https://cors-anywhere.herokuapp.com/'
-    // const url = 'https://powfish.firebaseio.com/resorts.json';
-    // this.http.get(url)
-    //     .pipe(map(responseData => {
-    //         console.log('asdfa', responseData);
-    //         const resortsArray = [];
-    //         for (const key in responseData) {
-    //             if (responseData.hasOwnProperty(key)) {
-    //                 resortsArray.push({ ...responseData[key], id: key })
-    //             }
-    //         }
-    //         return resortsArray;
-    //     }))
-    //     .subscribe(response => {
-    //         response.forEach(resort => {
-    //             this.resorts.push(resort);
-    //         })
-    //         this.sortResortsByRating();
-    //         console.log(response);
-    //     })
-    // console.log(this.resorts);
-    // }
-
 
 
     addNewReview(resortId, review, ratings, currentRatings) {
