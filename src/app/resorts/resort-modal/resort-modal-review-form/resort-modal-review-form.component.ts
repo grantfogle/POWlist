@@ -14,6 +14,7 @@ export class ResortModalReviewFormComponent implements OnInit {
     @Input() name: string;
     @Input() id: string;
     @Input() currentRatings;
+    @Input() ratings;
 
     @ViewChild('reviewCaptureForm') reviewForm: NgForm;
     @Output() closeReviewForm = new EventEmitter<string>();
@@ -21,18 +22,18 @@ export class ResortModalReviewFormComponent implements OnInit {
 
     resortCategories: ResortRatings = {
         resortId: this.id,
-        overallRating: { label: 'Snow Quality', score: null, count: 0 },
+        overallRating: { label: 'Snow Quality', score: 0, count: 0 },
         reviewCategories: {
-            snow: { label: 'Snow Quality', score: null, count: 0 },
-            value: { label: 'Resort Value', score: null, count: 0 },
-            nightLife: { label: 'Night Life', score: null, count: 0 },
-            crowds: { label: 'Crowds', score: null, count: 0 },
-            bcAccess: { label: 'BC/Sidecountry Access', score: null, count: 0 },
-            begTerrain: { label: 'Beginner Terrain', score: null, count: 0 },
-            intTerrain: { label: 'Intermediate Terrain', score: null, count: 0 },
-            advTerrain: { label: 'Advanced Terrain', score: null, count: 0 },
-            exTerrain: { label: 'Expert Terrain', score: null, count: 0 },
-            terrainParks: { label: 'Terrain Parks', score: null, count: 0 }
+            snow: { label: 'Snow Quality', score: 0, count: 0 },
+            value: { label: 'Resort Value', score: 0, count: 0 },
+            nightLife: { label: 'Night Life', score: 0, count: 0 },
+            crowds: { label: 'Crowds', score: 0, count: 0 },
+            bcAccess: { label: 'BC/Sidecountry Access', score: 0, count: 0 },
+            begTerrain: { label: 'Beginner Terrain', score: 0, count: 0 },
+            intTerrain: { label: 'Intermediate Terrain', score: 0, count: 0 },
+            advTerrain: { label: 'Advanced Terrain', score: 0, count: 0 },
+            exTerrain: { label: 'Expert Terrain', score: 0, count: 0 },
+            terrainParks: { label: 'Terrain Parks', score: 0, count: 0 }
         }
     };
 
@@ -66,12 +67,14 @@ export class ResortModalReviewFormComponent implements OnInit {
         // get parent object
         let patchObj;
         for (const category in this.resortCategories.reviewCategories) {
-            if (category['score'] > 0) {
-                patchObj[category]['score'] = category['score'];
-                patchObj[category]['count'] = 1
+            if (Number(category['score']) > 0) {
+                patchObj[category]['score'] = Number(category['score']);
+                patchObj[category]['count'] = 1;
+                // match with rating in 
             }
             console.log(category);
         }
+        this.reviewsService.submitResortReviewAndRating(patchObj);
         // this.reviewsService.submitReview(this.userReview);
         // this.reviewsService.submitReviewCategories(this.resortCategories);
     }

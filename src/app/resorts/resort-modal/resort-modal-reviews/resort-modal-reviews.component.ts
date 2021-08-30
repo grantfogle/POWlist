@@ -10,12 +10,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ResortModalReviewsComponent implements OnInit {
     @Input() id: string;
     @Input() name: string;
-    reviews = []
 
     constructor(public http: HttpClient) { }
 
     ngOnInit() {
-        this.retrieveReviews()
+        this.retrieveReviews();
     }
 
     retrieveReviews() {

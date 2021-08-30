@@ -27,7 +27,9 @@ export class ReviewsService {
      * 4) making a post request to firebase
      * */
 
-    submitResortRating(rating) {
+    submitResortReviewAndRating(review, ratingPatchObj) {
+        console.log()
+        // submit review for rating 
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         const patchData = {
             overallRating: {},
