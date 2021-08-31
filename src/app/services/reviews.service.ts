@@ -27,10 +27,13 @@ export class ReviewsService {
      * 4) making a post request to firebase
      * */
     submitResortReview(review) {
+        //
+        console.log('boom');
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
     }
 
     submitResortRating(ratingPatchObj, ratingId) {
+        console.log('bang');
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         const patchData = {
             overallRating: {},
@@ -39,9 +42,9 @@ export class ReviewsService {
 
         // increase count, recalc average score
 
-        this.http.patch(url, patchData).subscribe(responseData => {
-            console.log(responseData);
-        });
+        // this.http.patch(url, patchData).subscribe(responseData => {
+        //     console.log(responseData);
+        // });
     }
 
 
