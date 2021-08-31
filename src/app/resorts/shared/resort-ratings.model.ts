@@ -2,6 +2,7 @@ import { Resort } from './resort.model';
 
 export interface ResortRatings {
     resortId: string;
+    ratingId?: string;
     overallRating: ResortCategoryRating;
     reviewCategories: ResortCategory;
 };

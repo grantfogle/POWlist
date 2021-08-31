@@ -26,10 +26,11 @@ export class ReviewsService {
      * 3) adding a new rating to the resort
      * 4) making a post request to firebase
      * */
+    submitResortReview(review) {
+        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
+    }
 
-    submitResortReviewAndRating(review, ratingPatchObj) {
-        console.log()
-        // submit review for rating 
+    submitResortRating(ratingPatchObj, ratingId) {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         const patchData = {
             overallRating: {},
@@ -120,9 +121,7 @@ export class ReviewsService {
             .pipe(map(responseData => {
                 const resArray = [];
                 for (const key in responseData) {
-                    if (responseData.hasOwnProperty(key)) {
-                        resArray.push({ ...responseData[key] })
-                    }
+                    resArray.push({ ...responseData[key], ratingId: key })
                 }
                 return resArray;
             }),

@@ -25,7 +25,7 @@ export class ResortsService {
     public resortsAndRatings: Resort[];
     public selectedResort: Resort;
     public addResortFilter = new Subject<Resort[]>();
-    
+
     // show resorts 
     // observable
 
@@ -136,16 +136,6 @@ export class ResortsService {
     getResortsAndRatings() {
         return this.resortsAndRatings;
     }
-
-    // filterResortsBySnowfall() {
-    //     let resortsOrderBySnow = this.resorts.sort((a, b) => b.stats.snowPerYearInInches.value - a.stats.snowPerYearInInches.value);
-    //     this.filteredResorts = resortsOrderBySnow;
-    // }
-
-    // filterByResortAffordability() {
-    //     let resortsOrderByPrice = this.resorts.sort((a, b) => a.stats.adultFullDayTicketInUSD.value - b.stats.adultFullDayTicketInUSD.value);
-    //     this.filteredResorts = resortsOrderByPrice;
-    // }
 
     addResort(resort: ResortData) {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.NEW_RESORT}`;

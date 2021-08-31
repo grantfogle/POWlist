@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ResortModalReviewsComponent implements OnInit {
     @Input() id: string;
     @Input() name: string;
+    @Input() reviews;
 
     constructor(public http: HttpClient) { }
 

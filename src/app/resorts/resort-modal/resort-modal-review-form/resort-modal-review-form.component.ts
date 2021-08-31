@@ -15,6 +15,7 @@ export class ResortModalReviewFormComponent implements OnInit {
     @Input() id: string;
     @Input() currentRatings;
     @Input() ratings;
+    @Input() ratingId;
 
     @ViewChild('reviewCaptureForm') reviewForm: NgForm;
     @Output() closeReviewForm = new EventEmitter<string>();
@@ -65,6 +66,10 @@ export class ResortModalReviewFormComponent implements OnInit {
         // 
         // 
         // get parent object
+        /*
+        rating id
+        
+        */
         let patchObj;
         for (const category in this.resortCategories.reviewCategories) {
             if (Number(category['score']) > 0) {
@@ -74,7 +79,8 @@ export class ResortModalReviewFormComponent implements OnInit {
             }
             console.log(category);
         }
-        this.reviewsService.submitResortReviewAndRating(patchObj);
+        this.reviewsService.submitResortReview(this.userReview)
+        this.reviewsService.submitResortRating(patchObj, this.ratingId);
         // this.reviewsService.submitReview(this.userReview);
         // this.reviewsService.submitReviewCategories(this.resortCategories);
     }
