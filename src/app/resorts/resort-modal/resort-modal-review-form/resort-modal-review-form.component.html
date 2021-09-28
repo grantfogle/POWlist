@@ -24,18 +24,19 @@
     <div class="row">
         <div class="form-group col-xs-6 col-sm-4" *ngFor="let category of resortCategories.reviewCategories | keyvalue">
             <label for="{{category.key}}">{{category.value.label}}</label>
-            <select id="{{category.key}}" class="form-control" [(ngModel)]="category.value.score" name="category.key" required>
+            <select id="{{category.key}}" class="form-control" [(ngModel)]="resortCategories.reviewCategories[category.key].score" name="category.key"
+                required>
                 <option value="1">1 - Bad</option>
                 <option value="2">2</option>
-                <option value="3">3 - Perfectly Average</option>
+                <option value="3">3 - Average</option>
                 <option value="4">4</option>
-                <option value="5">5 - Good</option>
+                <option value="5">5 - Great</option>
             </select>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn-info" type="submit" [disabled]="!reviewCaptureForm.valid">Submit</button>
+            <button class="btn btn-info" type="submit" (click)="onReviewSubmit()" [disabled]="!reviewCaptureForm.valid">Submit</button>
             <button class="btn btn-warning" type="button" (click)="closeReview()">Cancel</button>
         </div>
     </div>

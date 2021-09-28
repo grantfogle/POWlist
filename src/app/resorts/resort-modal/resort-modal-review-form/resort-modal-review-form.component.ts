@@ -13,7 +13,6 @@ import { NgForm } from '@angular/forms';
 export class ResortModalReviewFormComponent implements OnInit {
     @Input() name: string;
     @Input() id: string;
-    @Input() currentRatings;
     @Input() ratings;
     @Input() ratingId;
 
@@ -57,30 +56,30 @@ export class ResortModalReviewFormComponent implements OnInit {
     }
 
     onReviewSubmit() {
-        console.log('Review', this.userReview);
-        console.log('Resort categories', this.resortCategories);
         // overall rating,
         // loop through resort categories and look for ratings greater than 0
         // create an obj for resort categories
         // create an obj for user review
-        // 
-        // 
         // get parent object
-        /*
-        rating id
-        
-        */
-        let patchObj;
+        let finalPatchObj;
+        let ratingPatchObj = new Object();
         for (const category in this.resortCategories.reviewCategories) {
-            if (Number(category['score']) > 0) {
-                patchObj[category]['score'] = Number(category['score']);
-                patchObj[category]['count'] = 1;
-                // match with rating in 
+            const categoryReviewScore = Number(this.resortCategories.reviewCategories[category].score);
+            console.log(category, this.resortCategories.reviewCategories[category])
+            if (categoryReviewScore && categoryReviewScore > 0) {
+                ratingPatchObj[category] = this.resortCategories.reviewCategories[category];
+                ratingPatchObj[category].count = this.ratings.reviewCategories[category].count++;
+                ratingPatchObj[category].score = (categoryReviewScore + this.ratings.reviewCategories[category].score) / ratingPatchObj[category].count;
             }
-            console.log(category);
         }
-        this.reviewsService.submitResortReview(this.userReview)
-        this.reviewsService.submitResortRating(patchObj, this.ratingId);
+        // finalPatchObj = {
+        //     id: this.ratings.id,
+        //     review
+
+        // }
+        console.log(ratingPatchObj);
+        // this.reviewsService.submitResortReview(this.userReview)
+        // this.reviewsService.submitResortRating(patchObj, this.ratingId);
         // this.reviewsService.submitReview(this.userReview);
         // this.reviewsService.submitReviewCategories(this.resortCategories);
     }
