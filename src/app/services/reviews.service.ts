@@ -32,18 +32,28 @@ export class ReviewsService {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
     }
 
-    submitResortRating(ratingPatchObj, ratingId) {
-        console.log('bang');
+    submitResortRating(ratingPatchObj, ratingId, resortId, { overallCount, overallRatingVal }) {
+        // console.log('bang');
+        console.log(ratingPatchObj, ratingId);
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         const patchData = {
-            overallRating: {},
-            reviewCategories: {}
+            [ratingId]: {
+                overallRating: {
+                    count: overallCount,
+                    label: 'Overall Rating',
+                    value: overallRatingVal
+                },
+                resortId,
+                reviewCategories: ratingPatchObj
+            }
+            // overallRating: {},
         };
 
         // increase count, recalc average score
+        // this.http.patch(url).subscribe()
 
-        // this.http.patch(url, patchData).subscribe(responseData => {
-        //     console.log(responseData);
+        // this.http.put(url, patchData).subscribe(responseData => {
+        //     console.log('response data bruv', responseData);
         // });
     }
 

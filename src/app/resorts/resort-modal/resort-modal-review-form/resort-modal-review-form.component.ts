@@ -22,7 +22,7 @@ export class ResortModalReviewFormComponent implements OnInit {
 
     resortCategories: ResortRatings = {
         resortId: this.id,
-        overallRating: { label: 'Snow Quality', score: 0, count: 0 },
+        overallRating: { label: 'Overall Rating', score: 0, count: 0 },
         reviewCategories: {
             snow: { label: 'Snow Quality', score: 0, count: 0 },
             value: { label: 'Resort Value', score: 0, count: 0 },
@@ -56,31 +56,27 @@ export class ResortModalReviewFormComponent implements OnInit {
     }
 
     onReviewSubmit() {
-        // overall rating,
-        // loop through resort categories and look for ratings greater than 0
-        // create an obj for resort categories
-        // create an obj for user review
-        // get parent object
         let finalPatchObj;
+        // update count of existing object
         let ratingPatchObj = new Object();
         for (const category in this.resortCategories.reviewCategories) {
             const categoryReviewScore = Number(this.resortCategories.reviewCategories[category].score);
-            console.log(category, this.resortCategories.reviewCategories[category])
             if (categoryReviewScore && categoryReviewScore > 0) {
                 ratingPatchObj[category] = this.resortCategories.reviewCategories[category];
                 ratingPatchObj[category].count = this.ratings.reviewCategories[category].count++;
                 ratingPatchObj[category].score = (categoryReviewScore + this.ratings.reviewCategories[category].score) / ratingPatchObj[category].count;
+            } else {
+                ratingPatchObj[category] = this.resortCategories.reviewCategories[category];
+                ratingPatchObj[category].count = this.ratings.reviewCategories[category].count;
+                ratingPatchObj[category].score = this.ratings.reviewCategories[category].score;
             }
         }
-        // finalPatchObj = {
-        //     id: this.ratings.id,
-        //     review
+        console.log(this.ratings);
+        // overallRating: {count: 1, label: 'Overall Rating', score: 4}
+        // ratingId: "-RRb7z6UGKuGfKCLMZe7"
+        // resortId: "-CAALSV"
+        // reviewCategories: {advTerrain: {…}, bcAccess: {…}, begTerrain: {…}, crowds: {…}, exTerrain: {…}, …}
 
-        // }
-        console.log(ratingPatchObj);
-        // this.reviewsService.submitResortReview(this.userReview)
-        // this.reviewsService.submitResortRating(patchObj, this.ratingId);
-        // this.reviewsService.submitReview(this.userReview);
-        // this.reviewsService.submitReviewCategories(this.resortCategories);
+        // this.reviewsService.submitResortRating(ratingPatchObj, this.ratingId, this.id, handleRating(this));
     }
 }
