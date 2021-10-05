@@ -74,9 +74,6 @@ export class ResortModalReviewFormComponent implements OnInit {
         console.log(this.ratings);
         // overallRating: {count: 1, label: 'Overall Rating', score: 4}
         // ratingId: "-RRb7z6UGKuGfKCLMZe7"
-        // resortId: "-CAALSV"
-        // reviewCategories: {advTerrain: {…}, bcAccess: {…}, begTerrain: {…}, crowds: {…}, exTerrain: {…}, …}
-
-        // this.reviewsService.submitResortRating(ratingPatchObj, this.ratingId, this.id, handleRating(this));
+        // resortId: "-CAALSV
     }
 }
