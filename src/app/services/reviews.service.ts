@@ -22,10 +22,16 @@ export class ReviewsService {
     /** 
      * Review user flow
      * 1) create a review
-     * 2) fetch reviews
+     * (x) fetch reviews 
      * 3) adding a new rating to the resort
      * 4) making a post request to firebase
      * */
+
+    getResortReview(resortId): Observable<any> {
+        // https://powfish.firebaseio.com/reviews.json?orderBy=%22resortId%22&equalTo=%22-MNRUOM4svbEM-qNfJ7i%22
+        const fetchUrl = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}?orderBy="resortId"&equalTo="${resortId}"`;
+        return this.http.get(fetchUrl);
+    }
     submitResortReview(review) {
         //
         console.log('boom');
@@ -106,8 +112,6 @@ export class ReviewsService {
             console.log(responseData);
         });
     }
-
-
 
     getResortRatings(id: string) {
         return this.resortRatings.filter(ratings => ratings.resortId === id);
