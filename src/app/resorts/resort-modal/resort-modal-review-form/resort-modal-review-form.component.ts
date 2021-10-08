@@ -56,16 +56,19 @@ export class ResortModalReviewFormComponent implements OnInit {
     }
 
     onReviewSubmit() {
-        let finalPatchObj;
-        // update count of existing object
         this.userReview.resortId = this.id;
         let ratingPatchObj = new Object();
+        let overallRating = {
+            label: 'Overall Rating',
+            count: (this.ratings.overallRating.count + 1),
+            score: this.newRatingScore(this.ratings.overallRating.score, this.ratings.overallRating.count, this.userReview.overallRating),
+        };
         for (const category in this.resortCategories.reviewCategories) {
             const categoryReviewScore = Number(this.resortCategories.reviewCategories[category].score);
             if (categoryReviewScore && categoryReviewScore > 0) {
                 ratingPatchObj[category] = this.resortCategories.reviewCategories[category];
-                ratingPatchObj[category].count = this.ratings.reviewCategories[category].count++;
-                ratingPatchObj[category].score = (categoryReviewScore + this.ratings.reviewCategories[category].score) / ratingPatchObj[category].count;
+                ratingPatchObj[category].count = this.ratings.reviewCategories[category].count + 1;
+                ratingPatchObj[category].score = this.newRatingScore(this.ratings.reviewCategories[category].score, categoryReviewScore, this.resortCategories.reviewCategories[category].score);
             } else {
                 ratingPatchObj[category] = this.resortCategories.reviewCategories[category];
                 ratingPatchObj[category].count = this.ratings.reviewCategories[category].count;
@@ -73,12 +76,16 @@ export class ResortModalReviewFormComponent implements OnInit {
             }
         }
         const subReview = this.reviewsService.submitReview(this.userReview)
-        console.log(this.ratings);
+        this.reviewsService.submitResortRating(ratingPatchObj, this.ratingId, this.id, overallRating);
+
         if (subReview) {
             this.closeReview();
         }
-        // overallRating: {count: 1, label: 'Overall Rating', score: 4}
-        // ratingId: "-RRb7z6UGKuGfKCLMZe7"
-        // resortId: "-CAALSV
+    }
+
+    newRatingScore(currentScore, currentCount, updatedScore): number {
+        const currentAggScore = currentScore * currentCount;
+        const newScore = (currentAggScore + Number(updatedScore)) / (currentCount + 1);
+        return newScore;
     }
 }

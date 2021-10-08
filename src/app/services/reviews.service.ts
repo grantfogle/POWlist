@@ -35,35 +35,33 @@ export class ReviewsService {
 
     submitReview(review: ResortReview): boolean {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
-        this.http.post(
-            url,
-            review
-        ).subscribe(responseData => {
-            console.log(responseData);
-        });
+        // this.http.post(
+        //     url,
+        //     review
+        // ).subscribe(responseData => {
+        //     console.log(responseData);
+        // });
         return true;
     }
 
-    submitResortRating(ratingPatchObj, ratingId, resortId, { overallCount, overallRatingVal }) {
-        // console.log('bang');
-        console.log(ratingPatchObj, ratingId);
+    submitResortRating(ratingPatchObj, ratingId, resortId, overallRating) {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         const patchData = {
             [ratingId]: {
                 overallRating: {
-                    count: overallCount,
+                    count: overallRating.count,
                     label: 'Overall Rating',
-                    value: overallRatingVal
+                    score: overallRating.score
                 },
                 resortId,
                 reviewCategories: ratingPatchObj
             }
-            // overallRating: {},
         };
-
-        // increase count, recalc average score
-        // this.http.patch(url).subscribe()
-
+        console.log(patchData)
+        // this.http.put(url, patchData)
+        // this.http.put(url, patchData).subscribe(responseData => {
+        //     console.log('response data bruv', responseData);
+        // });
         // this.http.put(url, patchData).subscribe(responseData => {
         //     console.log('response data bruv', responseData);
         // });
