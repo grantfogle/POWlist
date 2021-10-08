@@ -12,7 +12,6 @@ import { Resort } from '../shared/resort.model';
 
 export class ResortModalComponent implements OnInit {
     selectedNav = 'Info';
-    showReviewForm = false;
     selectedResort: Resort;
 
     constructor(
@@ -29,7 +28,7 @@ export class ResortModalComponent implements OnInit {
     }
 
     toggleReviewForm() {
-        this.showReviewForm = !this.showReviewForm;
+        this.selectedNav = 'Info';
     }
 
     close() {

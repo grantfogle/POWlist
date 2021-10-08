@@ -28,14 +28,20 @@ export class ReviewsService {
      * */
 
     getResortReview(resortId): Observable<any> {
-        // https://powfish.firebaseio.com/reviews.json?orderBy=%22resortId%22&equalTo=%22-MNRUOM4svbEM-qNfJ7i%22
+        // reviews.json?orderBy=%22resortId%22&equalTo=%22-MNRUOM4svbEM-qNfJ7i%22
         const fetchUrl = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}?orderBy="resortId"&equalTo="${resortId}"`;
         return this.http.get(fetchUrl);
     }
-    submitResortReview(review) {
-        //
-        console.log('boom');
+
+    submitReview(review: ResortReview): boolean {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
+        this.http.post(
+            url,
+            review
+        ).subscribe(responseData => {
+            console.log(responseData);
+        });
+        return true;
     }
 
     submitResortRating(ratingPatchObj, ratingId, resortId, { overallCount, overallRatingVal }) {
@@ -63,17 +69,6 @@ export class ReviewsService {
         // });
     }
 
-
-    submitReview(review: ResortReview): boolean {
-        const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.REVIEWS}`;
-        this.http.post(
-            url,
-            review
-        ).subscribe(responseData => {
-            console.log(responseData);
-        });
-        return true;
-    }
     submitRatings(currentRating: ResortRatings, rating: ResortRatings) {
         const url = `${ENV.POWLIST_CONNECT_URL}${Endpoints.RATINGS}`;
         // how do i get

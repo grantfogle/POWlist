@@ -38,7 +38,7 @@ export class ResortModalReviewFormComponent implements OnInit {
     };
 
     userReview: ResortReview = {
-        resortId: this.id,
+        resortId: '',
         icon: '',
         date: this.today,
         userName: '',
@@ -58,6 +58,7 @@ export class ResortModalReviewFormComponent implements OnInit {
     onReviewSubmit() {
         let finalPatchObj;
         // update count of existing object
+        this.userReview.resortId = this.id;
         let ratingPatchObj = new Object();
         for (const category in this.resortCategories.reviewCategories) {
             const categoryReviewScore = Number(this.resortCategories.reviewCategories[category].score);
@@ -71,7 +72,11 @@ export class ResortModalReviewFormComponent implements OnInit {
                 ratingPatchObj[category].score = this.ratings.reviewCategories[category].score;
             }
         }
+        const subReview = this.reviewsService.submitReview(this.userReview)
         console.log(this.ratings);
+        if (subReview) {
+            this.closeReview();
+        }
         // overallRating: {count: 1, label: 'Overall Rating', score: 4}
         // ratingId: "-RRb7z6UGKuGfKCLMZe7"
         // resortId: "-CAALSV

@@ -1,6 +1,6 @@
 <div class="review-container">
-    <div>
-        <h3>Average Rating for {{name}} is 4.6 stars</h3>
+    <div *ngIf="reviews.length === 0">
+        <h2>There doesn't appear to be anything here.</h2>
     </div>
     <div *ngFor="let review of reviews" class="review">
         <div class="review-header">
