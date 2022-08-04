@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AddResortComponent } from './resorts/add-resort/add-resort.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './core/header/header.component';
 import { HeroComponent } from './resorts/resorts-hero/hero.component';
 import { FeedbackFormComponent } from './resorts/feedback-form/feedback-form.component';
 import { FilterComponent } from './resorts/filter/filter.component';
