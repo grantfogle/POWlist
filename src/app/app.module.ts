@@ -28,10 +28,12 @@ import { DomService } from './services/dom.service';
 import { ResortsService } from './services/resorts.service';
 import { FilterService } from './services/filter.service';
 import { UserService } from './services/user.service';
+import { ResortModule } from './modules/resort/resort.module';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'map', component: MapComponent },
+  { path: 'resort/:id', loadChildren: () => ResortModule }
 ];
 
 @NgModule({
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ResortModule,
     RouterModule.forRoot(appRoutes),
   ],
   declarations: [
