@@ -33,3 +33,8 @@
 .app-body {
     margin: 0;
 }
+
+app-header {
+    height: 40px;
+    width: 100%;
+}

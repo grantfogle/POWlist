@@ -28,20 +28,16 @@ import { DomService } from './services/dom.service';
 import { ResortsService } from './services/resorts.service';
 import { FilterService } from './services/filter.service';
 import { UserService } from './services/user.service';
-
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'map', component: MapComponent },
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
-  ],
+    ],
   declarations: [
     AppComponent,
     AddResortComponent,
